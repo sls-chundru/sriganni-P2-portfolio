@@ -9,7 +9,7 @@ Hi this is Sri Lakshmi Sudha Ganni, I am currently pursuing my Master's in Data 
 
 <span style="font-size:24px;">**Data Analytics Experience**</span>
 
-I have previously worked on projects focused on analysis of resources avaiable for cancer patients. I am also working on a project which is focused on predicting the price of housing market in San Antonio. I am looking forward to work on more projects and gain more experience in the field of data analytics. I am also looking forward to work on projects which are focused on data visualization and machine learning. I am also interested in learning new technologies and tools in the field of data analytics. 
+I have previously worked on projects focused on analysis of resources available for cancer patients. I am also working on a project which is focused on predicting the price of housing market in San Antonio. I am looking forward to work on more projects and gain more experience in the field of data analytics. I am also looking forward to work on projects which are focused on data visualization and machine learning. I am also interested in learning new technologies and tools in the field of data analytics. 
 
 <span style="font-size:24px;">**Research Interest**</span>
 
