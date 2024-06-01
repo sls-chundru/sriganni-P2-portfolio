@@ -15,7 +15,12 @@ I have previously worked on projects focused on analysis of resources available 
 
  My Primary area of interest is to work at the intersection of data analytics and chemical engineering. Specially application of machine learning techniques to analyze and discover underlying trends in chemical plant data and material testing.
 
+<span style="font-size:24px;">**Interesting thing About Me**</span>
+
+A quirky and interesting thing about me is My passion for photography, especially focusing on capturing nature and landscapes. It offered a different perspective on observing and interpreting the world around me.
+
 <span style="font-size:24px;">**Hobbies**</span>
+
 I love playing Racquetball, trekking and passionate about Photography.
 
 
