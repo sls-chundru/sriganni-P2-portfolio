@@ -1,1 +1,23 @@
 /* css styles */
+
+
+.header {
+  background-image: url('sri2.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height:200px; /* Adjust the height as needed */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: red; /* Text color */
+  text-align: center;
+}
+
+.header h1 {
+  color: red;
+  text-shadow: 2px 2px 4px #000000; /* Shadow for better visibility */
+}
+
+.header-image {
+  filter: brightness(50%);
+}
