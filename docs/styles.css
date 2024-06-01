@@ -9,13 +9,13 @@
   display: flex;
   justify-content: align-start;
   align-items: center;
-  color: red; /* Text color */
+  color: #EF468B; /* Text color */
   text-align: center;
 }
 
 .header h1 {
-  color: red;
-  text-shadow: 2px 2px 4px #000000; /* Shadow for better visibility */
+  color: #EF468B;
+  text-shadow: 3px 3px 4px #000000; /* Shadow for better visibility */
 }
 
 .header-image {
