@@ -5,9 +5,9 @@
   background-image: url('sri2.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  height:200px; /* Adjust the height as needed */
+  height:350px; /* Adjust the height as needed */
   display: flex;
-  justify-content: flex-start;
+  justify-content: align-start;
   align-items: center;
   color: red; /* Text color */
   text-align: center;

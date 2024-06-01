@@ -4,12 +4,16 @@ output:
   html_document:
     css: styles.css
 ---
-<div class="header" align="left">
-  <h1>Welcome to My Website 
-  
-   Sri Lakshmi  - DA Portfolio </h1> 
-</div>
 
+::: {.header align="left"}
+<h1>
+
+Welcome to My Website
+
+Sri Lakshmi - DA Portfolio
+
+</h1>
+:::
 
 # Introduction
 
@@ -18,6 +22,20 @@ Hi, I am **Sri Lakshmi Sudha Ganni**, currently pursuing my Master’s in Data A
 # Data Analytics Experience
 
 I have worked on projects analyzing resources available for cancer patients and am currently focused on predicting the housing market prices in San Antonio. I am eager to work on more projects to enhance my experience in data analytics, especially those focusing on data visualization and machine learning.
+
+# Projects
+
+1)  Cancer Patient health resources Analysis 
+
+![](cancer_DA.jpg){fig-align="left" width="300"}
+
+2)  Housing Market Trends Modeling
+
+![](housing.jpg){}
+
+3)  Natural Langugage Processing
+
+![](nlp.jpg){}
 
 # Research Interest
 
