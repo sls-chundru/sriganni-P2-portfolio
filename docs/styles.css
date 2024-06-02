@@ -21,3 +21,9 @@
 .header-image {
   filter: brightness(50%);
 }
+
+.text-column {
+    max-width: 2100px; /* Adjust this value as needed */
+    margin: auto; /* Centers the column if the page width exceeds max-width */
+    padding: 10px; /* Optional: Adds some space inside the column */
+}
