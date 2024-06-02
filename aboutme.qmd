@@ -23,5 +23,21 @@ A quirky and interesting thing about me is My passion for photography, especiall
 
 I love playing Racquetball, trekking and passionate about Photography.
 
+<span style="font-size:24px;">**Machine Learning & Art: Neural Networks for Artistic Use**</span>
+
+This video tutorial provides an in-depth look at how neural networks can be used to apply artistic styles to images, a process known as style transfer. It's a compelling example of how machine learning techniques are being used creatively to blend different artistic styles onto a canvas or photograph, essentially allowing the algorithm to "paint" one picture in the style of another artist.
+
+```{r}
+# Sample data showing style transfer results
+library(tibble)
+style_transfer_examples <- tribble(
+  ~Original_Photo, ~Art_Style, ~Result,
+  "Cityscape", "Van Gogh's Starry Night", "Modified Cityscape with Starry Night Style"
+)
+
+# Displaying the data
+style_transfer_examples
+
+```
 
 
