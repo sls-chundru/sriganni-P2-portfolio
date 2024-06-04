@@ -59,8 +59,8 @@
     "objectID": "starter-analysis-exercise/products/report/starter-analysis-report.html#statistical-analysis",
     "href": "starter-analysis-exercise/products/report/starter-analysis-report.html#statistical-analysis",
     "title": "Manuscript/Report Template for a Data Analysis Project",
-    "section": "3.3 Statistical analysis",
-    "text": "3.3 Statistical analysis\nExplain anything related to your statistical analyses."
+    "section": "3.4 Statistical analysis",
+    "text": "3.4 Statistical analysis\nExplain anything related to your statistical analyses."
   },
   {
     "objectID": "starter-analysis-exercise/products/report/starter-analysis-report.html#exploratorydescriptive-analysis",
@@ -208,5 +208,12 @@
     "title": "YOURNAME Data Analysis Portfolio",
     "section": "",
     "text": "Folder for all tables (generally stored as Rds files) and other files.\nYou can create further sub-folders if that makes sense."
+  },
+  {
+    "objectID": "starter-analysis-exercise/products/report/starter-analysis-report.html#load-in-the-data",
+    "href": "starter-analysis-exercise/products/report/starter-analysis-report.html#load-in-the-data",
+    "title": "Manuscript/Report Template for a Data Analysis Project",
+    "section": "3.3 load in the data",
+    "text": "3.3 load in the data\n\ndf= read.csv('insurance.csv', header=TRUE)\nnum_cols&lt;- unlist(lapply(df, is.numeric))\nplot(df[,num_cols])\n\n\n\n\n\n\n\n\n\nround(cor(df[,num_cols]),2)\n\n          age  bmi children charges\nage      1.00 0.11     0.04    0.30\nbmi      0.11 1.00     0.01    0.20\nchildren 0.04 0.01     1.00    0.07\ncharges  0.30 0.20     0.07    1.00\n\n\n\nsmoker=as.factor(df$smoker)\nsex=as.factor(df$sex)\nregion=as.factor(df$region)\n\nboxplot(df$charges~smoker, main='Smoker')\n\n\n\n\n\n\n\nboxplot(df$charges~sex, main ='sex')\n\n\n\n\n\n\n\nboxplot(df$charges~region, main='region')"
   }
 ]

@@ -1,7 +1,7 @@
 ---
 title: "Manuscript/Report Template for a Data Analysis Project"
 subtitle: ""
-author: Your Name
+author: Sri Lakshmi Sudha
 date: today
 format:
   html:
@@ -62,6 +62,31 @@ _As applicable, explain where and how you got the data. If you directly import t
 
 ## Data import and cleaning
 _Write code that reads in the file and cleans it so it's ready for analysis. Since this will be fairly long code for most datasets, it might be a good idea to have it in one or several R scripts. If that is the case, explain here briefly what kind of cleaning/processing you do, and provide more details and well documented code somewhere (e.g. as supplement in a paper). All materials, including files that contain code, should be commented well so everyone can follow along._
+
+## load in the data
+```{r}
+df= read.csv('insurance.csv', header=TRUE)
+num_cols<- unlist(lapply(df, is.numeric))
+plot(df[,num_cols])
+
+```
+
+```{r}
+round(cor(df[,num_cols]),2)
+
+```
+```{r}
+smoker=as.factor(df$smoker)
+sex=as.factor(df$sex)
+region=as.factor(df$region)
+
+boxplot(df$charges~smoker, main='Smoker')
+boxplot(df$charges~sex, main ='sex')
+boxplot(df$charges~region, main='region')
+
+
+```
+
 
 
 ## Statistical analysis
