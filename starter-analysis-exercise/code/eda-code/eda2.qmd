@@ -43,7 +43,7 @@ Load the data.
 data_location <- here::here("starter-analysis-exercise","data","processed-data","processeddata2.rds")
 #load data
 mydata <- readRDS(data_location)
-mydata$'Eye Color' = as.factor(mydata$'Eye Color')
+mydata$Eye Color = as.factor(mydata$Eye Color)
 dplyr::glimpse(mydata)
 ```
 
@@ -106,7 +106,7 @@ ggsave(filename = figure_file, plot=p4)
 
 Box Plot
 ```{r}
-boxplotp = ggplot(mydata, aes(x = Eye Color, y = Height)) +
+boxplotp = ggplot(mydata, aes(x = `Eye Color`, y = Height)) +
   geom_boxplot()
 plot(boxplotp)
 figure_file = here("starter-analysis-exercise","code","eda-code","boxplot.png")
