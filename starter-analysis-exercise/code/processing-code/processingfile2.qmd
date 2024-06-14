@@ -89,13 +89,16 @@ To be able to analyze the data, we'll remove those individuals as well.
 ```{r}
 d3 <- d2 %>%  dplyr::filter(Weight != 7000) %>% tidyr::drop_na()
 skimr::skim(d3)
+dplyr::glimpse(d3)
 ```
 
 Now checking the `Gender` variable. Gender should be a categorical/factor variable but is loaded as character. We can fix that with simple base R code to mix things up.
 
 ```{r}
 d3$Gender <- as.factor(d3$Gender)  
+d3$Weight <- as.numeric(d3$Weight)
 skimr::skim(d3)
+
 ```
 
 
@@ -105,6 +108,7 @@ Well proceed here by removing that individual with that NA entry. Since this kee
 ```{r}
 d4 <- d3 %>% dplyr::filter( !(Gender %in% c("NA","N")) ) %>% droplevels()
 skimr::skim(d4)
+dplyr::glimpse(d4)
 ```
 
 
