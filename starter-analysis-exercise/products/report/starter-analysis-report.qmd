@@ -6,7 +6,7 @@ date: today
 format:
   html:
     toc: false
-    number-sections: true
+    number-sections: false
     highlight-style: github
 bibliography: ../dataanalysis-template-references.bib
 csl: ../apa.csl
@@ -84,7 +84,7 @@ Note the loading of the data providing a **relative** path using the `../../` no
 #| label: tbl-summarytable
 #| tbl-cap: "Data summary table."
 #| echo: FALSE
-resulttable=readRDS("../../results/tables-files/summarytable.rds")
+resulttable=readRDS(here("starter-analysis-exercise","results","tables-files","summarytable.rds"))
 knitr::kable(resulttable)
 ```
 
@@ -160,7 +160,6 @@ The Boxplot shows the distribution of each section of Eye color:
 
 5.Hazel Eye Color:Median similar to green eyes, with a broader range implicating moderate variability,with heights centered around the median.
 
-
 ```{r}
 #| label: fig-result2
 #| fig-cap: "Height and weight stratified by gender."
@@ -178,8 +177,7 @@ resulttable3 = readRDS(here("starter-analysis-exercise","results","tables-files"
 knitr::kable(resulttable3)
 ```
 
-The regression results indicate that height is modeled with income and eye color as predictors show that
-1.Intercept(195, p-value=0.0104): The intercept represents the estimated height when all the predictors are zero.The sisgnificant p-value indicates that this base height is statistically significant.
+The regression results indicate that height is modeled with income and eye color as predictors show that 1.Intercept(195, p-value=0.0104): The intercept represents the estimated height when all the predictors are zero.The sisgnificant p-value indicates that this base height is statistically significant.
 
 2.Income (0.000428, p-value = 0.358): The coefficient for income indicates that for each unit increase in income, height is expected to increase by approximately 0.000428 units. The p-value suggests that this effect is not statistically significant, implying there might be no strong linear relationship between income and height.
 
@@ -191,5 +189,4 @@ The regression results indicate that height is modeled with income and eye color
 
 6.Eye Color Hazel (10.1, p-value = 0.666): This suggests that individuals with hazel eyes are on average 10.1 units taller than the reference group, although this is not statistically significant.
 
-The model suggests that neither income nor eye color has a statistically significant effect on height, based on the p-values associated with each predictor. This implies that variations in height within this dataset are likely due to factors not included in this model. The overall effectiveness of the model in predicting height based on these variables might be limited, indicating potential need for considering other variables or a different modeling approach.
-# References
+The model suggests that neither income nor eye color has a statistically significant effect on height, based on the p-values associated with each predictor. This implies that variations in height within this dataset are likely due to factors not included in this model. The overall effectiveness of the model in predicting height based on these variables might be limited, indicating potential need for considering other variables or a different modeling approach. \# References

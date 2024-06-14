@@ -1,7 +1,6 @@
 /* css styles */
 
-
-.header {
+.header2 {
   background-image: url('sri2.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -12,6 +11,7 @@
   color: #EF468B; /* Text color */
   text-align: center;
 }
+
 
 .header h1 {
   color: #EF468B;
