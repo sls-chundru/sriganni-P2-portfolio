@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Your Name">
-<meta name="dcterms.date" content="2024-05-31">
+<meta name="author" content="Sri Lakshmi Sudha Ganni">
+<meta name="dcterms.date" content="2024-06-14">
 
-<title>YOURNAME Data Analysis Portfolio - Manuscript/Report Template for a Data Analysis Project</title>
+<title>Sri Lakshmi - DA Portfolio - Manuscript/Report Template for a Data Analysis Project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -92,7 +92,7 @@ div.csl-indent {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="../../../index.html">
-    <span class="navbar-title">YOURNAME Data Analysis Portfolio</span>
+    <span class="navbar-title">Sri Lakshmi - DA Portfolio</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -162,14 +162,14 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Your Name </p>
+             <p>Sri Lakshmi Sudha Ganni </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 31, 2024</p>
+      <p class="date">June 14, 2024</p>
     </div>
   </div>
   
@@ -179,6 +179,7 @@ div.csl-indent {
 
 </header>
 
+<p>Collin Real Contributed to this exercise</p>
 <p>The structure below is one possible setup for a data analysis project (including the course project). For a manuscript, adjust as needed. You don’t need to have exactly these sections, but the content covering those sections should be addressed.</p>
 <p>This uses MS Word as output format. <a href="https://quarto.org/docs/output-formats/ms-word.html">See here</a> for more information. You can switch to other formats, like html or pdf. See <a href="https://quarto.org/">the Quarto documentation</a> for other formats.</p>
 <section id="summaryabstract" class="level1" data-number="1">
@@ -195,6 +196,7 @@ div.csl-indent {
 <section id="description-of-data-and-data-source" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="description-of-data-and-data-source"><span class="header-section-number">2.2</span> Description of data and data source</h2>
 <p><em>Describe what the data is, what it contains, where it is from, etc. Eventually this might be part of a methods section.</em></p>
+<p>The original data is a simple made-up data-set in an Excel file which is exampledata.xlsx.The dataset contains the variables Height, weight and Gender columns of a few imaginary individuals.It is a small dataset with 15 rows and 3 columns.The dataset purposefully contains some faulty entries that need to be cleaned. The data is used to demonstrate the analysis of the data using R. I have added 2 columns to the data which are Income and Eye Color. The data is saved as exampledata2.xlsx. I also added descriptions for the new variables to the codebook sheet in the excel file.</p>
 </section>
 <section id="questionshypotheses-to-be-addressed" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="questionshypotheses-to-be-addressed"><span class="header-section-number">2.3</span> Questions/Hypotheses to be addressed</h2>
@@ -234,19 +236,19 @@ div.csl-indent {
 <table class="table table-sm table-striped small">
 <caption>Table&nbsp;1: Data summary table.</caption>
 <colgroup>
-<col style="width: 5%">
+<col style="width: 4%">
+<col style="width: 6%">
+<col style="width: 4%">
+<col style="width: 6%">
 <col style="width: 7%">
-<col style="width: 5%">
 <col style="width: 7%">
-<col style="width: 7%">
-<col style="width: 8%">
-<col style="width: 9%">
+<col style="width: 14%">
 <col style="width: 6%">
 <col style="width: 5%">
 <col style="width: 5%">
-<col style="width: 6%">
-<col style="width: 6%">
-<col style="width: 6%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
 <col style="width: 6%">
 <col style="width: 6%">
 </colgroup>
@@ -274,10 +276,10 @@ div.csl-indent {
 <td style="text-align: left;">factor</td>
 <td style="text-align: left;">Gender</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
+<td style="text-align: right;">1.0</td>
 <td style="text-align: left;">FALSE</td>
 <td style="text-align: right;">3</td>
-<td style="text-align: left;">M: 4, F: 3, O: 2</td>
+<td style="text-align: left;">F: 4, M: 4, O: 2</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -288,38 +290,72 @@ div.csl-indent {
 <td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">Height</td>
+<td style="text-align: left;">factor</td>
+<td style="text-align: left;">Eye Color</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">blu: 4, bro: 2, haz: 2, bla: 1</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
-<td style="text-align: right;">165.66667</td>
-<td style="text-align: right;">15.97655</td>
-<td style="text-align: right;">133</td>
-<td style="text-align: right;">156</td>
-<td style="text-align: right;">166</td>
-<td style="text-align: right;">178</td>
-<td style="text-align: right;">183</td>
-<td style="text-align: left;">▂▁▃▃▇</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">numeric</td>
-<td style="text-align: left;">Weight</td>
+<td style="text-align: left;">Height</td>
 <td style="text-align: right;">0</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">165.60000</td>
+<td style="text-align: right;">15.06431</td>
+<td style="text-align: right;">133</td>
+<td style="text-align: right;">158.25</td>
+<td style="text-align: right;">166</td>
+<td style="text-align: right;">177.25</td>
+<td style="text-align: right;">183</td>
+<td style="text-align: left;">▂▁▃▆▇</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">Weight</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">0.9</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: right;">70.11111</td>
 <td style="text-align: right;">21.24526</td>
 <td style="text-align: right;">45</td>
-<td style="text-align: right;">55</td>
+<td style="text-align: right;">55.00</td>
 <td style="text-align: right;">70</td>
-<td style="text-align: right;">80</td>
+<td style="text-align: right;">80.00</td>
 <td style="text-align: right;">110</td>
 <td style="text-align: left;">▇▂▃▂▂</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">Income</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">87000.00000</td>
+<td style="text-align: right;">14613.54014</td>
+<td style="text-align: right;">60000</td>
+<td style="text-align: right;">81250.00</td>
+<td style="text-align: right;">87000</td>
+<td style="text-align: right;">95750.00</td>
+<td style="text-align: right;">110000</td>
+<td style="text-align: left;">▅▂▇▇▂</td>
 </tr>
 </tbody>
 </table>
@@ -415,16 +451,109 @@ div.csl-indent {
 <p>These papers <span class="citation" data-cites="mckay2020 mckay2020a">(<a href="#ref-mckay2020" role="doc-biblioref">McKay, Ebell, Billings, et al., 2020</a>; <a href="#ref-mckay2020a" role="doc-biblioref">McKay, Ebell, Dale, et al., 2020</a>)</span> are good examples of papers published using a fully reproducible setup similar to the one shown in this template.</p>
 <p>Note that this cited reference will show up at the end of the document, the reference formatting is determined by the CSL file specified in the YAML header. Many more style files for almost any journal <a href="https://www.zotero.org/styles">are available</a>. You also specify the location of your bibtex reference file in the YAML. You can call your reference file anything you like, I just used the generic word <code>references.bib</code> but giving it a more descriptive name is probably better.</p>
 <div style="page-break-after: always;"></div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-result1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../../results/figures/boxplot.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: Height and weight stratified by gender.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The Boxplot shows the distribution of each section of Eye color:</p>
+<p>1.Black Eye Color: Broad range of heights with a median around 170cm implicating that High Variability in height among individuals with black eyes.</p>
+<p>2.Blue Eye Color: Narrow range around a median of 165cm implicating that Heights are more consistent among those blue eyes.</p>
+<p>3.Brown Eye Color:Highest median height below 170 cm ,with narrow variation implicating that Generally taller, with less height variability compared to black eyes.</p>
+<p>4.Green Eye Color:Median near 165cm, very tight range implicating that compact height distribution, showing strong central tendency.</p>
+<p>5.Hazel Eye Color:Median similar to green eyes, with a broader range implicating moderate variability,with heights centered around the median.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-result2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../../results/figures/scatterplot.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;3: Height and weight stratified by gender.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The scatter plot displays the relationship between weight(X-axis) and income(y-axis).The data points are widely dispersed without a clear trend, indicating that there is nos significant relationship or dependency between the weight of individuals and their income in this particular dataset.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-resulttable3" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;3: Linear model fit table.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">term</th>
+<th style="text-align: right;">estimate</th>
+<th style="text-align: right;">std.error</th>
+<th style="text-align: right;">statistic</th>
+<th style="text-align: right;">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">195.0790698</td>
+<td style="text-align: right;">42.8951725</td>
+<td style="text-align: right;">4.5478094</td>
+<td style="text-align: right;">0.0104350</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Income</td>
+<td style="text-align: right;">-0.0004279</td>
+<td style="text-align: right;">0.0004122</td>
+<td style="text-align: right;">-1.0380663</td>
+<td style="text-align: right;">0.3578676</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>Eye Color</code>blue</td>
+<td style="text-align: right;">15.6825581</td>
+<td style="text-align: right;">18.6712442</td>
+<td style="text-align: right;">0.8399311</td>
+<td style="text-align: right;">0.4482183</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>Eye Color</code>brown</td>
+<td style="text-align: right;">-2.2069767</td>
+<td style="text-align: right;">20.7739821</td>
+<td style="text-align: right;">-0.1062375</td>
+<td style="text-align: right;">0.9205086</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>Eye Color</code>green</td>
+<td style="text-align: right;">-0.9953488</td>
+<td style="text-align: right;">23.5865057</td>
+<td style="text-align: right;">-0.0421999</td>
+<td style="text-align: right;">0.9683618</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>Eye Color</code>hazel</td>
+<td style="text-align: right;">10.0837209</td>
+<td style="text-align: right;">21.6599511</td>
+<td style="text-align: right;">0.4655468</td>
+<td style="text-align: right;">0.6657578</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>The regression results indicate that height is modeled with income and eye color as predictors show that 1.Intercept(195, p-value=0.0104): The intercept represents the estimated height when all the predictors are zero.The sisgnificant p-value indicates that this base height is statistically significant.</p>
+<p>2.Income (0.000428, p-value = 0.358): The coefficient for income indicates that for each unit increase in income, height is expected to increase by approximately 0.000428 units. The p-value suggests that this effect is not statistically significant, implying there might be no strong linear relationship between income and height.</p>
+<p>3.Eye Color Blue (-15.7, p-value = 0.448): This coefficient suggests that individuals with blue eyes are, on average, 15.7 units shorter than the reference eye color category. The high p-value indicates that this difference is not statistically significant.</p>
+<p>4.Eye Color Brown (-2.21, p-value = 0.921): Similar to blue, having brown eyes correlates with being 2.21 units shorter than the reference group, but this is also not statistically significant.</p>
+<p>5.Eye Color Green (-0.95, p-value = 0.966): This result suggests almost no difference in height compared to the reference eye color, and the effect is not statistically significant.</p>
+<p>6.Eye Color Hazel (10.1, p-value = 0.666): This suggests that individuals with hazel eyes are on average 10.1 units taller than the reference group, although this is not statistically significant.</p>
+<p>The model suggests that neither income nor eye color has a statistically significant effect on height, based on the p-values associated with each predictor. This implies that variations in height within this dataset are likely due to factors not included in this model. The overall effectiveness of the model in predicting height based on these variables might be limited, indicating potential need for considering other variables or a different modeling approach. # References</p>
+
+
+
 </section>
 </section>
-<section id="references" class="level1" data-number="6">
 
-
-
-
-</section>
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">6 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="list">
 <div id="ref-leek2015" class="csl-entry" role="listitem">
 Leek, J. T., &amp; Peng, R. D. (2015). Statistics. <span>What</span> is the question? <em>Science (New York, N.Y.)</em>, <em>347</em>(6228), 1314–1315. <a href="https://doi.org/10.1126/science.aaa6146">https://doi.org/10.1126/science.aaa6146</a>
 </div>
