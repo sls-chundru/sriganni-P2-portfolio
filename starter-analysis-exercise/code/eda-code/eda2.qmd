@@ -109,7 +109,7 @@ Box Plot
 boxplotp = ggplot(mydata, aes(x = `Eye Color`, y = Height)) +
   geom_boxplot()
 plot(boxplotp)
-figure_file = here("starter-analysis-exercise","code","eda-code","boxplot.png")
+figure_file = here("starter-analysis-exercise","results","figures","boxplot.png")
 ggsave(filename=figure_file, plot=boxplotp)
 ```
 
@@ -118,7 +118,7 @@ Scatter Plot
 scatterp = ggplot(mydata, aes(x = Weight, y = Income)) +
   geom_point()
 plot(scatterp)
-figure_file = here("starter-analysis-exercise","code","eda-code","scatterplot.png")
+figure_file = here("starter-analysis-exercise","results","figures","scatterplot.png")
 ggsave(filename=figure_file)
 ```
 
