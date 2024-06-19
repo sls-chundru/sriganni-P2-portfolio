@@ -85,7 +85,7 @@ summary(africadata)
 
 # Creating a data object with selected variables:
 
-We’ll create two new objects: one containing only infant_mortality and
+We'll create two new objects: one containing only infant_mortality and
 life_expectancy, and the other containing population and
 life_expectancy.
 
@@ -293,3 +293,111 @@ The analysis indicates that there is no significant correlation between
 population size and life expectancy among African countries for the year
 2000. This suggests that other factors not included in this model might
 be more influential in determining life expectancy.
+ 
+
+\pagebreak
+
+
+## <span style="color:red;">This section is contributed by JOAQUIN RAMIREZ</span>
+
+```{r}
+# Loading ggplot2 package for data visualization
+library(ggplot2)
+
+
+# In order to determine what datasets are available in the dslabs package (use code below)
+# data(package = "dslabs")
+```
+
+After reviewing the datasets available, I selected the "temp_carbon" dataset for further exploration. This dataset contains global temperature anomaly data and carbon emissions from the years 1751 through 2018. The goal of this analysis is to examine the relationship between global temperature anomalies and carbon emissions over this extensive time period. 
+
+```{r}
+# Loads the temp_carbon dataset from the dslabs package
+data("temp_carbon")
+
+
+# This provides an overview of the data types and number of observations
+str(temp_carbon)
+
+# View the summary statistics of the temp_carbon dataset.
+summary(temp_carbon)
+```
+
+
+The "temp_carbon" dataset contain 268 observations of 5 variables: year, temp_anomaly, land_anomaly, ocean_anomaly, and carbon_emissions. The dataset also contains some missing values (NAs) which will be removed before further analysis.
+
+
+
+```{r}
+# This gives a quick glance at the dataset.
+head(temp_carbon)
+```
+
+```{r}
+# Checking for missing values in the dataset
+sum(is.na(temp_carbon))
+
+# Removing NA's values
+temp_carbon <- na.omit(temp_carbon)
+```
+
+
+
+```{r}
+# Plotting the Global Carbon Emissions 
+ggplot(temp_carbon, aes(x = year, y = carbon_emissions)) +
+  geom_line() +  # Using a line plot to show the trend of carbon emissions
+  labs(title = "Global temperature anomaly and carbon emissions, 1751-2018", x = "Year", y = "Carbon Emissions")  
+
+# Fiting a linear regression model with carbon emissions as the outcome and year as the predictor
+fit_carbon <- lm(carbon_emissions ~ year, data = temp_carbon)
+
+
+summary(fit_carbon) # The summary of the linear regression model
+```
+
+
+```{r}
+# Plotting the fitted linear regression line for carbon emissions
+ggplot(temp_carbon, aes(x = year, y = carbon_emissions)) +
+  geom_line() +  # Using a line plot to show the trend of carbon emissions
+  geom_abline(slope = fit_carbon$coefficients[2], intercept = fit_carbon$coefficients[1], col = "red") +  # Adding a regression line
+  labs(title = "Linear Regression: Year vs Carbon Emissions", x = "Year", y = "Carbon Emissions ")  
+```
+
+As we can observe in the plotted graph, there seems to be an increase in Carbon emissions. This is confirmed by the linear regression model. The high R-squared value only further confirms that the model explains a large portion of the variance in carbon emissions. The high levels of Carbon emissions seem to really begin to take off during WWII. 
+
+Note:  The red regression line represents the relationship between year and carbon emissions modeled by the linear regression analysis above.
+
+
+
+```{r}
+# Plotting the Global Temperature over Time
+ggplot(temp_carbon, aes(x = year, y = temp_anomaly)) +
+  geom_line() +  # Ussing a line plot to show the trend of temperature over time
+  labs(title = "Global Temperature Over Time", x = "Year", y = "Temperature")
+
+
+# Fit a linear regression model to help understand the trend of temperature anomalies over time
+fit_temp <- lm(temp_anomaly ~ year, data = temp_carbon)
+
+
+# Viewing the summary of the linear regression model
+summary(fit_temp)
+```
+
+```{r}
+# This plot represents the relationship modeled by the linear regression
+ggplot(temp_carbon, aes(x = year, y = temp_anomaly)) +
+  geom_line() +  # adding the line plot to show the trend of temperature anomalies over time
+  geom_abline(slope = fit_temp$coefficients[2], intercept = fit_temp$coefficients[1], col = "red") +  # This adds the regression line on the graph
+  labs(title = "Linear Regression: Year vs Temperature Anomaly", x = "Year", y = "Temperature")  
+```
+As observed in the plotted graph, temperatures have noticeably increased over time. This upward trend is cause by the surge in carbon emissions. The high R-squared value of 0.7528 suggests a strong relationship between year and temperature anomaly. Additionally, the low p-value (< 2.2e-16) confirms the statistical significance of this relationship, suggesting that the year is a significant predictor of temperature.
+
+Note:  The red line in the plot provides a visual representation of the linear regression model's prediction of how temperature anomaly changes with each passing year 
+
+
+In conclusion, after further analysis and using visualization with linear regression models, I can confirm there exist a significant relationship between increasing carbon emissions and rising temperatures. The linear regression model indicates that temperatures changes on average of 0.0068. Similarly, on average, carbon emissions increases by 6.518e+01 per year.
+
+
