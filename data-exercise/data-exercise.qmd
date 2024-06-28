@@ -1,0 +1,202 @@
+---
+title: "data-exercise"
+format: html
+editor: visual
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+```{r setup, include=FALSE}
+library(keras)
+library(tensorflow)
+library(tidyverse)
+library(readxl)
+library(ggplot2)
+library(car)
+```
+
+```{r}
+model <- application_resnet50(weights = 'imagenet')
+```
+
+```{r}
+img_dir <- 'train3'
+```
+
+```{r}
+object_counts <- list()
+```
+
+```{r}
+process_image <- function(img_path) {
+  tryCatch({
+    img <- image_load(img_path, target_size = c(224, 224))
+    img_array <- image_to_array(img)
+    img_array <- array_reshape(img_array, c(1, 224, 224, 3))
+    img_array <- imagenet_preprocess_input(img_array)
+    
+    # Predict the image class
+    predictions <- model %>% predict(img_array)
+    decoded_predictions <- imagenet_decode_predictions(predictions, top = 3)[[1]]
+    
+    return(decoded_predictions)
+  }, error = function(e) {
+    print(paste("Error processing image", img_path, ":", e$message))
+    return(NULL)
+  })
+}
+```
+
+# Print the counts of each type of animal
+
+filtered_object_counts
+
+```{r}
+# Process each image
+for (img_name in list.files(img_dir)) {
+  img_path <- file.path(img_dir, img_name)
+  predictions <- process_image(img_path)
+  if (length(predictions) > 0) {
+    t<-predictions[2]
+      label <- t$class_description[1]
+     if (is.null(object_counts[[label]])) {
+        object_counts[[label]] <- 0
+      }
+      object_counts[[label]] <- object_counts[[label]] + 1
+  }
+}
+
+# Filter out objects with count less than 4
+filtered_object_counts <- object_counts[sapply(object_counts, function(x) x > 2)]
+
+# Print the counts of each type of animal
+filtered_object_counts
+```
+
+You can add options to executable code like this
+
+```{r}
+objects <- names(filtered_object_counts)
+counts <- unlist(filtered_object_counts)
+
+ggplot(data.frame(Object = objects, Count = counts), aes(x = reorder(Object, Count), y = Count)) +
+  geom_bar(stat = 'identity', fill = 'skyblue') +
+  coord_flip() +
+  labs(x = 'Frequency', y = 'Object', title = 'Frequency of Recognized Objects') +
+  theme_minimal()
+
+```
+
+```{r}
+data_clean <- read_excel('FE_EPA.xlsx', skip = 2)
+data_clean <- data_clean[, -c(1, 1)]
+names(data_clean) <- c('Vehicle Type', 'mpg Gasoline', 'mpg Diesel', 'Source')
+data_clean <- data_clean[1:11, ]
+```
+
+```{r}
+categories <- c(
+  'beach_wagon' = 'Passenger Vehicle',
+  'cab' = 'Service Vehicle',
+  'car_wheel' = 'Passenger Vehicle',
+  'convertible' = 'Performance Vehicle',
+  'limousine' = 'Service Vehicle',
+  'minivan' = 'Passenger Vehicle',
+  'pickup' = 'Utility Vehicle',
+  'sports_car' = 'Performance Vehicle'
+)
+
+# Create DataFrame from filtered_object_counts
+vehicle_counts_df <- data.frame(
+  `Vehicle Type` = names(filtered_object_counts),
+  Count = unlist(filtered_object_counts)
+)
+
+vehicle_counts_df$Category <- sapply(vehicle_counts_df$`Vehicle.Type`, function(x) categories[[x]])
+
+# Map categories to types in the existing dataset
+excel_categories <- list(
+  'Passenger Vehicle' = c('Car'),
+  'Service Vehicle' = c('Transit Bus'),
+  'Performance Vehicle' = c('Car'),
+  'Utility Vehicle' = c('Delivery Truck')
+)
+
+# Matching categories to types
+vehicle_counts_df$`Excel Match` <- sapply(vehicle_counts_df$Category, function(x) excel_categories[[x]][1])
+
+# Merge with fuel economy data
+merged_data <- merge(vehicle_counts_df, data_clean, by.x = 'Excel Match', by.y = 'Vehicle Type', all.x = TRUE)
+
+# Calculate annual fuel consumption and emissions
+merged_data$`Annual Gasoline Consumption` <- (20000 / merged_data$`mpg Gasoline`) * merged_data$Count
+merged_data$`Annual Diesel Consumption` <- (20000 / merged_data$`mpg Diesel`) * merged_data$Count
+CO2_per_gallon_gasoline <- 8887  # grams of CO2 per gallon for gasoline
+CO2_per_gallon_diesel <- 10180  # grams of CO2 per gallon for diesel
+merged_data$`CO2 Emissions Gasoline (grams)` <- merged_data$`Annual Gasoline Consumption` * CO2_per_gallon_gasoline
+merged_data$`CO2 Emissions Diesel (grams)` <- merged_data$`Annual Diesel Consumption` * CO2_per_gallon_diesel
+```
+
+```{r}
+# Annual Gasoline and Diesel Consumption by Vehicle Type
+ggplot(merged_data, aes(x = reorder(`Vehicle.Type`, `Annual Gasoline Consumption`), y = `Annual Gasoline Consumption`)) +
+  geom_bar(stat = 'identity', fill = 'blue') +
+  coord_flip() +
+  labs(title = 'Annual Gasoline Consumption by Vehicle Type', x = 'Vehicle Type', y = 'Gasoline Consumption') +
+  theme_minimal()
+
+ggplot(merged_data, aes(x = reorder(`Vehicle.Type`, `Annual Diesel Consumption`), y = `Annual Diesel Consumption`)) +
+  geom_bar(stat = 'identity', fill = 'green') +
+  coord_flip() +
+  labs(title = 'Annual Diesel Consumption by Vehicle Type', x = 'Vehicle Type', y = 'Diesel Consumption') +
+  theme_minimal()
+
+# CO2 Emissions from Gasoline and Diesel by Vehicle Type
+ggplot(merged_data, aes(x = reorder(`Vehicle.Type`, `CO2 Emissions Gasoline (grams)`), y = `CO2 Emissions Gasoline (grams)`)) +
+  geom_bar(stat = 'identity', fill = 'red') +
+  coord_flip() +
+  labs(title = 'CO2 Emissions from Gasoline by Vehicle Type', x = 'Vehicle Type', y = 'CO2 Emissions (grams)') +
+  theme_minimal()
+
+ggplot(merged_data, aes(x = reorder(`Vehicle.Type`, `CO2 Emissions Diesel (grams)`), y = `CO2 Emissions Diesel (grams)`)) +
+  geom_bar(stat = 'identity', fill = 'brown') +
+  coord_flip() +
+  labs(title = 'CO2 Emissions from Diesel by Vehicle Type', x = 'Vehicle Type', y = 'CO2 Emissions (grams)') +
+  theme_minimal()
+```
+
+```{r}
+# Box Plot of Annual Gasoline Consumption
+ggplot(merged_data, aes(x = '', y = `Annual Gasoline Consumption`)) +
+  geom_boxplot() +
+  labs(title = 'Box Plot of Annual Gasoline Consumption', x = '', y = 'Gasoline Consumption') +
+  theme_minimal()
+
+# Summary statistics for gasoline and diesel consumption
+summary(merged_data$`Annual Gasoline Consumption`)
+summary(merged_data$`Annual Diesel Consumption`)
+
+# Scatter Plot of Gasoline vs Diesel Consumption
+ggplot(merged_data, aes(x = `Annual Gasoline Consumption`, y = `Annual Diesel Consumption`)) +
+  geom_point(color = 'blue') +
+  labs(title = 'Scatter Plot of Gasoline vs Diesel Consumption', x = 'Annual Gasoline Consumption', y = 'Annual Diesel Consumption') +
+  theme_minimal()
+```
+
+```{r}
+# QQ Plot for Annual Gasoline Consumption
+qqPlot(merged_data$`Annual Gasoline Consumption`, main = "QQ Plot for Annual Gasoline Consumption")
+
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
