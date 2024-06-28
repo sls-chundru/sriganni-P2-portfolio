@@ -249,7 +249,7 @@
     "href": "data-exercise/data-exercise.html",
     "title": "data-exercise",
     "section": "",
-    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+    "text": "For this Assignment , I have taken complex data type which is cars images and did some exploratory analysis.This Quarto document demonstrates an analysis of images of cars using deep learning models and combines it with an exploration of fuel economy data from the Environmental Protection Agency(EPA)."
   },
   {
     "objectID": "data-exercise/data-exercise.html#quarto",
@@ -263,6 +263,90 @@
     "href": "data-exercise/data-exercise.html#running-code",
     "title": "data-exercise",
     "section": "Running Code",
-    "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\n\nmodel &lt;- application_resnet50(weights = 'imagenet')\n\n\nimg_dir &lt;- 'train3'\n\n\nobject_counts &lt;- list()\n\n\nprocess_image &lt;- function(img_path) {\n  tryCatch({\n    img &lt;- image_load(img_path, target_size = c(224, 224))\n    img_array &lt;- image_to_array(img)\n    img_array &lt;- array_reshape(img_array, c(1, 224, 224, 3))\n    img_array &lt;- imagenet_preprocess_input(img_array)\n    \n    # Predict the image class\n    predictions &lt;- model %&gt;% predict(img_array)\n    decoded_predictions &lt;- imagenet_decode_predictions(predictions, top = 3)[[1]]\n    \n    return(decoded_predictions)\n  }, error = function(e) {\n    print(paste(\"Error processing image\", img_path, \":\", e$message))\n    return(NULL)\n  })\n}"
+    "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\nFor this Assignment , I have taken complex data type which is cars images and did some exploratory analysis.This Quarto document demonstrates an analysis of images of cars using deep learning models and combines it with an exploration of fuel economy data from the Environmental Protection Agency(EPA)."
+  },
+  {
+    "objectID": "data-exercise/data-exercise.html#libraries-and-setup",
+    "href": "data-exercise/data-exercise.html#libraries-and-setup",
+    "title": "data-exercise",
+    "section": "Libraries and Setup:",
+    "text": "Libraries and Setup:\nSeveral libraries are loaded at the beginning:"
+  },
+  {
+    "objectID": "data-exercise/data-exercise.html#model-initialization",
+    "href": "data-exercise/data-exercise.html#model-initialization",
+    "title": "data-exercise",
+    "section": "Model Initialization:",
+    "text": "Model Initialization:\nA pre-trained ResNet50 model is loaded with weights from ImageNet:\n\nmodel &lt;- application_resnet50(weights = 'imagenet')"
+  },
+  {
+    "objectID": "data-exercise/data-exercise.html#image-directory-and-object-count-initialization",
+    "href": "data-exercise/data-exercise.html#image-directory-and-object-count-initialization",
+    "title": "data-exercise",
+    "section": "Image Directory and Object Count Initialization:",
+    "text": "Image Directory and Object Count Initialization:\nThe directory containing car images and an empty list to store object counts are specified:\n\nimg_dir &lt;- 'train3'\n\n\nobject_counts &lt;- list()"
+  },
+  {
+    "objectID": "data-exercise/data-exercise.html#image-processing-function",
+    "href": "data-exercise/data-exercise.html#image-processing-function",
+    "title": "data-exercise",
+    "section": "Image Processing Function:",
+    "text": "Image Processing Function:\nA function to process each image, make predictions, and decode the results is defined:\n\nprocess_image &lt;- function(img_path) {\n  tryCatch({\n    img &lt;- image_load(img_path, target_size = c(224, 224))\n    img_array &lt;- image_to_array(img)\n    img_array &lt;- array_reshape(img_array, c(1, 224, 224, 3))\n    img_array &lt;- imagenet_preprocess_input(img_array)\n    \n    # Predict the image class\n    predictions &lt;- model %&gt;% predict(img_array)\n    decoded_predictions &lt;- imagenet_decode_predictions(predictions, top = 3)[[1]]\n    \n    return(decoded_predictions)\n  }, error = function(e) {\n    print(paste(\"Error processing image\", img_path, \":\", e$message))\n    return(NULL)\n  })\n}"
+  },
+  {
+    "objectID": "data-exercise/data-exercise.html#image-processing-and-object-counting",
+    "href": "data-exercise/data-exercise.html#image-processing-and-object-counting",
+    "title": "data-exercise",
+    "section": "Image Processing and Object Counting:",
+    "text": "Image Processing and Object Counting:\nEach image in the directory is processed, and the counts of recognized objects are recorded:\nfiltered_object_counts\n\n# Process each image\nfor (img_name in list.files(img_dir)) {\n  img_path &lt;- file.path(img_dir, img_name)\n  predictions &lt;- process_image(img_path)\n  if (length(predictions) &gt; 0) {\n    t&lt;-predictions[2]\n      label &lt;- t$class_description[1]\n     if (is.null(object_counts[[label]])) {\n        object_counts[[label]] &lt;- 0\n      }\n      object_counts[[label]] &lt;- object_counts[[label]] + 1\n  }\n}\n\n1/1 - 0s - 460ms/epoch - 460ms/step\n1/1 - 0s - 56ms/epoch - 56ms/step\n1/1 - 0s - 53ms/epoch - 53ms/step\n1/1 - 0s - 54ms/epoch - 54ms/step\n1/1 - 0s - 58ms/epoch - 58ms/step\n1/1 - 0s - 49ms/epoch - 49ms/step\n1/1 - 0s - 47ms/epoch - 47ms/step\n1/1 - 0s - 47ms/epoch - 47ms/step\n1/1 - 0s - 47ms/epoch - 47ms/step\n1/1 - 0s - 46ms/epoch - 46ms/step\n1/1 - 0s - 47ms/epoch - 47ms/step\n1/1 - 0s - 47ms/epoch - 47ms/step\n1/1 - 0s - 47ms/epoch - 47ms/step\n1/1 - 0s - 47ms/epoch - 47ms/step\n1/1 - 0s - 47ms/epoch - 47ms/step\n1/1 - 0s - 47ms/epoch - 47ms/step\n1/1 - 0s - 46ms/epoch - 46ms/step\n1/1 - 0s - 46ms/epoch - 46ms/step\n1/1 - 0s - 46ms/epoch - 46ms/step\n1/1 - 0s - 47ms/epoch - 47ms/step\n1/1 - 0s - 46ms/epoch - 46ms/step\n1/1 - 0s - 46ms/epoch - 46ms/step\n1/1 - 0s - 46ms/epoch - 46ms/step\n1/1 - 0s - 47ms/epoch - 47ms/step\n1/1 - 0s - 46ms/epoch - 46ms/step\n1/1 - 0s - 47ms/epoch - 47ms/step\n1/1 - 0s - 47ms/epoch - 47ms/step\n1/1 - 0s - 47ms/epoch - 47ms/step\n1/1 - 0s - 46ms/epoch - 46ms/step\n1/1 - 0s - 48ms/epoch - 48ms/step\n\n# Filter out objects with count less than 4\nfiltered_object_counts &lt;- object_counts[sapply(object_counts, function(x) x &gt; 2)]\n\n# Print the counts of each type of animal\nfiltered_object_counts\n\n$cab\n[1] 3\n\n$convertible\n[1] 4\n\n$beach_wagon\n[1] 5\n\n$limousine\n[1] 3\n\n$pickup\n[1] 4\n\n$sports_car\n[1] 6"
+  },
+  {
+    "objectID": "data-exercise/data-exercise.html#visualization-of-recognized-objects",
+    "href": "data-exercise/data-exercise.html#visualization-of-recognized-objects",
+    "title": "data-exercise",
+    "section": "Visualization of Recognized Objects:",
+    "text": "Visualization of Recognized Objects:\nA bar plot is created to visualize the frequency of recognized objects:\n\nobjects &lt;- names(filtered_object_counts)\ncounts &lt;- unlist(filtered_object_counts)\n\nggplot(data.frame(Object = objects, Count = counts), aes(x = reorder(Object, Count), y = Count)) +\n  geom_bar(stat = 'identity', fill = 'skyblue') +\n  coord_flip() +\n  labs(x = 'Frequency', y = 'Object', title = 'Frequency of Recognized Objects') +\n  theme_minimal()"
+  },
+  {
+    "objectID": "data-exercise/data-exercise.html#fuel-economy-data-processing",
+    "href": "data-exercise/data-exercise.html#fuel-economy-data-processing",
+    "title": "data-exercise",
+    "section": "Fuel Economy Data Processing:",
+    "text": "Fuel Economy Data Processing:\nFuel economy data is read from an Excel file and cleaned:\n\ndata_clean &lt;- read_excel('FE_EPA.xlsx', skip = 2)\n\nNew names:\n• `` -&gt; `...1`\n\ndata_clean &lt;- data_clean[, -c(1, 1)]\nnames(data_clean) &lt;- c('Vehicle Type', 'mpg Gasoline', 'mpg Diesel', 'Source')\ndata_clean &lt;- data_clean[1:11, ]"
+  },
+  {
+    "objectID": "data-exercise/data-exercise.html#mapping-categories-and-merging-data",
+    "href": "data-exercise/data-exercise.html#mapping-categories-and-merging-data",
+    "title": "data-exercise",
+    "section": "Mapping Categories and Merging Data:",
+    "text": "Mapping Categories and Merging Data:\nCategories are mapped to the recognized objects and merged with the fuel economy data:\n\ncategories &lt;- c(\n  'beach_wagon' = 'Passenger Vehicle',\n  'cab' = 'Service Vehicle',\n  'car_wheel' = 'Passenger Vehicle',\n  'convertible' = 'Performance Vehicle',\n  'limousine' = 'Service Vehicle',\n  'minivan' = 'Passenger Vehicle',\n  'pickup' = 'Utility Vehicle',\n  'sports_car' = 'Performance Vehicle'\n)\n\n# Create DataFrame from filtered_object_counts\nvehicle_counts_df &lt;- data.frame(\n  `Vehicle Type` = names(filtered_object_counts),\n  Count = unlist(filtered_object_counts)\n)\n\nvehicle_counts_df$Category &lt;- sapply(vehicle_counts_df$`Vehicle.Type`, function(x) categories[[x]])\n\n# Map categories to types in the existing dataset\nexcel_categories &lt;- list(\n  'Passenger Vehicle' = c('Car'),\n  'Service Vehicle' = c('Transit Bus'),\n  'Performance Vehicle' = c('Car'),\n  'Utility Vehicle' = c('Delivery Truck')\n)\n\n# Matching categories to types\nvehicle_counts_df$`Excel Match` &lt;- sapply(vehicle_counts_df$Category, function(x) excel_categories[[x]][1])\n\n# Merge with fuel economy data\nmerged_data &lt;- merge(vehicle_counts_df, data_clean, by.x = 'Excel Match', by.y = 'Vehicle Type', all.x = TRUE)\n\n# Calculate annual fuel consumption and emissions\nmerged_data$`Annual Gasoline Consumption` &lt;- (20000 / merged_data$`mpg Gasoline`) * merged_data$Count\nmerged_data$`Annual Diesel Consumption` &lt;- (20000 / merged_data$`mpg Diesel`) * merged_data$Count\nCO2_per_gallon_gasoline &lt;- 8887  # grams of CO2 per gallon for gasoline\nCO2_per_gallon_diesel &lt;- 10180  # grams of CO2 per gallon for diesel\nmerged_data$`CO2 Emissions Gasoline (grams)` &lt;- merged_data$`Annual Gasoline Consumption` * CO2_per_gallon_gasoline\nmerged_data$`CO2 Emissions Diesel (grams)` &lt;- merged_data$`Annual Diesel Consumption` * CO2_per_gallon_diesel"
+  },
+  {
+    "objectID": "data-exercise/data-exercise.html#visualization-of-fuel-consumption-and-emissions",
+    "href": "data-exercise/data-exercise.html#visualization-of-fuel-consumption-and-emissions",
+    "title": "data-exercise",
+    "section": "Visualization of Fuel Consumption and Emissions:",
+    "text": "Visualization of Fuel Consumption and Emissions:\nSeveral bar plots visualize annual fuel consumption and CO2 emissions by vehicle type:\n\n# Annual Gasoline and Diesel Consumption by Vehicle Type\nggplot(merged_data, aes(x = reorder(`Vehicle.Type`, `Annual Gasoline Consumption`), y = `Annual Gasoline Consumption`)) +\n  geom_bar(stat = 'identity', fill = 'blue') +\n  coord_flip() +\n  labs(title = 'Annual Gasoline Consumption by Vehicle Type', x = 'Vehicle Type', y = 'Gasoline Consumption') +\n  theme_minimal()\n\n\n\nggplot(merged_data, aes(x = reorder(`Vehicle.Type`, `Annual Diesel Consumption`), y = `Annual Diesel Consumption`)) +\n  geom_bar(stat = 'identity', fill = 'green') +\n  coord_flip() +\n  labs(title = 'Annual Diesel Consumption by Vehicle Type', x = 'Vehicle Type', y = 'Diesel Consumption') +\n  theme_minimal()\n\n\n\n# CO2 Emissions from Gasoline and Diesel by Vehicle Type\nggplot(merged_data, aes(x = reorder(`Vehicle.Type`, `CO2 Emissions Gasoline (grams)`), y = `CO2 Emissions Gasoline (grams)`)) +\n  geom_bar(stat = 'identity', fill = 'red') +\n  coord_flip() +\n  labs(title = 'CO2 Emissions from Gasoline by Vehicle Type', x = 'Vehicle Type', y = 'CO2 Emissions (grams)') +\n  theme_minimal()\n\n\n\nggplot(merged_data, aes(x = reorder(`Vehicle.Type`, `CO2 Emissions Diesel (grams)`), y = `CO2 Emissions Diesel (grams)`)) +\n  geom_bar(stat = 'identity', fill = 'brown') +\n  coord_flip() +\n  labs(title = 'CO2 Emissions from Diesel by Vehicle Type', x = 'Vehicle Type', y = 'CO2 Emissions (grams)') +\n  theme_minimal()"
+  },
+  {
+    "objectID": "data-exercise/data-exercise.html#additional-analysis",
+    "href": "data-exercise/data-exercise.html#additional-analysis",
+    "title": "data-exercise",
+    "section": "Additional Analysis:",
+    "text": "Additional Analysis:\nBox plots, summary statistics, and scatter plots provide further insights:\n\n# Box Plot of Annual Gasoline Consumption\nggplot(merged_data, aes(x = '', y = `Annual Gasoline Consumption`)) +\n  geom_boxplot() +\n  labs(title = 'Box Plot of Annual Gasoline Consumption', x = '', y = 'Gasoline Consumption') +\n  theme_minimal()\n\n\n\n# Summary statistics for gasoline and diesel consumption\nsummary(merged_data$`Annual Gasoline Consumption`)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n   3279    4303    8329    9906   16211   17701 \n\nsummary(merged_data$`Annual Diesel Consumption`)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n   2902    3808    7371    8767   14347   15666 \n\n# Scatter Plot of Gasoline vs Diesel Consumption\nggplot(merged_data, aes(x = `Annual Gasoline Consumption`, y = `Annual Diesel Consumption`)) +\n  geom_point(color = 'blue') +\n  labs(title = 'Scatter Plot of Gasoline vs Diesel Consumption', x = 'Annual Gasoline Consumption', y = 'Annual Diesel Consumption') +\n  theme_minimal()"
+  },
+  {
+    "objectID": "data-exercise/data-exercise.html#qq-plot-for-normality-check",
+    "href": "data-exercise/data-exercise.html#qq-plot-for-normality-check",
+    "title": "data-exercise",
+    "section": "QQ Plot for Normality Check:",
+    "text": "QQ Plot for Normality Check:\nA QQ plot is used to check the normality of the annual gasoline consumption:\n\n# QQ Plot for Annual Gasoline Consumption\nqqPlot(merged_data$`Annual Gasoline Consumption`, main = \"QQ Plot for Annual Gasoline Consumption\")\n\n\n\n\n[1] 5 6\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+  },
+  {
+    "objectID": "data-exercise/data-exercise.html#introduction",
+    "href": "data-exercise/data-exercise.html#introduction",
+    "title": "data-exercise",
+    "section": "",
+    "text": "For this Assignment , I have taken complex data type which is cars images and did some exploratory analysis.This Quarto document demonstrates an analysis of images of cars using deep learning models and combines it with an exploration of fuel economy data from the Environmental Protection Agency(EPA)."
   }
 ]

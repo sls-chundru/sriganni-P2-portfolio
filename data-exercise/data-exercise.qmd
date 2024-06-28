@@ -4,17 +4,13 @@ format: html
 output: html_document
 ---
 
-## Quarto
+## Introduction
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+For this Assignment , I have taken complex data type which is cars images and did some exploratory analysis.This Quarto document demonstrates an analysis of images of cars using deep learning models and combines it with an exploration of fuel economy data from the Environmental Protection Agency(EPA).
 
-## Running Code
+## Libraries and Setup:
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-```{r}
-1 + 1
-```
+Several libraries are loaded at the beginning:
 
 ```{r setup, include=FALSE}
 library(keras)
@@ -25,9 +21,17 @@ library(ggplot2)
 library(car)
 ```
 
+## Model Initialization:
+
+A pre-trained ResNet50 model is loaded with weights from ImageNet:
+
 ```{r}
 model <- application_resnet50(weights = 'imagenet')
 ```
+
+## Image Directory and Object Count Initialization:
+
+The directory containing car images and an empty list to store object counts are specified:
 
 ```{r}
 img_dir <- 'train3'
@@ -36,6 +40,10 @@ img_dir <- 'train3'
 ```{r}
 object_counts <- list()
 ```
+
+## Image Processing Function:
+
+A function to process each image, make predictions, and decode the results is defined:
 
 ```{r}
 process_image <- function(img_path) {
@@ -57,7 +65,9 @@ process_image <- function(img_path) {
 }
 ```
 
-# Print the counts of each type of animal
+## Image Processing and Object Counting:
+
+Each image in the directory is processed, and the counts of recognized objects are recorded:
 
 filtered_object_counts
 
@@ -83,7 +93,9 @@ filtered_object_counts <- object_counts[sapply(object_counts, function(x) x > 2)
 filtered_object_counts
 ```
 
-You can add options to executable code like this
+## Visualization of Recognized Objects:
+
+A bar plot is created to visualize the frequency of recognized objects:
 
 ```{r}
 objects <- names(filtered_object_counts)
@@ -97,12 +109,20 @@ ggplot(data.frame(Object = objects, Count = counts), aes(x = reorder(Object, Cou
 
 ```
 
+## Fuel Economy Data Processing:
+
+Fuel economy data is read from an Excel file and cleaned:
+
 ```{r}
 data_clean <- read_excel('FE_EPA.xlsx', skip = 2)
 data_clean <- data_clean[, -c(1, 1)]
 names(data_clean) <- c('Vehicle Type', 'mpg Gasoline', 'mpg Diesel', 'Source')
 data_clean <- data_clean[1:11, ]
 ```
+
+## Mapping Categories and Merging Data:
+
+Categories are mapped to the recognized objects and merged with the fuel economy data:
 
 ```{r}
 categories <- c(
@@ -147,6 +167,10 @@ merged_data$`CO2 Emissions Gasoline (grams)` <- merged_data$`Annual Gasoline Con
 merged_data$`CO2 Emissions Diesel (grams)` <- merged_data$`Annual Diesel Consumption` * CO2_per_gallon_diesel
 ```
 
+## Visualization of Fuel Consumption and Emissions:
+
+Several bar plots visualize annual fuel consumption and CO2 emissions by vehicle type:
+
 ```{r}
 # Annual Gasoline and Diesel Consumption by Vehicle Type
 ggplot(merged_data, aes(x = reorder(`Vehicle.Type`, `Annual Gasoline Consumption`), y = `Annual Gasoline Consumption`)) +
@@ -175,6 +199,10 @@ ggplot(merged_data, aes(x = reorder(`Vehicle.Type`, `CO2 Emissions Diesel (grams
   theme_minimal()
 ```
 
+## Additional Analysis:
+
+Box plots, summary statistics, and scatter plots provide further insights:
+
 ```{r}
 # Box Plot of Annual Gasoline Consumption
 ggplot(merged_data, aes(x = '', y = `Annual Gasoline Consumption`)) +
@@ -192,6 +220,10 @@ ggplot(merged_data, aes(x = `Annual Gasoline Consumption`, y = `Annual Diesel Co
   labs(title = 'Scatter Plot of Gasoline vs Diesel Consumption', x = 'Annual Gasoline Consumption', y = 'Annual Diesel Consumption') +
   theme_minimal()
 ```
+
+## QQ Plot for Normality Check:
+
+A QQ plot is used to check the normality of the annual gasoline consumption:
 
 ```{r}
 # QQ Plot for Annual Gasoline Consumption
