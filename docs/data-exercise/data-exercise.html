@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Sri Lakshmi - DA Portfolio - data-exercise</title>
+<title>Sri Lakshmi - DA Portfolio - Vehicle Fleet Fuel Economy Analysis using DNN - Data-exercise</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -169,7 +169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">data-exercise</h1>
+<h1 class="title">Vehicle Fleet Fuel Economy Analysis using DNN - Data-exercise</h1>
 </div>
 
 
@@ -186,50 +186,119 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>For this Assignment , I have taken complex data type which is cars images and did some exploratory analysis.This Quarto document demonstrates an analysis of images of cars using deep learning models and combines it with an exploration of fuel economy data from the Environmental Protection Agency(EPA).</p>
+<p>The primary objective of this assignment is to analyze images of a fleet of vehicles to quantify the fuel consumption and greenhouse gas (GHG) footprint of the fleet, both as a whole and categorized by vehicle type.</p>
+<p>To achieve this, we utilized the ResNet50 image classifier, a pretrained open-source deep neural network, to process a set of 50 images representing the vehicle fleet. The ResNet50 model, deployed in TensorFlow, identified the type of vehicle in each image. This data was then used to create a frequency distribution table for the vehicle types present in the dataset. We combined this data with fuel economy figures from the Environmental Protection Agency (EPA). The resulting analysis allowed us to calculate the fuel consumption and GHG footprint of the fleet, broken down by vehicle and fuel types. Figure shows the flowchart of the overall process implemented in the project :</p>
+<p><img src="flow_chart.jpg" class="img-fluid"></p>
 </section>
 <section id="libraries-and-setup" class="level2">
 <h2 class="anchored" data-anchor-id="libraries-and-setup">Libraries and Setup:</h2>
-<p>Several libraries are loaded at the beginning:</p>
+<p>Several libraries are loaded at the beginning primarily tensorflow and keras for image classification and ggplot for visualization:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(keras)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tensorflow)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: carData
+
+Attaching package: 'car'
+
+The following object is masked from 'package:dplyr':
+
+    recode
+
+The following object is masked from 'package:purrr':
+
+    some</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jpeg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="model-initialization" class="level2">
 <h2 class="anchored" data-anchor-id="model-initialization">Model Initialization:</h2>
-<p>A pre-trained ResNet50 model is loaded with weights from ImageNet:</p>
+<p>A pre-trained ResNet50 model is loaded with weights from ImageNet. Resnet50 was chosen since it provided a good trade off in terms of accuracy vs computational speed</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">application_resnet50</span>(<span class="at">weights =</span> <span class="st">'imagenet'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">application_resnet50</span>(<span class="at">weights =</span> <span class="st">'imagenet'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="image-directory-and-object-count-initialization" class="level2">
 <h2 class="anchored" data-anchor-id="image-directory-and-object-count-initialization">Image Directory and Object Count Initialization:</h2>
-<p>The directory containing car images and an empty list to store object counts are specified:</p>
+<p>The directory containing car images and an empty list to store object counts are specified. Train contains 50 images of cars. Some sample images are plotted here :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>img_dir <span class="ot">&lt;-</span> <span class="st">'train3'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>img_dir <span class="ot">&lt;-</span> <span class="st">'train3'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>object_counts <span class="ot">&lt;-</span> <span class="fu">list</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>object_counts <span class="ot">&lt;-</span> <span class="fu">list</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>img_dir2 <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data-exercise"</span>,<span class="st">"train3"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># List all files in the directory</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>all_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(img_dir, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">.jpg$|</span><span class="sc">\\</span><span class="st">.jpeg$|</span><span class="sc">\\</span><span class="st">.png$"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Select four random image files</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># For reproducibility</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>random_images <span class="ot">&lt;-</span> <span class="fu">sample</span>(all_files, <span class="dv">4</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize counter for vehicle labels</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>vehicle_counter <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the images in a 2x2 grid</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (img_path <span class="cf">in</span> random_images) {</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Read the image</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  img <span class="ot">&lt;-</span> <span class="fu">readJPEG</span>(img_path)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Plot the image</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">type =</span> <span class="st">'n'</span>, <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Vehicle"</span>, vehicle_counter), <span class="at">xlab =</span> <span class="st">""</span>, <span class="at">ylab =</span> <span class="st">""</span>, <span class="at">axes =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rasterImage</span>(img, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Increment the counter</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>  vehicle_counter <span class="ot">&lt;-</span> vehicle_counter <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="data-exercise_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 </section>
 <section id="image-processing-function" class="level2">
 <h2 class="anchored" data-anchor-id="image-processing-function">Image Processing Function:</h2>
 <p>A function to process each image, make predictions, and decode the results is defined:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>process_image <span class="ot">&lt;-</span> <span class="cf">function</span>(img_path) {</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tryCatch</span>({</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    img <span class="ot">&lt;-</span> <span class="fu">image_load</span>(img_path, <span class="at">target_size =</span> <span class="fu">c</span>(<span class="dv">224</span>, <span class="dv">224</span>))</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    img_array <span class="ot">&lt;-</span> <span class="fu">image_to_array</span>(img)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    img_array <span class="ot">&lt;-</span> <span class="fu">array_reshape</span>(img_array, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">224</span>, <span class="dv">224</span>, <span class="dv">3</span>))</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    img_array <span class="ot">&lt;-</span> <span class="fu">imagenet_preprocess_input</span>(img_array)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Predict the image class</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    predictions <span class="ot">&lt;-</span> model <span class="sc">%&gt;%</span> <span class="fu">predict</span>(img_array)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    decoded_predictions <span class="ot">&lt;-</span> <span class="fu">imagenet_decode_predictions</span>(predictions, <span class="at">top =</span> <span class="dv">3</span>)[[<span class="dv">1</span>]]</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(decoded_predictions)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Error processing image"</span>, img_path, <span class="st">":"</span>, e<span class="sc">$</span>message))</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>process_image <span class="ot">&lt;-</span> <span class="cf">function</span>(img_path) {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tryCatch</span>({</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    img <span class="ot">&lt;-</span> <span class="fu">image_load</span>(img_path, <span class="at">target_size =</span> <span class="fu">c</span>(<span class="dv">224</span>, <span class="dv">224</span>))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    img_array <span class="ot">&lt;-</span> <span class="fu">image_to_array</span>(img)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    img_array <span class="ot">&lt;-</span> <span class="fu">array_reshape</span>(img_array, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">224</span>, <span class="dv">224</span>, <span class="dv">3</span>))</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    img_array <span class="ot">&lt;-</span> <span class="fu">imagenet_preprocess_input</span>(img_array)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Predict the image class</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    predictions <span class="ot">&lt;-</span> model <span class="sc">%&gt;%</span> <span class="fu">predict</span>(img_array)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    decoded_predictions <span class="ot">&lt;-</span> <span class="fu">imagenet_decode_predictions</span>(predictions, <span class="at">top =</span> <span class="dv">3</span>)[[<span class="dv">1</span>]]</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> (<span class="fu">sink.number</span>() <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sink</span>(<span class="cn">NULL</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>     }</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(decoded_predictions)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Error processing image"</span>, img_path, <span class="st">":"</span>, e<span class="sc">$</span>message))</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="image-processing-and-object-counting" class="level2">
@@ -237,56 +306,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Each image in the directory is processed, and the counts of recognized objects are recorded:</p>
 <p>filtered_object_counts</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Process each image</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (img_name <span class="cf">in</span> <span class="fu">list.files</span>(img_dir)) {</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  img_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(img_dir, img_name)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  predictions <span class="ot">&lt;-</span> <span class="fu">process_image</span>(img_path)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(predictions) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    t<span class="ot">&lt;-</span>predictions[<span class="dv">2</span>]</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      label <span class="ot">&lt;-</span> t<span class="sc">$</span>class_description[<span class="dv">1</span>]</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>     <span class="cf">if</span> (<span class="fu">is.null</span>(object_counts[[label]])) {</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        object_counts[[label]] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>      object_counts[[label]] <span class="ot">&lt;-</span> object_counts[[label]] <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Process each image</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (img_name <span class="cf">in</span> <span class="fu">list.files</span>(img_dir)) {</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  img_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(img_dir, img_name)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  predictions <span class="ot">&lt;-</span> <span class="fu">process_image</span>(img_path)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(predictions) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    t<span class="ot">&lt;-</span>predictions[<span class="dv">2</span>]</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>      label <span class="ot">&lt;-</span> t<span class="sc">$</span>class_description[<span class="dv">1</span>]</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>     <span class="cf">if</span> (<span class="fu">is.null</span>(object_counts[[label]])) {</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        object_counts[[label]] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>      object_counts[[label]] <span class="ot">&lt;-</span> object_counts[[label]] <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>1/1 - 0s - 460ms/epoch - 460ms/step
-1/1 - 0s - 56ms/epoch - 56ms/step
-1/1 - 0s - 53ms/epoch - 53ms/step
-1/1 - 0s - 54ms/epoch - 54ms/step
-1/1 - 0s - 58ms/epoch - 58ms/step
-1/1 - 0s - 49ms/epoch - 49ms/step
-1/1 - 0s - 47ms/epoch - 47ms/step
-1/1 - 0s - 47ms/epoch - 47ms/step
-1/1 - 0s - 47ms/epoch - 47ms/step
-1/1 - 0s - 46ms/epoch - 46ms/step
-1/1 - 0s - 47ms/epoch - 47ms/step
-1/1 - 0s - 47ms/epoch - 47ms/step
-1/1 - 0s - 47ms/epoch - 47ms/step
-1/1 - 0s - 47ms/epoch - 47ms/step
-1/1 - 0s - 47ms/epoch - 47ms/step
-1/1 - 0s - 47ms/epoch - 47ms/step
-1/1 - 0s - 46ms/epoch - 46ms/step
-1/1 - 0s - 46ms/epoch - 46ms/step
-1/1 - 0s - 46ms/epoch - 46ms/step
-1/1 - 0s - 47ms/epoch - 47ms/step
-1/1 - 0s - 46ms/epoch - 46ms/step
-1/1 - 0s - 46ms/epoch - 46ms/step
-1/1 - 0s - 46ms/epoch - 46ms/step
-1/1 - 0s - 47ms/epoch - 47ms/step
-1/1 - 0s - 46ms/epoch - 46ms/step
-1/1 - 0s - 47ms/epoch - 47ms/step
-1/1 - 0s - 47ms/epoch - 47ms/step
-1/1 - 0s - 47ms/epoch - 47ms/step
-1/1 - 0s - 46ms/epoch - 46ms/step
-1/1 - 0s - 48ms/epoch - 48ms/step</code></pre>
+<pre><code>1/1 - 0s - 491ms/epoch - 491ms/step</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter out objects with count less than 4</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>filtered_object_counts <span class="ot">&lt;-</span> object_counts[<span class="fu">sapply</span>(object_counts, <span class="cf">function</span>(x) x <span class="sc">&gt;</span> <span class="dv">2</span>)]</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the counts of each type of animal</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>filtered_object_counts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter out objects with count less than 4</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>filtered_object_counts <span class="ot">&lt;-</span> object_counts[<span class="fu">sapply</span>(object_counts, <span class="cf">function</span>(x) x <span class="sc">&gt;</span> <span class="dv">2</span>)]</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the counts of each type of animal</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>filtered_object_counts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$cab
 [1] 3
@@ -312,149 +352,149 @@ $sports_car
 <h2 class="anchored" data-anchor-id="visualization-of-recognized-objects">Visualization of Recognized Objects:</h2>
 <p>A bar plot is created to visualize the frequency of recognized objects:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>objects <span class="ot">&lt;-</span> <span class="fu">names</span>(filtered_object_counts)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">unlist</span>(filtered_object_counts)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">Object =</span> objects, <span class="at">Count =</span> counts), <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(Object, Count), <span class="at">y =</span> Count)) <span class="sc">+</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">'identity'</span>, <span class="at">fill =</span> <span class="st">'skyblue'</span>) <span class="sc">+</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">'Frequency'</span>, <span class="at">y =</span> <span class="st">'Object'</span>, <span class="at">title =</span> <span class="st">'Frequency of Recognized Objects'</span>) <span class="sc">+</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>objects <span class="ot">&lt;-</span> <span class="fu">names</span>(filtered_object_counts)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">unlist</span>(filtered_object_counts)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">Object =</span> objects, <span class="at">Count =</span> counts), <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(Object, Count), <span class="at">y =</span> Count)) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">'identity'</span>, <span class="at">fill =</span> <span class="st">'skyblue'</span>) <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">'Frequency'</span>, <span class="at">y =</span> <span class="st">'Object'</span>, <span class="at">title =</span> <span class="st">'Frequency of Recognized Objects'</span>) <span class="sc">+</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="data-exercise_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<p><img src="data-exercise_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
 <section id="fuel-economy-data-processing" class="level2">
 <h2 class="anchored" data-anchor-id="fuel-economy-data-processing">Fuel Economy Data Processing:</h2>
-<p>Fuel economy data is read from an Excel file and cleaned:</p>
+<p>Fuel economy data is read from an Excel file (EPA data) and cleaned:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data_clean <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">'FE_EPA.xlsx'</span>, <span class="at">skip =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>data_clean <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">'FE_EPA.xlsx'</span>, <span class="at">skip =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>New names:
 • `` -&gt; `...1`</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data_clean <span class="ot">&lt;-</span> data_clean[, <span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)]</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(data_clean) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Vehicle Type'</span>, <span class="st">'mpg Gasoline'</span>, <span class="st">'mpg Diesel'</span>, <span class="st">'Source'</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>data_clean <span class="ot">&lt;-</span> data_clean[<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>data_clean <span class="ot">&lt;-</span> data_clean[, <span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)]</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(data_clean) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Vehicle Type'</span>, <span class="st">'mpg Gasoline'</span>, <span class="st">'mpg Diesel'</span>, <span class="st">'Source'</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>data_clean <span class="ot">&lt;-</span> data_clean[<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="mapping-categories-and-merging-data" class="level2">
 <h2 class="anchored" data-anchor-id="mapping-categories-and-merging-data">Mapping Categories and Merging Data:</h2>
 <p>Categories are mapped to the recognized objects and merged with the fuel economy data:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>categories <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">'beach_wagon'</span> <span class="ot">=</span> <span class="st">'Passenger Vehicle'</span>,</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">'cab'</span> <span class="ot">=</span> <span class="st">'Service Vehicle'</span>,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">'car_wheel'</span> <span class="ot">=</span> <span class="st">'Passenger Vehicle'</span>,</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">'convertible'</span> <span class="ot">=</span> <span class="st">'Performance Vehicle'</span>,</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">'limousine'</span> <span class="ot">=</span> <span class="st">'Service Vehicle'</span>,</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">'minivan'</span> <span class="ot">=</span> <span class="st">'Passenger Vehicle'</span>,</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">'pickup'</span> <span class="ot">=</span> <span class="st">'Utility Vehicle'</span>,</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">'sports_car'</span> <span class="ot">=</span> <span class="st">'Performance Vehicle'</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create DataFrame from filtered_object_counts</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>vehicle_counts_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Vehicle Type</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">names</span>(filtered_object_counts),</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">Count =</span> <span class="fu">unlist</span>(filtered_object_counts)</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>vehicle_counts_df<span class="sc">$</span>Category <span class="ot">&lt;-</span> <span class="fu">sapply</span>(vehicle_counts_df<span class="sc">$</span><span class="st">`</span><span class="at">Vehicle.Type</span><span class="st">`</span>, <span class="cf">function</span>(x) categories[[x]])</span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Map categories to types in the existing dataset</span></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>excel_categories <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Passenger Vehicle'</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">'Car'</span>),</span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Service Vehicle'</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">'Transit Bus'</span>),</span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Performance Vehicle'</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">'Car'</span>),</span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Utility Vehicle'</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">'Delivery Truck'</span>)</span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Matching categories to types</span></span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>vehicle_counts_df<span class="sc">$</span><span class="st">`</span><span class="at">Excel Match</span><span class="st">`</span> <span class="ot">&lt;-</span> <span class="fu">sapply</span>(vehicle_counts_df<span class="sc">$</span>Category, <span class="cf">function</span>(x) excel_categories[[x]][<span class="dv">1</span>])</span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge with fuel economy data</span></span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> <span class="fu">merge</span>(vehicle_counts_df, data_clean, <span class="at">by.x =</span> <span class="st">'Excel Match'</span>, <span class="at">by.y =</span> <span class="st">'Vehicle Type'</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate annual fuel consumption and emissions</span></span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>merged_data<span class="sc">$</span><span class="st">`</span><span class="at">Annual Gasoline Consumption</span><span class="st">`</span> <span class="ot">&lt;-</span> (<span class="dv">20000</span> <span class="sc">/</span> merged_data<span class="sc">$</span><span class="st">`</span><span class="at">mpg Gasoline</span><span class="st">`</span>) <span class="sc">*</span> merged_data<span class="sc">$</span>Count</span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>merged_data<span class="sc">$</span><span class="st">`</span><span class="at">Annual Diesel Consumption</span><span class="st">`</span> <span class="ot">&lt;-</span> (<span class="dv">20000</span> <span class="sc">/</span> merged_data<span class="sc">$</span><span class="st">`</span><span class="at">mpg Diesel</span><span class="st">`</span>) <span class="sc">*</span> merged_data<span class="sc">$</span>Count</span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>CO2_per_gallon_gasoline <span class="ot">&lt;-</span> <span class="dv">8887</span>  <span class="co"># grams of CO2 per gallon for gasoline</span></span>
-<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>CO2_per_gallon_diesel <span class="ot">&lt;-</span> <span class="dv">10180</span>  <span class="co"># grams of CO2 per gallon for diesel</span></span>
-<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>merged_data<span class="sc">$</span><span class="st">`</span><span class="at">CO2 Emissions Gasoline (grams)</span><span class="st">`</span> <span class="ot">&lt;-</span> merged_data<span class="sc">$</span><span class="st">`</span><span class="at">Annual Gasoline Consumption</span><span class="st">`</span> <span class="sc">*</span> CO2_per_gallon_gasoline</span>
-<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>merged_data<span class="sc">$</span><span class="st">`</span><span class="at">CO2 Emissions Diesel (grams)</span><span class="st">`</span> <span class="ot">&lt;-</span> merged_data<span class="sc">$</span><span class="st">`</span><span class="at">Annual Diesel Consumption</span><span class="st">`</span> <span class="sc">*</span> CO2_per_gallon_diesel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>categories <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">'beach_wagon'</span> <span class="ot">=</span> <span class="st">'Passenger Vehicle'</span>,</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">'cab'</span> <span class="ot">=</span> <span class="st">'Service Vehicle'</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">'car_wheel'</span> <span class="ot">=</span> <span class="st">'Passenger Vehicle'</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">'convertible'</span> <span class="ot">=</span> <span class="st">'Performance Vehicle'</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">'limousine'</span> <span class="ot">=</span> <span class="st">'Service Vehicle'</span>,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">'minivan'</span> <span class="ot">=</span> <span class="st">'Passenger Vehicle'</span>,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">'pickup'</span> <span class="ot">=</span> <span class="st">'Utility Vehicle'</span>,</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">'sports_car'</span> <span class="ot">=</span> <span class="st">'Performance Vehicle'</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create DataFrame from filtered_object_counts</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>vehicle_counts_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Vehicle Type</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">names</span>(filtered_object_counts),</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">Count =</span> <span class="fu">unlist</span>(filtered_object_counts)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>vehicle_counts_df<span class="sc">$</span>Category <span class="ot">&lt;-</span> <span class="fu">sapply</span>(vehicle_counts_df<span class="sc">$</span><span class="st">`</span><span class="at">Vehicle.Type</span><span class="st">`</span>, <span class="cf">function</span>(x) categories[[x]])</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Map categories to types in the existing dataset</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>excel_categories <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Passenger Vehicle'</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">'Car'</span>),</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Service Vehicle'</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">'Transit Bus'</span>),</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Performance Vehicle'</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">'Car'</span>),</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Utility Vehicle'</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">'Delivery Truck'</span>)</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Matching categories to types</span></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>vehicle_counts_df<span class="sc">$</span><span class="st">`</span><span class="at">Excel Match</span><span class="st">`</span> <span class="ot">&lt;-</span> <span class="fu">sapply</span>(vehicle_counts_df<span class="sc">$</span>Category, <span class="cf">function</span>(x) excel_categories[[x]][<span class="dv">1</span>])</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge with fuel economy data</span></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> <span class="fu">merge</span>(vehicle_counts_df, data_clean, <span class="at">by.x =</span> <span class="st">'Excel Match'</span>, <span class="at">by.y =</span> <span class="st">'Vehicle Type'</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate annual fuel consumption and emissions</span></span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>merged_data<span class="sc">$</span><span class="st">`</span><span class="at">Annual Gasoline Consumption</span><span class="st">`</span> <span class="ot">&lt;-</span> (<span class="dv">20000</span> <span class="sc">/</span> merged_data<span class="sc">$</span><span class="st">`</span><span class="at">mpg Gasoline</span><span class="st">`</span>) <span class="sc">*</span> merged_data<span class="sc">$</span>Count</span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>merged_data<span class="sc">$</span><span class="st">`</span><span class="at">Annual Diesel Consumption</span><span class="st">`</span> <span class="ot">&lt;-</span> (<span class="dv">20000</span> <span class="sc">/</span> merged_data<span class="sc">$</span><span class="st">`</span><span class="at">mpg Diesel</span><span class="st">`</span>) <span class="sc">*</span> merged_data<span class="sc">$</span>Count</span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>CO2_per_gallon_gasoline <span class="ot">&lt;-</span> <span class="dv">8887</span>  <span class="co"># grams of CO2 per gallon for gasoline</span></span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>CO2_per_gallon_diesel <span class="ot">&lt;-</span> <span class="dv">10180</span>  <span class="co"># grams of CO2 per gallon for diesel</span></span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>merged_data<span class="sc">$</span><span class="st">`</span><span class="at">CO2 Emissions Gasoline (grams)</span><span class="st">`</span> <span class="ot">&lt;-</span> merged_data<span class="sc">$</span><span class="st">`</span><span class="at">Annual Gasoline Consumption</span><span class="st">`</span> <span class="sc">*</span> CO2_per_gallon_gasoline</span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a>merged_data<span class="sc">$</span><span class="st">`</span><span class="at">CO2 Emissions Diesel (grams)</span><span class="st">`</span> <span class="ot">&lt;-</span> merged_data<span class="sc">$</span><span class="st">`</span><span class="at">Annual Diesel Consumption</span><span class="st">`</span> <span class="sc">*</span> CO2_per_gallon_diesel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="visualization-of-fuel-consumption-and-emissions" class="level2">
 <h2 class="anchored" data-anchor-id="visualization-of-fuel-consumption-and-emissions">Visualization of Fuel Consumption and Emissions:</h2>
 <p>Several bar plots visualize annual fuel consumption and CO2 emissions by vehicle type:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Annual Gasoline and Diesel Consumption by Vehicle Type</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(merged_data, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(<span class="st">`</span><span class="at">Vehicle.Type</span><span class="st">`</span>, <span class="st">`</span><span class="at">Annual Gasoline Consumption</span><span class="st">`</span>), <span class="at">y =</span> <span class="st">`</span><span class="at">Annual Gasoline Consumption</span><span class="st">`</span>)) <span class="sc">+</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">'identity'</span>, <span class="at">fill =</span> <span class="st">'blue'</span>) <span class="sc">+</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'Annual Gasoline Consumption by Vehicle Type'</span>, <span class="at">x =</span> <span class="st">'Vehicle Type'</span>, <span class="at">y =</span> <span class="st">'Gasoline Consumption'</span>) <span class="sc">+</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Annual Gasoline and Diesel Consumption by Vehicle Type</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(merged_data, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(<span class="st">`</span><span class="at">Vehicle.Type</span><span class="st">`</span>, <span class="st">`</span><span class="at">Annual Gasoline Consumption</span><span class="st">`</span>), <span class="at">y =</span> <span class="st">`</span><span class="at">Annual Gasoline Consumption</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">'identity'</span>, <span class="at">fill =</span> <span class="st">'blue'</span>) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'Annual Gasoline Consumption by Vehicle Type'</span>, <span class="at">x =</span> <span class="st">'Vehicle Type'</span>, <span class="at">y =</span> <span class="st">'Gasoline Consumption'</span>) <span class="sc">+</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="data-exercise_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<p><img src="data-exercise_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(merged_data, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(<span class="st">`</span><span class="at">Vehicle.Type</span><span class="st">`</span>, <span class="st">`</span><span class="at">Annual Diesel Consumption</span><span class="st">`</span>), <span class="at">y =</span> <span class="st">`</span><span class="at">Annual Diesel Consumption</span><span class="st">`</span>)) <span class="sc">+</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">'identity'</span>, <span class="at">fill =</span> <span class="st">'green'</span>) <span class="sc">+</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'Annual Diesel Consumption by Vehicle Type'</span>, <span class="at">x =</span> <span class="st">'Vehicle Type'</span>, <span class="at">y =</span> <span class="st">'Diesel Consumption'</span>) <span class="sc">+</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(merged_data, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(<span class="st">`</span><span class="at">Vehicle.Type</span><span class="st">`</span>, <span class="st">`</span><span class="at">Annual Diesel Consumption</span><span class="st">`</span>), <span class="at">y =</span> <span class="st">`</span><span class="at">Annual Diesel Consumption</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">'identity'</span>, <span class="at">fill =</span> <span class="st">'green'</span>) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'Annual Diesel Consumption by Vehicle Type'</span>, <span class="at">x =</span> <span class="st">'Vehicle Type'</span>, <span class="at">y =</span> <span class="st">'Diesel Consumption'</span>) <span class="sc">+</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="data-exercise_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid" width="672"></p>
+<p><img src="data-exercise_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># CO2 Emissions from Gasoline and Diesel by Vehicle Type</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(merged_data, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(<span class="st">`</span><span class="at">Vehicle.Type</span><span class="st">`</span>, <span class="st">`</span><span class="at">CO2 Emissions Gasoline (grams)</span><span class="st">`</span>), <span class="at">y =</span> <span class="st">`</span><span class="at">CO2 Emissions Gasoline (grams)</span><span class="st">`</span>)) <span class="sc">+</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">'identity'</span>, <span class="at">fill =</span> <span class="st">'red'</span>) <span class="sc">+</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'CO2 Emissions from Gasoline by Vehicle Type'</span>, <span class="at">x =</span> <span class="st">'Vehicle Type'</span>, <span class="at">y =</span> <span class="st">'CO2 Emissions (grams)'</span>) <span class="sc">+</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># CO2 Emissions from Gasoline and Diesel by Vehicle Type</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(merged_data, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(<span class="st">`</span><span class="at">Vehicle.Type</span><span class="st">`</span>, <span class="st">`</span><span class="at">CO2 Emissions Gasoline (grams)</span><span class="st">`</span>), <span class="at">y =</span> <span class="st">`</span><span class="at">CO2 Emissions Gasoline (grams)</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">'identity'</span>, <span class="at">fill =</span> <span class="st">'red'</span>) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'CO2 Emissions from Gasoline by Vehicle Type'</span>, <span class="at">x =</span> <span class="st">'Vehicle Type'</span>, <span class="at">y =</span> <span class="st">'CO2 Emissions (grams)'</span>) <span class="sc">+</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="data-exercise_files/figure-html/unnamed-chunk-9-3.png" class="img-fluid" width="672"></p>
+<p><img src="data-exercise_files/figure-html/unnamed-chunk-10-3.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(merged_data, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(<span class="st">`</span><span class="at">Vehicle.Type</span><span class="st">`</span>, <span class="st">`</span><span class="at">CO2 Emissions Diesel (grams)</span><span class="st">`</span>), <span class="at">y =</span> <span class="st">`</span><span class="at">CO2 Emissions Diesel (grams)</span><span class="st">`</span>)) <span class="sc">+</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">'identity'</span>, <span class="at">fill =</span> <span class="st">'brown'</span>) <span class="sc">+</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'CO2 Emissions from Diesel by Vehicle Type'</span>, <span class="at">x =</span> <span class="st">'Vehicle Type'</span>, <span class="at">y =</span> <span class="st">'CO2 Emissions (grams)'</span>) <span class="sc">+</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(merged_data, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(<span class="st">`</span><span class="at">Vehicle.Type</span><span class="st">`</span>, <span class="st">`</span><span class="at">CO2 Emissions Diesel (grams)</span><span class="st">`</span>), <span class="at">y =</span> <span class="st">`</span><span class="at">CO2 Emissions Diesel (grams)</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">'identity'</span>, <span class="at">fill =</span> <span class="st">'brown'</span>) <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'CO2 Emissions from Diesel by Vehicle Type'</span>, <span class="at">x =</span> <span class="st">'Vehicle Type'</span>, <span class="at">y =</span> <span class="st">'CO2 Emissions (grams)'</span>) <span class="sc">+</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="data-exercise_files/figure-html/unnamed-chunk-9-4.png" class="img-fluid" width="672"></p>
+<p><img src="data-exercise_files/figure-html/unnamed-chunk-10-4.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
 <section id="additional-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="additional-analysis">Additional Analysis:</h2>
-<p>Box plots, summary statistics, and scatter plots provide further insights:</p>
+<p>Box plots, summary statistics, and scatter plots provide further insights into the fuel economy and GHG emmissions of the given fleet of vehicles by fuel type and vehicle type:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Box Plot of Annual Gasoline Consumption</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(merged_data, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">''</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">Annual Gasoline Consumption</span><span class="st">`</span>)) <span class="sc">+</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'Box Plot of Annual Gasoline Consumption'</span>, <span class="at">x =</span> <span class="st">''</span>, <span class="at">y =</span> <span class="st">'Gasoline Consumption'</span>) <span class="sc">+</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Box Plot of Annual Gasoline Consumption</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(merged_data, <span class="fu">aes</span>(<span class="at">x =</span> Vehicle.Type, <span class="at">y =</span> <span class="st">`</span><span class="at">Annual Gasoline Consumption</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'Box Plot of Annual Gasoline Consumption'</span>, <span class="at">x =</span> <span class="st">''</span>, <span class="at">y =</span> <span class="st">'Gasoline Consumption'</span>) <span class="sc">+</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="data-exercise_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<p><img src="data-exercise_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary statistics for gasoline and diesel consumption</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(merged_data<span class="sc">$</span><span class="st">`</span><span class="at">Annual Gasoline Consumption</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary statistics for gasoline and diesel consumption</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(merged_data<span class="sc">$</span><span class="st">`</span><span class="at">Annual Gasoline Consumption</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
    3279    4303    8329    9906   16211   17701 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(merged_data<span class="sc">$</span><span class="st">`</span><span class="at">Annual Diesel Consumption</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(merged_data<span class="sc">$</span><span class="st">`</span><span class="at">Annual Diesel Consumption</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
    2902    3808    7371    8767   14347   15666 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter Plot of Gasoline vs Diesel Consumption</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(merged_data, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Annual Gasoline Consumption</span><span class="st">`</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">Annual Diesel Consumption</span><span class="st">`</span>)) <span class="sc">+</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">'blue'</span>) <span class="sc">+</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'Scatter Plot of Gasoline vs Diesel Consumption'</span>, <span class="at">x =</span> <span class="st">'Annual Gasoline Consumption'</span>, <span class="at">y =</span> <span class="st">'Annual Diesel Consumption'</span>) <span class="sc">+</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter Plot of Gasoline vs Diesel Consumption</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(merged_data, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Annual Gasoline Consumption</span><span class="st">`</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">Annual Diesel Consumption</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">'blue'</span>) <span class="sc">+</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'Scatter Plot of Gasoline vs Diesel Consumption'</span>, <span class="at">x =</span> <span class="st">'Annual Gasoline Consumption'</span>, <span class="at">y =</span> <span class="st">'Annual Diesel Consumption'</span>) <span class="sc">+</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="data-exercise_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid" width="672"></p>
+<p><img src="data-exercise_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -462,16 +502,26 @@ $sports_car
 <h2 class="anchored" data-anchor-id="qq-plot-for-normality-check">QQ Plot for Normality Check:</h2>
 <p>A QQ plot is used to check the normality of the annual gasoline consumption:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># QQ Plot for Annual Gasoline Consumption</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(merged_data<span class="sc">$</span><span class="st">`</span><span class="at">Annual Gasoline Consumption</span><span class="st">`</span>, <span class="at">main =</span> <span class="st">"QQ Plot for Annual Gasoline Consumption"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># QQ Plot for Annual Gasoline Consumption</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(merged_data<span class="sc">$</span><span class="st">`</span><span class="at">Annual Gasoline Consumption</span><span class="st">`</span>, <span class="at">main =</span> <span class="st">"QQ Plot for Annual Gasoline Consumption"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="data-exercise_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<p><img src="data-exercise_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5 6</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(merged_data<span class="sc">$</span><span class="st">`</span><span class="at">Annual Diesel Consumption</span><span class="st">`</span>, <span class="at">main =</span> <span class="st">"QQ Plot for Annual Diesel Consumption"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="data-exercise_files/figure-html/unnamed-chunk-12-2.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5 6</code></pre>
 </div>
 </div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>We successfully identified vehicle types from the given image data set and quantified their distribution by type using Resnet in tensorflow environment. Additionally, we classified the vehicles based on their fuel type, allowing us to assess the fuel economy of gasoline and diesel vehicles using summary statistics and scatter plots. The EPA data was instrumental in converting frequency distribution data into actual fuel economy figures and GHG emissions. This tool can be further refined to efficiently quantify fuel consumption and related expenses using images of existing vehicle fleets. Its capability to process images also makes it adaptable for analyzing real-time traffic camera data to quantify GHG emissions and pollution levels in urban environments.</p>
 
 
 </section>

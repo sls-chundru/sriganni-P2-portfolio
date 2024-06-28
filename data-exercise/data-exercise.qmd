@@ -1,29 +1,35 @@
 ---
-title: "data-exercise"
+title: "Vehicle Fleet Fuel Economy Analysis using DNN - Data-exercise"
 format: html
 output: html_document
 ---
 
 ## Introduction
 
-For this Assignment , I have taken complex data type which is cars images and did some exploratory analysis.This Quarto document demonstrates an analysis of images of cars using deep learning models and combines it with an exploration of fuel economy data from the Environmental Protection Agency(EPA).
+The primary objective of this assignment is to analyze images of a fleet of vehicles to quantify the fuel consumption and greenhouse gas (GHG) footprint of the fleet, both as a whole and categorized by vehicle type.
+
+To achieve this, we utilized the ResNet50 image classifier, a pretrained open-source deep neural network, to process a set of 50 images representing the vehicle fleet. The ResNet50 model, deployed in TensorFlow, identified the type of vehicle in each image. This data was then used to create a frequency distribution table for the vehicle types present in the dataset. We combined this data with fuel economy figures from the Environmental Protection Agency (EPA). The resulting analysis allowed us to calculate the fuel consumption and GHG footprint of the fleet, broken down by vehicle and fuel types. Figure shows the flowchart of the overall process implemented in the project : 
+
+![](flow_chart.jpg)
+
 
 ## Libraries and Setup:
 
-Several libraries are loaded at the beginning:
+Several libraries are loaded at the beginning primarily tensorflow and keras for image classification and ggplot for visualization:
 
-```{r setup, include=FALSE}
+```{r setup}
 library(keras)
 library(tensorflow)
 library(tidyverse)
 library(readxl)
 library(ggplot2)
 library(car)
+library(jpeg)
 ```
 
 ## Model Initialization:
 
-A pre-trained ResNet50 model is loaded with weights from ImageNet:
+A pre-trained ResNet50 model is loaded with weights from ImageNet. Resnet50 was chosen since it provided a good trade off in terms of accuracy vs computational speed
 
 ```{r}
 model <- application_resnet50(weights = 'imagenet')
@@ -31,7 +37,7 @@ model <- application_resnet50(weights = 'imagenet')
 
 ## Image Directory and Object Count Initialization:
 
-The directory containing car images and an empty list to store object counts are specified:
+The directory containing car images and an empty list to store object counts are specified. Train contains 50 images of cars. Some sample images are plotted here :
 
 ```{r}
 img_dir <- 'train3'
@@ -39,6 +45,35 @@ img_dir <- 'train3'
 
 ```{r}
 object_counts <- list()
+```
+
+```{r}
+img_dir2 <- here::here("data-exercise","train3")
+
+# List all files in the directory
+all_files <- list.files(img_dir, pattern = "\\.jpg$|\\.jpeg$|\\.png$", full.names = TRUE)
+
+# Select four random image files
+set.seed(123)  # For reproducibility
+random_images <- sample(all_files, 4)
+
+# Initialize counter for vehicle labels
+vehicle_counter <- 1
+
+# Plot the images in a 2x2 grid
+par(mfrow = c(2, 2), mar = c(1, 1, 2, 1))
+
+for (img_path in random_images) {
+  # Read the image
+  img <- readJPEG(img_path)
+  
+  # Plot the image
+  plot(1:2, type = 'n', main = paste("Vehicle", vehicle_counter), xlab = "", ylab = "", axes = FALSE)
+  rasterImage(img, 1, 1, 2, 2)
+  
+    # Increment the counter
+  vehicle_counter <- vehicle_counter + 1
+}
 ```
 
 ## Image Processing Function:
@@ -56,7 +91,9 @@ process_image <- function(img_path) {
     # Predict the image class
     predictions <- model %>% predict(img_array)
     decoded_predictions <- imagenet_decode_predictions(predictions, top = 3)[[1]]
-    
+    while (sink.number() > 0) {
+      sink(NULL)
+     }
     return(decoded_predictions)
   }, error = function(e) {
     print(paste("Error processing image", img_path, ":", e$message))
@@ -111,7 +148,7 @@ ggplot(data.frame(Object = objects, Count = counts), aes(x = reorder(Object, Cou
 
 ## Fuel Economy Data Processing:
 
-Fuel economy data is read from an Excel file and cleaned:
+Fuel economy data is read from an Excel file (EPA data) and cleaned:
 
 ```{r}
 data_clean <- read_excel('FE_EPA.xlsx', skip = 2)
@@ -201,11 +238,11 @@ ggplot(merged_data, aes(x = reorder(`Vehicle.Type`, `CO2 Emissions Diesel (grams
 
 ## Additional Analysis:
 
-Box plots, summary statistics, and scatter plots provide further insights:
+Box plots, summary statistics, and scatter plots provide further insights into the fuel economy and GHG emmissions of the given fleet of vehicles by fuel type and vehicle type:
 
 ```{r}
 # Box Plot of Annual Gasoline Consumption
-ggplot(merged_data, aes(x = '', y = `Annual Gasoline Consumption`)) +
+ggplot(merged_data, aes(x = Vehicle.Type, y = `Annual Gasoline Consumption`)) +
   geom_boxplot() +
   labs(title = 'Box Plot of Annual Gasoline Consumption', x = '', y = 'Gasoline Consumption') +
   theme_minimal()
@@ -218,7 +255,7 @@ summary(merged_data$`Annual Diesel Consumption`)
 ggplot(merged_data, aes(x = `Annual Gasoline Consumption`, y = `Annual Diesel Consumption`)) +
   geom_point(color = 'blue') +
   labs(title = 'Scatter Plot of Gasoline vs Diesel Consumption', x = 'Annual Gasoline Consumption', y = 'Annual Diesel Consumption') +
-  theme_minimal()
+  theme_minimal() 
 ```
 
 ## QQ Plot for Normality Check:
@@ -229,6 +266,9 @@ A QQ plot is used to check the normality of the annual gasoline consumption:
 # QQ Plot for Annual Gasoline Consumption
 qqPlot(merged_data$`Annual Gasoline Consumption`, main = "QQ Plot for Annual Gasoline Consumption")
 
+qqPlot(merged_data$`Annual Diesel Consumption`, main = "QQ Plot for Annual Diesel Consumption")
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+## Conclusion
+
+We successfully identified vehicle types from the given image data set and quantified their distribution by type using Resnet in tensorflow environment. Additionally, we classified the vehicles based on their fuel type, allowing us to assess the fuel economy of gasoline and diesel vehicles using summary statistics and scatter plots. The EPA data was instrumental in converting frequency distribution data into actual fuel economy figures and GHG emissions. This tool can be further refined to efficiently quantify fuel consumption and related expenses using images of existing vehicle fleets. Its capability to process images also makes it adaptable for analyzing real-time traffic camera data to quantify GHG emissions and pollution levels in urban environments.
