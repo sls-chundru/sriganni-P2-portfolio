@@ -271,4 +271,21 @@ qqPlot(merged_data$`Annual Diesel Consumption`, main = "QQ Plot for Annual Diese
 
 ## Conclusion
 
+Based on the analysis, we can conclude that commercial vehicles and pickup trucks have up to 50% higher fuel consumption and greenhouse gas (GHG) emissions compared to cars. The visualizations support this by showing that limousines and cabs have the highest annual gasoline and diesel consumption, followed closely by pickup trucks. The high fuel consumption of commercial vehicles is due to their higher mileage, while pickup trucks have higher fuel consumption due to lower efficiency.
+
+Additionally, the plots indicate that vehicles like sports cars and beach wagons have lower fuel consumption compared to commercial vehicles and pickup trucks. Diesel vehicles within the same category are shown to be more efficient than gasoline vehicles, leading to better fuel economy and relatively lower CO2 emissions. The bar plots for CO2 emissions from gasoline and diesel consumption reinforce the finding that limousines and cabs emit the most CO2, followed by pickup trucks, sports cars, and beach wagons.
+
+The specific insights from the plots are as follows:
+
+Annual Gasoline Consumption: Limousines and cabs show the highest consumption, followed by pickup trucks.
+
+Annual Diesel Consumption: Limousines and cabs again lead in consumption, with pickup trucks also showing significant diesel use.
+
+CO2 Emissions from Gasoline: Limousines and cabs produce the most emissions, followed by pickup trucks and sports cars.
+
+CO2 Emissions from Diesel: Limousines and cabs remain the highest emitters, with pickup trucks and sports cars also contributing significantly.
+
+These findings highlight the higher environmental impact of commercial vehicles and pickup trucks compared to other vehicle types.
+
 We successfully identified vehicle types from the given image data set and quantified their distribution by type using Resnet in tensorflow environment. Additionally, we classified the vehicles based on their fuel type, allowing us to assess the fuel economy of gasoline and diesel vehicles using summary statistics and scatter plots. The EPA data was instrumental in converting frequency distribution data into actual fuel economy figures and GHG emissions. This tool can be further refined to efficiently quantify fuel consumption and related expenses using images of existing vehicle fleets. Its capability to process images also makes it adaptable for analyzing real-time traffic camera data to quantify GHG emissions and pollution levels in urban environments.
+

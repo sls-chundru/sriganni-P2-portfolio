@@ -320,7 +320,7 @@ The following object is masked from 'package:purrr':
 <span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>1/1 - 0s - 491ms/epoch - 491ms/step</code></pre>
+<pre><code>1/1 - 0s - 451ms/epoch - 451ms/step</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter out objects with count less than 4</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>filtered_object_counts <span class="ot">&lt;-</span> object_counts[<span class="fu">sapply</span>(object_counts, <span class="cf">function</span>(x) x <span class="sc">&gt;</span> <span class="dv">2</span>)]</span>
@@ -521,6 +521,14 @@ $sports_car
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Based on the analysis, we can conclude that commercial vehicles and pickup trucks have up to 50% higher fuel consumption and greenhouse gas (GHG) emissions compared to cars. The visualizations support this by showing that limousines and cabs have the highest annual gasoline and diesel consumption, followed closely by pickup trucks. The high fuel consumption of commercial vehicles is due to their higher mileage, while pickup trucks have higher fuel consumption due to lower efficiency.</p>
+<p>Additionally, the plots indicate that vehicles like sports cars and beach wagons have lower fuel consumption compared to commercial vehicles and pickup trucks. Diesel vehicles within the same category are shown to be more efficient than gasoline vehicles, leading to better fuel economy and relatively lower CO2 emissions. The bar plots for CO2 emissions from gasoline and diesel consumption reinforce the finding that limousines and cabs emit the most CO2, followed by pickup trucks, sports cars, and beach wagons.</p>
+<p>The specific insights from the plots are as follows:</p>
+<p>Annual Gasoline Consumption: Limousines and cabs show the highest consumption, followed by pickup trucks.</p>
+<p>Annual Diesel Consumption: Limousines and cabs again lead in consumption, with pickup trucks also showing significant diesel use.</p>
+<p>CO2 Emissions from Gasoline: Limousines and cabs produce the most emissions, followed by pickup trucks and sports cars.</p>
+<p>CO2 Emissions from Diesel: Limousines and cabs remain the highest emitters, with pickup trucks and sports cars also contributing significantly.</p>
+<p>These findings highlight the higher environmental impact of commercial vehicles and pickup trucks compared to other vehicle types.</p>
 <p>We successfully identified vehicle types from the given image data set and quantified their distribution by type using Resnet in tensorflow environment. Additionally, we classified the vehicles based on their fuel type, allowing us to assess the fuel economy of gasoline and diesel vehicles using summary statistics and scatter plots. The EPA data was instrumental in converting frequency distribution data into actual fuel economy figures and GHG emissions. This tool can be further refined to efficiently quantify fuel consumption and related expenses using images of existing vehicle fleets. Its capability to process images also makes it adaptable for analyzing real-time traffic camera data to quantify GHG emissions and pollution levels in urban environments.</p>
 
 
