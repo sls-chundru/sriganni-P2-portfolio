@@ -124,7 +124,16 @@ for (img_name in list.files(img_dir)) {
 }
 
 # Filter out objects with count less than 4
+#filtered_object_counts <- object_counts[sapply(object_counts, function(x) x > 2)]
+
+# If object_counts is empty, ensure filtered_object_counts has at least one entry
+if (length(object_counts) == 0) {
+  # Add a placeholder entry if object_counts is empty
+  filtered_object_counts <- list("pickup" = 0)
+}else{
+  # Filter out objects with count less than 4
 filtered_object_counts <- object_counts[sapply(object_counts, function(x) x > 2)]
+}
 
 # Print the counts of each type of animal
 filtered_object_counts
