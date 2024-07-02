@@ -1,0 +1,186 @@
+---
+title: "Exploratory Data Analysis of NCHS Data"
+editor: 
+  markdown: 
+    wrap: 72
+---
+<div class="r-coding-exercise-custom-special-style">
+
+In this analysis, we will explore a dataset from the National Center for Health Statistics (NCHS) that contains information about death rates and life expectancy at birth. Our goal is to clean the data, perform exploratory data analysis (EDA), and summarize the variables by their distributions.
+
+# Load necessary libraries:
+
+```{r}
+# Load necessary libraries
+library(dplyr)
+library(ggplot2)
+library(readr)
+library(tidyr)
+library(here)
+```
+
+# Read the data:
+
+```{r}
+# Read the data
+file_path <- here("cdcdata-exercise","NCHS_-_Death_rates_and_life_expectancy_at_birth_20240701.csv")
+data <- read_csv(file_path)
+```
+
+# Display the first few rows of the dataset:
+
+```{r}
+head(data)
+```
+
+# Check the structure of the dataset:
+
+```{r}
+str(data)
+```
+
+# Clean the data:
+# Remove any rows with NA values:
+
+```{r}
+data <- data %>%
+  filter_all(any_vars(!is.na(.)))
+```
+
+# Replace missing values coded as 999 with NA:
+
+```{r}
+data <- data %>%
+  mutate_if(is.numeric, ~na_if(., 999))
+```
+
+# Select a few variables for analysis (adjust based on actual variable names in the dataset):
+
+```{r}
+selected_data <- data %>%
+  select(Year, Sex, Race, "Average Life Expectancy (Years)", "Age-adjusted Death Rate")
+```
+
+# Exploratory Data Analysis (EDA):
+# Summary statistics:
+
+```{r}
+summary(selected_data)
+```
+
+## Summary of categorical variables:
+We'll start by summarizing the categorical variables (Sex and Race) by showing the percentage of each category.
+
+
+```{r}
+cat_summary_sex <- selected_data %>%
+  group_by(Sex) %>%
+  summarize(count = n()) %>%
+  mutate(percentage = count / sum(count) * 100)
+
+cat_summary_race <- selected_data %>%
+  group_by(Race) %>%
+  summarize(count = n()) %>%
+  mutate(percentage = count / sum(count) * 100)
+
+print(cat_summary_sex)
+print(cat_summary_race)
+```
+Sex Distribution:
+The dataset is evenly distributed across the sex categories: Both Sexes, Female, and Male. Each category represents 33.33% of the total dataset with 357 entries each. This balanced representation ensures an unbiased analysis across sexes.
+
+Race Distribution:
+The dataset is equally divided among the race categories: All Races, Black, and White, with each category comprising 33.33% of the total dataset (357 entries each). This equal distribution ensures comprehensive analysis across races.
+
+# Distribution of categorical variables:
+
+```{r}
+cat_summary <- selected_data %>%
+  group_by(Sex, Race) %>%
+  summarize(count = n(), .groups = 'drop') %>%
+  mutate(percentage = count / sum(count) * 100)
+cat_summary
+```
+
+
+# Continuous Variables:
+Next, we'll summarize the continuous variables (Age-adjusted Death Rate and Average Life Expectancy (Years)) by plotting their distributions and calculating their mean and standard deviation.
+
+# Plot distribution of age-adjusted death rate:
+
+```{r}
+ggplot(selected_data, aes(x = `Age-adjusted Death Rate`)) +
+  geom_histogram(binwidth = 50, fill = "blue", color = "black") +
+  labs(title = "Distribution of Age-adjusted Death Rates", x = "Age-adjusted Death Rate", y = "Frequency")
+```
+The histogram shows age-adjusted death rates ranging from 0 to 4000, with the highest frequencies. The frequency decreases as the death rate increases, indicating fewer occurrences at higher death rates.This visualization helps identify the concentration and spread of death rates within the population, highlighting areas with the most common and least common death rates.
+
+
+# Summary statistics for age-adjusted death rate:
+
+```{r}
+death_rate_summary <- selected_data %>%
+  summarize(mean = mean(`Age-adjusted Death Rate`, na.rm = TRUE),
+            sd = sd(`Age-adjusted Death Rate`, na.rm = TRUE))
+
+print(death_rate_summary)
+```
+The summary statistics table provides the mean and standard deviation for the age-adjusted death rates. The mean age-adjusted death rate is approximately 1593.06, with a standard deviation of 682.37. This indicates that the average death rate is around 1593 deaths per 100,000 population, with considerable variability across the dataset.
+
+# Plot distribution of Average life expectancy(Years):
+
+```{r}
+ggplot(selected_data, aes(x = `Average Life Expectancy (Years)`)) +
+  geom_histogram(binwidth = 1, fill = "green", color = "black") +
+  labs(title = "Distribution of Life Expectancy", x = "Life Expectancy (Years)", y = "Frequency")
+```
+The histogram illustrates the distribution of average life expectancy in the dataset, ranging from approximately 30 to 85 years. The frequency peaks around 70 years, indicating a higher number of occurrences in this range. This visualization helps identify the spread and concentration of life expectancy across the population, highlighting areas with the highest and lowest frequencies.
+
+# Summary statistics for Average life expectancy:
+
+```{r}
+life_expectancy_summary <- selected_data %>%
+  summarize(mean = mean(`Average Life Expectancy (Years)`, na.rm = TRUE),
+            sd = sd(`Average Life Expectancy (Years)`, na.rm = TRUE))
+
+print(life_expectancy_summary)
+```
+The summary statistics table for average life expectancy shows a mean of 64.50 years and a standard deviation of 11.84 years. This indicates that the average life expectancy in the dataset is approximately 64.5 years, with a variability of about 11.8 years across the data points.
+
+# Boxplots:
+We'll also create boxplots to visualize the distribution of Age-adjusted Death Rate by Sex and Average Life Expectancy (Years) by Race.
+
+# Boxplot of age-adjusted death rate by sex:
+
+```{r}
+ggplot(selected_data, aes(x = Sex, y = `Age-adjusted Death Rate`, fill = Sex)) +
+  geom_boxplot() +
+  labs(title = "Boxplot of Age-adjusted Death Rate by Sex", x = "Sex", y = "Age-adjusted Death Rate")
+```
+The boxplot shows the distribution of age-adjusted death rates across different sex categories:
+Both Sexes, Female, and Male.
+
+1.The median death rate for Both Sexes and Females is lower compared to Males.
+
+2.The interquartile range (IQR) is similar for Both Sexes and Females but slightly larger for Males, indicating more variability in the male category.
+
+3.There are several outliers in the Male category, suggesting that there are some instances of unusually high death rates.
+
+This visualization highlights the differences in death rates among the sex categories, with males showing higher median and more variability in death rates.
+
+# Boxplot of life expectancy by race:
+
+```{r}
+ggplot(selected_data, aes(x = Race, y = `Average Life Expectancy (Years)`, fill = Race)) +
+  geom_boxplot() +
+  labs(title = "Boxplot of Average Life Expectancy by Race", x = "Race", y = "Average Life Expectancy (Years)")
+```  
+The boxplot compares average life expectancy across race categories: All Races, Black, and White.
+
+1.The median life expectancy is similar for All Races and White categories, slightly lower for Black.
+
+2.The interquartile range is largest for the White category, indicating more variability.
+
+3.The Black category shows the lowest median.
+
+This visualization highlights the differences in life expectancy across races, with the White category exhibiting the highest variability.
