@@ -8,6 +8,8 @@ website:
     left:
       - text: "About Me"
         file: aboutme.qmd
+      - text: "Data Analysis Exercise"
+        file: cdcdata-exercise/cdcdata-exercise.qmd
       - text: "Projects"
         menu:
           - text: "Starter Analysis Exercise"
