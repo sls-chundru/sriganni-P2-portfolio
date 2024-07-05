@@ -219,7 +219,7 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>here() starts at /Users/srilakshmi/Documents/GitHub/sriganni-P2-portfolio</code></pre>
+<pre><code>here() starts at /Users/sethharris/Desktop/DA-6833-02T Practicum II/sriganni-P2-portfolio</code></pre>
 </div>
 </div>
 </section>
@@ -434,7 +434,8 @@ dbl (3): Year, Average Life Expectancy (Years), Age-adjusted Death Rate
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">"green"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Life Expectancy"</span>, <span class="at">x =</span> <span class="st">"Life Expectancy (Years)"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 6 rows containing non-finite values (`stat_bin()`).</code></pre>
+<pre><code>Warning: Removed 6 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
@@ -486,7 +487,8 @@ dbl (3): Year, Average Life Expectancy (Years), Age-adjusted Death Rate
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Boxplot of Average Life Expectancy by Race"</span>, <span class="at">x =</span> <span class="st">"Race"</span>, <span class="at">y =</span> <span class="st">"Average Life Expectancy (Years)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 6 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+<pre><code>Warning: Removed 6 rows containing non-finite outside the scale range
+(`stat_boxplot()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
@@ -497,6 +499,344 @@ dbl (3): Year, Average Life Expectancy (Years), Age-adjusted Death Rate
 <p>2.The interquartile range is largest for the White category, indicating more variability.</p>
 <p>3.The Black category shows the lowest median.</p>
 <p>This visualization highlights the differences in life expectancy across races, with the White category exhibiting the highest variability.</p>
+</section>
+<section id="this-section-contributed-by-seth-harris." class="level1">
+<h1><strong>This section contributed by Seth Harris.</strong></h1>
+<section id="load-necessary-libraries-1" class="level3">
+<h3 class="anchored" data-anchor-id="load-necessary-libraries-1">Load necessary libraries:</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(synthpop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Find out more at https://www.synthpop.org.uk/</code></pre>
+</div>
+</div>
+</section>
+<section id="generate-synthetic-data" class="level3">
+<h3 class="anchored" data-anchor-id="generate-synthetic-data">Generate synthetic data:</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load Sri's cleaned and processed data</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"cdcdata-exercise"</span>, <span class="st">"NCHS_-_Death_rates_and_life_expectancy_at_birth_20240701.csv"</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>original_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(file_path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 1071 Columns: 5
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (2): Race, Sex
+dbl (3): Year, Average Life Expectancy (Years), Age-adjusted Death Rate
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename columns to remove spaces</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>original_data <span class="ot">&lt;-</span> original_data <span class="sc">%&gt;%</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Average_Life_Expectancy_Years =</span> <span class="st">`</span><span class="at">Average Life Expectancy (Years)</span><span class="st">`</span>,</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">Age_adjusted_Death_Rate =</span> <span class="st">`</span><span class="at">Age-adjusted Death Rate</span><span class="st">`</span>)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate synthetic data using synthpop</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>synthetic_data <span class="ot">&lt;-</span> <span class="fu">syn</span>(original_data)<span class="sc">$</span>syn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Variable(s): Race, Sex have been changed for synthesis from character to factor.
+
+Synthesis
+-----------
+ Year Race Sex Average_Life_Expectancy_Years Age_adjusted_Death_Rate</code></pre>
+</div>
+</div>
+</section>
+<section id="display-the-first-few-rows-of-the-synthetic-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="display-the-first-few-rows-of-the-synthetic-dataset">Display the first few rows of the synthetic dataset:</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(synthetic_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Year      Race        Sex Average_Life_Expectancy_Years
+1 1900     White Both Sexes                          49.1
+2 1939     Black Both Sexes                          51.7
+3 2011     Black Both Sexes                          75.5
+4 1951 All Races     Female                          71.1
+5 1991     White     Female                          78.8
+6 1997     Black Both Sexes                          71.8
+  Age_adjusted_Death_Rate
+1                  2447.9
+2                  2384.3
+3                   849.3
+4                  1271.8
+5                   737.9
+6                  1135.7</code></pre>
+</div>
+</div>
+</section>
+<section id="check-the-structure-of-the-synthetic-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="check-the-structure-of-the-synthetic-dataset">Check the structure of the synthetic dataset:</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(synthetic_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   1071 obs. of  5 variables:
+ $ Year                         : num  1900 1939 2011 1951 1991 ...
+ $ Race                         : chr  "White" "Black" "Black" "All Races" ...
+ $ Sex                          : chr  "Both Sexes" "Both Sexes" "Both Sexes" "Female" ...
+ $ Average_Life_Expectancy_Years: num  49.1 51.7 75.5 71.1 78.8 71.8 81.3 77.7 66.8 47.3 ...
+ $ Age_adjusted_Death_Rate      : num  2448 2384 849 1272 738 ...</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="exploratory-data-analysis-eda-on-synthetic-data" class="level1">
+<h1>Exploratory Data Analysis (EDA) on Synthetic Data</h1>
+<p><strong>In this section, I will perform some exploratory/descriptive analysis on the synthetic dataset, similar to Sri’s analysis.</strong></p>
+<section id="summary-statistics-1" class="level2">
+<h2 class="anchored" data-anchor-id="summary-statistics-1"><strong>Summary statistics:</strong></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(synthetic_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Year          Race               Sex           
+ Min.   :1900   Length:1071        Length:1071       
+ 1st Qu.:1930   Class :character   Class :character  
+ Median :1959   Mode  :character   Mode  :character  
+ Mean   :1959                                        
+ 3rd Qu.:1988                                        
+ Max.   :2018                                        
+                                                     
+ Average_Life_Expectancy_Years Age_adjusted_Death_Rate
+ Min.   :29.10                 Min.   : 611.3         
+ 1st Qu.:58.30                 1st Qu.: 991.1         
+ Median :66.80                 Median :1532.0         
+ Mean   :64.64                 Mean   :1587.4         
+ 3rd Qu.:73.90                 3rd Qu.:2005.6         
+ Max.   :81.40                 Max.   :3654.7         
+ NA's   :4                                            </code></pre>
+</div>
+</div>
+</section>
+<section id="summary-of-categorical-variables-1" class="level2">
+<h2 class="anchored" data-anchor-id="summary-of-categorical-variables-1">Summary of categorical variables:</h2>
+<p>I will summarize the categorical variables (e.g., <code>Sex</code> and <code>Race</code>) by showing the percentage of each category.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>cat_summary_sex <span class="ot">&lt;-</span> synthetic_data <span class="sc">%&gt;%</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Sex) <span class="sc">%&gt;%</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percentage =</span> count <span class="sc">/</span> <span class="fu">sum</span>(count) <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>cat_summary_race <span class="ot">&lt;-</span> synthetic_data <span class="sc">%&gt;%</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Race) <span class="sc">%&gt;%</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percentage =</span> count <span class="sc">/</span> <span class="fu">sum</span>(count) <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(cat_summary_sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  Sex        count percentage
+  &lt;chr&gt;      &lt;int&gt;      &lt;dbl&gt;
+1 Both Sexes   349       32.6
+2 Female       363       33.9
+3 Male         359       33.5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(cat_summary_race)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  Race      count percentage
+  &lt;chr&gt;     &lt;int&gt;      &lt;dbl&gt;
+1 All Races   349       32.6
+2 Black       357       33.3
+3 White       365       34.1</code></pre>
+</div>
+</div>
+</section>
+<section id="distribution-of-categorical-variables-1" class="level2">
+<h2 class="anchored" data-anchor-id="distribution-of-categorical-variables-1">Distribution of categorical variables:</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>cat_summary <span class="ot">&lt;-</span> synthetic_data <span class="sc">%&gt;%</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Sex, Race) <span class="sc">%&gt;%</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">'drop'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percentage =</span> count <span class="sc">/</span> <span class="fu">sum</span>(count) <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>cat_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 4
+  Sex        Race      count percentage
+  &lt;chr&gt;      &lt;chr&gt;     &lt;int&gt;      &lt;dbl&gt;
+1 Both Sexes All Races   117      10.9 
+2 Both Sexes Black        94       8.78
+3 Both Sexes White       138      12.9 
+4 Female     All Races   125      11.7 
+5 Female     Black       138      12.9 
+6 Female     White       100       9.34
+7 Male       All Races   107       9.99
+8 Male       Black       125      11.7 
+9 Male       White       127      11.9 </code></pre>
+</div>
+</div>
+</section>
+<section id="continuous-variables-1" class="level2">
+<h2 class="anchored" data-anchor-id="continuous-variables-1">Continuous Variables:</h2>
+<p>Next, I will summarize the continuous variables (Age_adjusted_Death_Rate and Average_Life_Expectancy_Years) by plotting their distributions and calculating their mean and standard deviation.</p>
+</section>
+<section id="plot-distribution-of-age_adjusted_death_rate" class="level2">
+<h2 class="anchored" data-anchor-id="plot-distribution-of-age_adjusted_death_rate">Plot distribution of Age_adjusted_Death_Rate:</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(synthetic_data, <span class="fu">aes</span>(<span class="at">x =</span> Age_adjusted_Death_Rate)) <span class="sc">+</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">50</span>, <span class="at">fill =</span> <span class="st">"red"</span>, <span class="at">color =</span> <span class="st">"orange"</span>) <span class="sc">+</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Age-adjusted Death Rates (Synthetic Data)"</span>, <span class="at">x =</span> <span class="st">"Age-adjusted Death Rate"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<section id="distribution-of-age-adjusted-death-rates-synthetic-data" class="level3">
+<h3 class="anchored" data-anchor-id="distribution-of-age-adjusted-death-rates-synthetic-data">Distribution of Age-adjusted Death Rates (Synthetic Data)</h3>
+<section id="description" class="level4">
+<h4 class="anchored" data-anchor-id="description">Description:</h4>
+<p>This histogram shows the distribution of age-adjusted death rates in the synthetic dataset. The x-axis represents the age-adjusted death rates, while the y-axis shows the frequency of these rates.</p>
+</section>
+<section id="findings" class="level4">
+<h4 class="anchored" data-anchor-id="findings">Findings:</h4>
+<ul>
+<li><p>The histogram displays a right-skewed distribution, with a peak around the lower values of death rates.</p></li>
+<li><p>Most of the synthetic data points have death rates concentrated between 500 to 1500, with decreasing frequency as the death rates increase.</p></li>
+<li><p>The synthetic data mirrors the distribution characteristics observed in the original dataset, maintaining a similar skewness and concentration of values.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="summary-statistics-for-age_adjusted_death_rate" class="level2">
+<h2 class="anchored" data-anchor-id="summary-statistics-for-age_adjusted_death_rate">Summary statistics for <code>Age_adjusted_Death_Rate</code>:</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>death_rate_summary <span class="ot">&lt;-</span> synthetic_data <span class="sc">%&gt;%</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(Age_adjusted_Death_Rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd =</span> <span class="fu">sd</span>(Age_adjusted_Death_Rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(death_rate_summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     mean       sd
+1 1587.39 676.0813</code></pre>
+</div>
+</div>
+</section>
+<section id="plot-distribution-of-average_life_expectancy_years" class="level2">
+<h2 class="anchored" data-anchor-id="plot-distribution-of-average_life_expectancy_years">Plot distribution of <code>Average_Life_Expectancy_Years</code>:</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(synthetic_data, <span class="fu">aes</span>(<span class="at">x =</span> Average_Life_Expectancy_Years)) <span class="sc">+</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">color =</span> <span class="st">"lightblue"</span>) <span class="sc">+</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Average Life Expectancy (Years) (Synthetic Data)"</span>, <span class="at">x =</span> <span class="st">"Average Life Expectancy (Years)"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 4 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<section id="distribution-of-average-life-expectancy-years-synthetic-data" class="level3">
+<h3 class="anchored" data-anchor-id="distribution-of-average-life-expectancy-years-synthetic-data">Distribution of Average Life Expectancy (Years) (Synthetic Data)</h3>
+<section id="description-1" class="level4">
+<h4 class="anchored" data-anchor-id="description-1">Description:</h4>
+<p>This histogram illustrates the distribution of average life expectancy in the synthetic dataset. The x-axis represents the average life expectancy in years, and the y-axis shows the frequency of these values.</p>
+</section>
+<section id="findings-1" class="level4">
+<h4 class="anchored" data-anchor-id="findings-1">Findings:</h4>
+<ul>
+<li><p>The histogram reveals a distribution with a peak around 70 years, indicating a higher frequency of data points in this range.</p></li>
+<li><p>The distribution is somewhat bimodal, with another smaller peak around 60 years.</p></li>
+<li><p>The synthetic data closely follows the distribution observed in the original dataset, with a similar concentration of values around 70 years and a similar spread of life expectancy values.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="summary-statistics-for-average_life_expectancy_years" class="level2">
+<h2 class="anchored" data-anchor-id="summary-statistics-for-average_life_expectancy_years">Summary statistics for <code>Average_Life_Expectancy_Years</code>:</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>life_expectancy_summary <span class="ot">&lt;-</span> synthetic_data <span class="sc">%&gt;%</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(Average_Life_Expectancy_Years, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd =</span> <span class="fu">sd</span>(Average_Life_Expectancy_Years, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(life_expectancy_summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      mean       sd
+1 64.64227 11.75375</code></pre>
+</div>
+</div>
+</section>
+<section id="boxplots-1" class="level2">
+<h2 class="anchored" data-anchor-id="boxplots-1">Boxplots:</h2>
+<p>I will also create boxplots to visualize the distribution of Age_adjusted_Death_Rate by Sex and Average_Life_Expectancy_Years by Race.</p>
+</section>
+<section id="boxplot-of-age_adjusted_death_rate-by-sex" class="level2">
+<h2 class="anchored" data-anchor-id="boxplot-of-age_adjusted_death_rate-by-sex">Boxplot of <code>Age_adjusted_Death_Rate</code> by <code>Sex</code>:</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(synthetic_data, <span class="fu">aes</span>(<span class="at">x =</span> Sex, <span class="at">y =</span> Age_adjusted_Death_Rate, <span class="at">fill =</span> Sex)) <span class="sc">+</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Boxplot of Age-adjusted Death Rate by Sex (Synthetic Data)"</span>, <span class="at">x =</span> <span class="st">"Sex"</span>, <span class="at">y =</span> <span class="st">"Age-adjusted Death Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<section id="boxplot-of-age-adjusted-death-rate-by-sex-synthetic-data" class="level3">
+<h3 class="anchored" data-anchor-id="boxplot-of-age-adjusted-death-rate-by-sex-synthetic-data">Boxplot of Age-adjusted Death Rate by Sex (Synthetic Data)</h3>
+<section id="description-2" class="level4">
+<h4 class="anchored" data-anchor-id="description-2">Description:</h4>
+<p>This boxplot compares the distribution of age-adjusted death rates across different sex categories in the synthetic dataset: Both Sexes, Female, and Male.</p>
+</section>
+<section id="findings-2" class="level4">
+<h4 class="anchored" data-anchor-id="findings-2">Findings:</h4>
+<ul>
+<li><p>The median death rate for both sexes and females is lower compared to males, consistent with the original data.</p></li>
+<li><p>The interquartile range (IQR) for males is slightly larger, indicating more variability in this category.</p></li>
+<li><p>There are several outliers in the male category, suggesting instances of unusually high death rates, which is also consistent with the original data.</p></li>
+<li><p>The boxplot confirms that the synthetic data maintains the same distribution characteristics and variability as observed in the original dataset.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="boxplot-of-average_life_expectancy_years-by-race" class="level2">
+<h2 class="anchored" data-anchor-id="boxplot-of-average_life_expectancy_years-by-race">Boxplot of <code>Average_Life_Expectancy_Years</code> by <code>Race</code>:</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(synthetic_data, <span class="fu">aes</span>(<span class="at">x =</span> Race, <span class="at">y =</span> Average_Life_Expectancy_Years, <span class="at">fill =</span> Race)) <span class="sc">+</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Boxplot of Average Life Expectancy (Years) by Race (Synthetic Data)"</span>, <span class="at">x =</span> <span class="st">"Race"</span>, <span class="at">y =</span> <span class="st">"Average Life Expectancy (Years)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 4 rows containing non-finite outside the scale range
+(`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<section id="boxplot-of-average-life-expectancy-years-by-race-synthetic-data" class="level3">
+<h3 class="anchored" data-anchor-id="boxplot-of-average-life-expectancy-years-by-race-synthetic-data">Boxplot of Average Life Expectancy (Years) by Race (Synthetic Data)</h3>
+<section id="description-3" class="level4">
+<h4 class="anchored" data-anchor-id="description-3">Description:</h4>
+<p>This boxplot visualizes the distribution of average life expectancy across race categories in the synthetic dataset: All Races, Black, and White.</p>
+</section>
+<section id="findings-3" class="level4">
+<h4 class="anchored" data-anchor-id="findings-3">Findings:</h4>
+<ul>
+<li><p>The median life expectancy is similar for All Races and White categories, slightly lower for Black, consistent with the original data.</p></li>
+<li><p>The interquartile range is largest for the White category, indicating more variability in this group.</p></li>
+<li><p>The Black category shows the lowest median life expectancy.</p></li>
+<li><p>The synthetic data successfully mimics the distribution characteristics of the original dataset, including the central tendencies and variability across race categories.</p></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>In this analysis, I successfully generated synthetic data based on the original cleaned dataset provided by Sri. I then performed exploratory data analysis (EDA) on the synthetic data, producing summary statistics, histograms, and boxplots to compare with the original data. This approach helps ensure the synthetic data closely mimics the characteristics and distributions of the original data, enabling further analysis and modeling.</p>
+</section>
+<section id="comments-on-the-analysis" class="level1">
+<h1>Comments on the Analysis</h1>
+<ol type="1">
+<li><p><strong>Data Cleaning</strong>: I started by loading Sri’s original data and renaming columns to avoid spaces, which synthpop requires for generating synthetic data correctly.</p></li>
+<li><p><strong>Synthetic Data Generation</strong>: Using the <code>synthpop</code> package, I generated a synthetic dataset based on the original data. The synthetic data retains the structure and distribution of the original dataset.</p></li>
+<li><p><strong>Exploratory Data Analysis (EDA)</strong>: I conducted a similar EDA on the synthetic data as Sri did on the original data, including summary statistics, histograms, and boxplots.</p></li>
+<li><p><strong>Comparison</strong>: The EDA of the synthetic data closely mirrors the original data, demonstrating that the synthetic data maintains similar distributions and relationships among variables. This is crucial for ensuring that any analysis or modeling performed on the synthetic data would yield results similar to those obtained from the original data.</p></li>
+</ol>
+<p>By generating and analyzing synthetic data, I can share and analyze sensitive datasets without compromising privacy, ensuring that the synthetic data provides a reliable stand-in for the original dataset. This approach allows us to conduct meaningful analyses and derive insights while protecting the confidentiality of the original data.</p>
 
 
 </section>
