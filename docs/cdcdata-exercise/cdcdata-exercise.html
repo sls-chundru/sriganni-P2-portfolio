@@ -118,10 +118,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="../aboutme.html" rel="" target="">
  <span class="menu-text">About Me</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="../cdcdata-exercise/cdcdata-exercise.html" rel="" target="" aria-current="page">
- <span class="menu-text">Data Analysis Exercise</span></a>
-  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-projects" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Projects</span>
@@ -194,7 +190,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="r-coding-exercise-custom-special-style">
 
-<p>In this analysis, we will explore a dataset from the National Center for Health Statistics (NCHS) that contains information about death rates and life expectancy at birth. Our goal is to clean the data, perform exploratory data analysis (EDA), and summarize the variables by their distributions.</p>
+<p><strong>Brief Decription of the Data</strong>:</p>
+<p><strong>Title:</strong> NCHS - Death rates and life expectancy at birth</p>
+<p><strong>Description:</strong> we will explore a dataset from the National Center for Health Statistics (NCHS) that contains information about death rates and life expectancy at birth. Our goal is to clean the data, perform exploratory data analysis (EDA), and summarize the variables by their distributions.</p>
+<p>This dataset of U.S. mortality trends since 1900 highlights the differences in age-adjusted death rates and life expectancy at birth by race and sex.</p>
+<p>Age-adjusted death rates (deaths per 100,000) after 1998 are calculated based on the 2000 U.S. standard population. Populations used for computing death rates for 2011–2017 are postcensal estimates based on the 2010 census, estimated as of July 1, 2010. Rates for census years are based on populations enumerated in the corresponding censuses. Rates for noncensus years between 2000 and 2010 are revised using updated intercensal population estimates and may differ from rates previously published. Data on age-adjusted death rates prior to 1999 are taken from historical data (see References below).</p>
+<p>Life expectancy data are available up to 2017. Due to changes in categories of race used in publications, data are not available for the black population consistently before 1968, and not at all before 1960. More information on historical data on age-adjusted death rates is available at https://www.cdc.gov/nchs/nvss/mortality/hist293.htm.</p>
+<p><strong>Sources:</strong> CDC/NCHS, National Vital Statistics System, historical data, 1900-1998 (see https://www.cdc.gov/nchs/nvss/mortality_historical_data.htm); CDC/NCHS, National Vital Statistics System, mortality data (see http://www.cdc.gov/nchs/deaths.htm); and CDC WONDER (see http://wonder.cdc.gov).</p>
 <section id="load-necessary-libraries" class="level1">
 <h1>Load necessary libraries:</h1>
 <div class="cell">
@@ -219,7 +221,7 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>here() starts at /Users/sethharris/Desktop/DA-6833-02T Practicum II/sriganni-P2-portfolio</code></pre>
+<pre><code>here() starts at /Users/srilakshmi/Documents/GitHub/sriganni-P2-portfolio</code></pre>
 </div>
 </div>
 </section>
@@ -434,8 +436,7 @@ dbl (3): Year, Average Life Expectancy (Years), Age-adjusted Death Rate
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">"green"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Life Expectancy"</span>, <span class="at">x =</span> <span class="st">"Life Expectancy (Years)"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 6 rows containing non-finite outside the scale range
-(`stat_bin()`).</code></pre>
+<pre><code>Warning: Removed 6 rows containing non-finite values (`stat_bin()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
@@ -487,8 +488,7 @@ dbl (3): Year, Average Life Expectancy (Years), Age-adjusted Death Rate
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Boxplot of Average Life Expectancy by Race"</span>, <span class="at">x =</span> <span class="st">"Race"</span>, <span class="at">y =</span> <span class="st">"Average Life Expectancy (Years)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 6 rows containing non-finite outside the scale range
-(`stat_boxplot()`).</code></pre>
+<pre><code>Warning: Removed 6 rows containing non-finite values (`stat_boxplot()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
@@ -724,8 +724,7 @@ Synthesis
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">color =</span> <span class="st">"lightblue"</span>) <span class="sc">+</span></span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Average Life Expectancy (Years) (Synthetic Data)"</span>, <span class="at">x =</span> <span class="st">"Average Life Expectancy (Years)"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 4 rows containing non-finite outside the scale range
-(`stat_bin()`).</code></pre>
+<pre><code>Warning: Removed 4 rows containing non-finite values (`stat_bin()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
@@ -799,8 +798,7 @@ Synthesis
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Boxplot of Average Life Expectancy (Years) by Race (Synthetic Data)"</span>, <span class="at">x =</span> <span class="st">"Race"</span>, <span class="at">y =</span> <span class="st">"Average Life Expectancy (Years)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 4 rows containing non-finite outside the scale range
-(`stat_boxplot()`).</code></pre>
+<pre><code>Warning: Removed 4 rows containing non-finite values (`stat_boxplot()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
