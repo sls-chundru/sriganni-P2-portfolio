@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -45,7 +79,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -54,10 +94,104 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
+<link href="../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
+<script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<script src="../site_libs/jquery-3.5.1/jquery.min.js"></script>
+
+<script src="../site_libs/proj4js-2.3.15/proj4.js"></script>
+
+<link href="../site_libs/highcharts-9.3.1/css/motion.css" rel="stylesheet">
+
+<script src="../site_libs/highcharts-9.3.1/highcharts.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/highcharts-3d.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/highcharts-more.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/stock.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/map.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/data.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/exporting.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/offline-exporting.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/drilldown.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/item-series.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/overlapping-datalabels.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/annotations.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/export-data.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/funnel.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/heatmap.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/treemap.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/sankey.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/dependency-wheel.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/organization.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/solid-gauge.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/streamgraph.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/sunburst.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/vector.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/wordcloud.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/xrange.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/tilemap.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/venn.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/gantt.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/timeline.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/parallel-coordinates.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/bullet.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/coloraxis.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/dumbbell.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/lollipop.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/series-label.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/plugins/motion.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/custom/reset.js"></script>
+
+<script src="../site_libs/highcharts-9.3.1/modules/boost.js"></script>
+
+<script src="../site_libs/highchart-binding-0.9.4/highchart.js"></script>
+
+<script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+<link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -67,9 +201,9 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Sri Lakshmi - DA Portfolio</span>
     </a>
@@ -81,43 +215,51 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../aboutme.html" rel="" target="">
- <span class="menu-text">About Me</span></a>
+    <a class="nav-link" href="../aboutme.html"> 
+<span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-projects" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-projects" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Projects</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-projects">    
         <li>
-    <a class="dropdown-item" href="../starter-analysis-exercise/products/report/starter-analysis-report.html" rel="" target="">
+    <a class="dropdown-item" href="../starter-analysis-exercise/products/report/starter-analysis-report.html">
  <span class="dropdown-text">Starter Analysis Exercise</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../coding-exercise/coding-exercise.html" rel="" target="">
+    <a class="dropdown-item" href="../coding-exercise/coding-exercise.html">
  <span class="dropdown-text">R Coding Exercise</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../presentation-exercise/presentation-exercise.html" rel="" target="">
+    <a class="dropdown-item" href="../presentation-exercise/presentation-exercise.html">
  <span class="dropdown-text">Presentation Exercise</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tidytuesday-exercise/tidytuesday-exercise.html" rel="" target="">
+    <a class="dropdown-item" href="../tidytuesday-exercise/tidytuesday-exercise.html">
  <span class="dropdown-text">Tidy Tuesday Exercise</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../data-exercise/data-exercise.html">
+ <span class="dropdown-text">Data Exercise</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../cdcdata-exercise/cdcdata-exercise.html">
+ <span class="dropdown-text">Data Analysis Exercise</span></a>
   </li>  
     </ul>
   </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/sls-chundru/sriganni-P2-portfolio" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/sls-chundru/sriganni-P2-portfolio"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -144,9 +286,648 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
 
-<p>Placeholder file for the future data/results presentation exercise.</p>
+
+<p><strong>Introduction</strong> I have analyzed the head to head matchup of president bidenna and trump in the 2020 election. The data is collected from the historical presidential poll data for Biden and Trump starting from February 27, 2020. The data is filtered, and averages are computed to create an interactive plot using the highcharter library. The plot displays the poll percentages for both candidates over time with a rolling average to smooth out fluctuations. The chart also includes scatter points for the individual poll data and annotations highlighting the latest average poll percentages for both candidates. This visualization offers a clear view of the polling trends leading up to the 2020 presidential election.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(highcharter)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Registered S3 method overwritten by 'quantmod':
+  method            from
+  as.zoo.data.frame zoo </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Highcharts (www.highcharts.com) is a Highsoft software product which is</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>not free for commercial and Governmental use</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(zoo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'zoo'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    as.Date, as.Date.numeric</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">"president_polls_historical.csv"</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(file_path)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter and process the data</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>poll_data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(start_date, answer, pct) <span class="sc">%&gt;%</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(answer <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Biden"</span>, <span class="st">"Trump"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">start_date =</span> <span class="fu">as.Date</span>(start_date, <span class="at">format =</span> <span class="st">"%m/%d/%y"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(start_date <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">"2020-02-27"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(start_date, answer) <span class="sc">%&gt;%</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pct =</span> <span class="fu">mean</span>(pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">'drop'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> answer, <span class="at">values_from =</span> pct) <span class="sc">%&gt;%</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(<span class="at">start_date =</span> <span class="fu">seq.Date</span>(<span class="fu">min</span>(start_date), <span class="fu">max</span>(start_date), <span class="at">by =</span> <span class="st">"day"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fill</span>(Biden, Trump, <span class="at">.direction =</span> <span class="st">"down"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Biden =</span> <span class="fu">pmin</span>(<span class="fu">pmax</span>(Biden, <span class="dv">40</span>), <span class="dv">60</span>),</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">Trump =</span> <span class="fu">pmin</span>(<span class="fu">pmax</span>(Trump, <span class="dv">40</span>), <span class="dv">60</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Biden_avg =</span> <span class="fu">rollapply</span>(Biden, <span class="at">width =</span> <span class="dv">21</span>, <span class="at">FUN =</span> mean, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">align =</span> <span class="st">"center"</span>),</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">Trump_avg =</span> <span class="fu">rollapply</span>(Trump, <span class="at">width =</span> <span class="dv">21</span>, <span class="at">FUN =</span> mean, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">align =</span> <span class="st">"center"</span>))</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the interactive plot</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="fu">highchart</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_title</span>(<span class="at">text =</span> <span class="st">"Who's ahead in the national polls?"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_subtitle</span>(<span class="at">text =</span> <span class="st">"An updating average of 2020 presidential general election polls, accounting for each poll’s quality, sample size and recency"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_xAxis</span>(<span class="at">categories =</span> poll_data<span class="sc">$</span>start_date) <span class="sc">%&gt;%</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_yAxis</span>(<span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"Poll Percentage (%)"</span>), <span class="at">max =</span> <span class="dv">60</span>, <span class="at">min =</span> <span class="dv">40</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_add_series</span>(<span class="at">name =</span> <span class="st">"Joseph R. Biden Jr."</span>, <span class="at">data =</span> poll_data<span class="sc">$</span>Biden_avg, <span class="at">type =</span> <span class="st">"line"</span>, <span class="at">color =</span> <span class="st">"#0000FF"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_add_series</span>(<span class="at">name =</span> <span class="st">"Donald Trump"</span>, <span class="at">data =</span> poll_data<span class="sc">$</span>Trump_avg, <span class="at">type =</span> <span class="st">"line"</span>, <span class="at">color =</span> <span class="st">"#FF0000"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_add_series</span>(<span class="at">name =</span> <span class="st">"Biden Polls"</span>, <span class="at">data =</span> poll_data<span class="sc">$</span>Biden <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(poll_data<span class="sc">$</span>Biden), <span class="at">sd =</span> <span class="dv">2</span>), <span class="at">type =</span> <span class="st">"scatter"</span>, <span class="at">color =</span> <span class="st">"#0000FF"</span>, <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">radius =</span> <span class="dv">2</span>, <span class="at">symbol =</span> <span class="st">"circle"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_add_series</span>(<span class="at">name =</span> <span class="st">"Trump Polls"</span>, <span class="at">data =</span> poll_data<span class="sc">$</span>Trump <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(poll_data<span class="sc">$</span>Trump), <span class="at">sd =</span> <span class="dv">2</span>), <span class="at">type =</span> <span class="st">"scatter"</span>, <span class="at">color =</span> <span class="st">"#FF0000"</span>, <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">radius =</span> <span class="dv">2</span>, <span class="at">symbol =</span> <span class="st">"circle"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_tooltip</span>(<span class="at">shared =</span> <span class="cn">TRUE</span>, <span class="at">pointFormat =</span> <span class="st">"{series.name}: &lt;b&gt;{point.y:.1f}%&lt;/b&gt;&lt;br/&gt;"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_legend</span>(<span class="at">enabled =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_annotations</span>(<span class="fu">list</span>(</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">list</span>(</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">point =</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="fu">nrow</span>(poll_data) <span class="sc">-</span> <span class="dv">1</span>, <span class="at">y =</span> poll_data<span class="sc">$</span>Biden_avg[<span class="fu">nrow</span>(poll_data)]),</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>           <span class="at">text =</span> <span class="fu">paste</span>(<span class="st">"Joseph R. Biden Jr."</span>, <span class="fu">round</span>(poll_data<span class="sc">$</span>Biden_avg[<span class="fu">nrow</span>(poll_data)], <span class="dv">1</span>), <span class="st">"%"</span>), </span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>           <span class="at">style =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"#0000FF"</span>, <span class="at">fontWeight =</span> <span class="st">"bold"</span>)),</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">point =</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="fu">nrow</span>(poll_data) <span class="sc">-</span> <span class="dv">1</span>, <span class="at">y =</span> poll_data<span class="sc">$</span>Trump_avg[<span class="fu">nrow</span>(poll_data)]),</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>           <span class="at">text =</span> <span class="fu">paste</span>(<span class="st">"Donald Trump"</span>, <span class="fu">round</span>(poll_data<span class="sc">$</span>Trump_avg[<span class="fu">nrow</span>(poll_data)], <span class="dv">1</span>), <span class="st">"%"</span>), </span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>           <span class="at">style =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"#FF0000"</span>, <span class="at">fontWeight =</span> <span class="st">"bold"</span>))</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="highchart html-widget html-fill-item" id="htmlwidget-d90a1c0483a9436ec97d" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-d90a1c0483a9436ec97d">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":"Who's ahead in the national polls?"},"yAxis":{"title":{"text":"Poll Percentage (%)"},"max":60,"min":40},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0},"treemap":{"layoutAlgorithm":"squarified"}},"subtitle":{"text":"An updating average of 2020 presidential general election polls, accounting for each poll’s quality, sample size and recency"},"xAxis":{"categories":["2020-02-27","2020-02-28","2020-02-29","2020-03-01","2020-03-02","2020-03-03","2020-03-04","2020-03-05","2020-03-06","2020-03-07","2020-03-08","2020-03-09","2020-03-10","2020-03-11","2020-03-12","2020-03-13","2020-03-14","2020-03-15","2020-03-16","2020-03-17","2020-03-18","2020-03-19","2020-03-20","2020-03-21","2020-03-22","2020-03-23","2020-03-24","2020-03-25","2020-03-26","2020-03-27","2020-03-28","2020-03-29","2020-03-30","2020-03-31","2020-04-01","2020-04-02","2020-04-03","2020-04-04","2020-04-05","2020-04-06","2020-04-07","2020-04-08","2020-04-09","2020-04-10","2020-04-11","2020-04-12","2020-04-13","2020-04-14","2020-04-15","2020-04-16","2020-04-17","2020-04-18","2020-04-19","2020-04-20","2020-04-21","2020-04-22","2020-04-23","2020-04-24","2020-04-25","2020-04-26","2020-04-27","2020-04-28","2020-04-29","2020-04-30","2020-05-01","2020-05-02","2020-05-03","2020-05-04","2020-05-05","2020-05-06","2020-05-07","2020-05-08","2020-05-09","2020-05-10","2020-05-11","2020-05-12","2020-05-13","2020-05-14","2020-05-15","2020-05-16","2020-05-17","2020-05-18","2020-05-19","2020-05-20","2020-05-21","2020-05-22","2020-05-23","2020-05-24","2020-05-25","2020-05-26","2020-05-27","2020-05-28","2020-05-29","2020-05-30","2020-05-31","2020-06-01","2020-06-02","2020-06-03","2020-06-04","2020-06-05","2020-06-06","2020-06-07","2020-06-08","2020-06-09","2020-06-10","2020-06-11","2020-06-12","2020-06-13","2020-06-14","2020-06-15","2020-06-16","2020-06-17","2020-06-18","2020-06-19","2020-06-20","2020-06-21","2020-06-22","2020-06-23","2020-06-24","2020-06-25","2020-06-26","2020-06-27","2020-06-28","2020-06-29","2020-06-30","2020-07-01","2020-07-02","2020-07-03","2020-07-04","2020-07-05","2020-07-06","2020-07-07","2020-07-08","2020-07-09","2020-07-10","2020-07-11","2020-07-12","2020-07-13","2020-07-14","2020-07-15","2020-07-16","2020-07-17","2020-07-18","2020-07-19","2020-07-20","2020-07-21","2020-07-22","2020-07-23","2020-07-24","2020-07-25","2020-07-26","2020-07-27","2020-07-28","2020-07-29","2020-07-30","2020-07-31","2020-08-01","2020-08-02","2020-08-03","2020-08-04","2020-08-05","2020-08-06","2020-08-07","2020-08-08","2020-08-09","2020-08-10","2020-08-11","2020-08-12","2020-08-13","2020-08-14","2020-08-15","2020-08-16","2020-08-17","2020-08-18","2020-08-19","2020-08-20","2020-08-21","2020-08-22","2020-08-23","2020-08-24","2020-08-25","2020-08-26","2020-08-27","2020-08-28","2020-08-29","2020-08-30","2020-08-31","2020-09-01","2020-09-02","2020-09-03","2020-09-04","2020-09-05","2020-09-06","2020-09-07","2020-09-08","2020-09-09","2020-09-10","2020-09-11","2020-09-12","2020-09-13","2020-09-14","2020-09-15","2020-09-16","2020-09-17","2020-09-18","2020-09-19","2020-09-20","2020-09-21","2020-09-22","2020-09-23","2020-09-24","2020-09-25","2020-09-26","2020-09-27","2020-09-28","2020-09-29","2020-09-30","2020-10-01","2020-10-02","2020-10-03","2020-10-04","2020-10-05","2020-10-06","2020-10-07","2020-10-08","2020-10-09","2020-10-10","2020-10-11","2020-10-12","2020-10-13","2020-10-14","2020-10-15","2020-10-16","2020-10-17","2020-10-18","2020-10-19","2020-10-20","2020-10-21","2020-10-22","2020-10-23","2020-10-24","2020-10-25","2020-10-26","2020-10-27","2020-10-28","2020-10-29","2020-10-30","2020-10-31","2020-11-01","2020-11-02"]},"series":[{"data":[null,null,null,null,null,null,null,null,null,null,47.15186281179138,47.13376757369614,47.29805328798186,47.25162471655329,47.42781519274376,47.45162471655329,47.71710090702948,47.40757709750567,47.47016439909297,47.57900793650794,47.92900793650794,47.88138888888889,47.80694444444445,47.89424603174603,47.8625,47.58488095238095,47.6212074829932,47.66763605442176,47.52477891156462,47.61208049886621,47.66589002267573,47.44100907029478,47.54410430839002,47.23231859410431,47.30811224489796,47.17715986394558,47.15811224489796,47.16073129251701,46.87766250944822,46.96927248677249,47.01689153439153,46.75362622826908,46.9679119425548,47.1199074074074,47.10621693121693,47.15383597883598,47.2808201058201,47.35957294028722,47.24171579743008,47.39231103552532,47.40636999244142,47.53215230536659,47.7916761148904,47.85310468631897,48.15096182917611,48.0695559334845,48.06003212396069,47.94415910808767,47.99558767951625,48.23698979591836,48.2437925170068,48.39406462585033,48.20558390022676,48.00452569916855,47.87114134542706,47.86966175359032,47.82204270597127,47.67283635676493,47.65696334089191,47.88689531368102,47.90436730247654,47.9538004090525,48.0852138633231,47.99949957760882,47.61939753679249,47.51427848917344,47.52743041661109,47.56076374994442,47.80520819438886,47.70663676581744,47.74036692454759,47.68050297896936,47.4984848383798,47.65975467964964,47.76557478546974,47.78172557912053,47.8640385042906,47.81641945667155,47.96562580587791,48.02118136143346,47.98240585122938,47.94100529100529,48.01413012285894,47.91785272301011,48.01193435566316,48.38745967690277,48.48160533516608,48.61335136691211,48.62467004823079,48.61935258791333,48.70044102328748,48.77104419789066,48.82764283734644,49.00124072094432,49.05711373681734,49.16016135586496,49.25817722888083,49.22627246697607,49.32049015405089,49.37879703235777,49.4347834269156,49.47328682827614,49.62585825684757,49.54534636760687,49.60566609549803,49.69695161905324,49.66039738624901,49.65491839465238,49.76920410893808,49.84939336412734,49.75113939587337,49.67862238907065,49.66770175415002,49.68080833011373,49.62449760380301,49.55039329541298,49.53167900969871,49.53072662874632,49.58916200289598,49.56094431582115,49.51174854862538,49.46167124497666,49.53567438469408,49.41574364876334,49.52535292837262,49.46123123525093,49.50626090443947,49.44976027787305,49.28069068080346,49.20667707536128,49.23088342456764,49.32534374202795,49.33942112298033,49.29209685994178,49.27385960012558,49.35845452900622,49.51092347988933,49.4253520513179,49.56394993491578,49.49757805282961,49.53131831256987,49.57534212209368,49.5177353086173,49.50915167003367,49.65019063107263,49.65484671572871,49.69280967869167,49.70689464601192,49.75422860591168,49.91018709187016,49.90212277523442,49.86290508815959,49.91447651673103,50.06772056435007,50.13987888222267,50.2143554582782,50.18226022018296,50.24426065705496,50.35713896393327,50.31563631843061,50.47163143442573,50.50799236516166,50.53350102317032,50.57199528253415,50.46934448888336,50.37439499393386,50.36107224261111,50.38078679509877,50.26392405000073,50.31438457631651,50.41299051144419,50.45401023246392,50.5151326814435,50.46468701599784,50.42192602698685,50.51355455718681,50.49103051872527,50.39094337035241,50.2675326560667,50.2854691640032,50.18703566646626,50.15892547110606,50.19391271600402,50.28312864932443,50.37770735062313,50.57250100141678,50.67497556389135,50.70594618696644,50.8134388047032,50.85400191883774,50.9523816260676,50.91589821488063,51.01819214990184,51.00236292165881,51.04063266117855,51.02167539622129,50.98551238641643,51.03151744121613,51.08022072175614,51.14816715032757,51.05625709741751,51.18408742035128,51.19611179676853,51.17297750601518,51.07506766497648,51.00697428016309,50.91341665421415,50.81211092290842,50.73575213244516,50.59172814540393,50.66418700929136,50.53206106146001,50.53046223118169,50.42461765368125,50.43016843156108,50.40260512846206,50.42836165476405,50.35936366683648,50.2286456018327,50.28540602028579,50.22957552141958,50.27056238513058,50.20930841687662,50.12728867940417,50.12457263002144,50.13749681039107,50.09143107432534,50.09509981138537,50.05281986910544,49.79195406823963,null,null,null,null,null,null,null,null,null,null],"name":"Joseph R. Biden Jr.","type":"line","color":"#0000FF"},{"data":[null,null,null,null,null,null,null,null,null,null,44.76836913712854,44.80289294665234,44.53178183554123,44.22654374030314,43.97130564506504,43.66773421649361,43.3143328559494,43.34607888769543,43.10141723356008,43.16604308390023,42.99937641723356,42.8922335600907,42.81032879818594,42.72302721088435,42.71509070294784,42.63953514739229,42.68191609977324,42.39977324263038,42.62596371882086,42.63503401360544,42.47455782312925,42.71582766439909,42.48154195011337,42.65598639455782,42.66312925170068,42.71074829931973,42.77184353741497,42.82034013605442,42.78859410430839,42.83281179138322,42.85662131519274,42.93689342403628,42.82975056689342,42.86879818594104,42.79790532879819,42.65504818594104,42.57568310657597,42.61266723356009,42.6487783446712,42.53389739229025,42.44546201814059,42.40212868480725,42.21879535147392,42.06808106575964,41.89962868480725,41.95405045351474,41.93500283446711,41.86597108843537,41.78617346938776,41.89534013605442,41.87552721088436,41.91069727891156,42.05407596371882,42.12815003779289,42.07701908541194,42.06818405139833,42.24278722600151,42.4311470143613,42.55813114134543,42.47355064247921,42.4826892979414,42.54898966424177,42.45184680709891,42.3375610928132,42.50762912002408,42.61274816764313,42.70832639893564,42.77499306560231,42.80197719258643,42.84638653324578,42.94356907292832,42.9293683926562,42.90610308653375,42.80388086431154,42.72980679023746,42.64125520293587,42.72574499885424,42.86066563377488,42.64055981366906,42.60087727398651,42.69679564133345,42.62301412872841,42.86044661149988,42.93609287000328,43.0173173597992,42.86079430613329,42.80460382994281,42.8253181156571,42.68740602774501,42.70407269441167,42.79470587075914,42.77597571202898,42.90896890930789,42.84822816856715,42.91261970295869,43.05652446486345,43.10525462359361,43.06789198623097,42.9368715780677,43.02449062568675,43.01421851684321,43.12333416310172,43.17142940119695,42.933154427583,43.0270319786034,43.27765884617287,43.49191149167551,43.47429244405647,43.42250672977075,43.48946643673045,43.35851405577807,43.32307187890732,43.3242623550978,43.22220793332909,43.25095733207849,43.3690147772788,43.37791953918356,43.44784017410419,43.50479464820152,43.52549759604733,43.53359283414257,43.49295585207701,43.34772822256367,43.24842086325631,43.35558203541748,43.29854499838044,43.03693173625317,43.01557521996244,43.14718694157416,43.17193183953334,43.19859850620001,43.32113818873969,43.19240094384173,43.32195876697098,43.39247004516648,43.32874710144353,43.38279440843972,43.46441345605877,43.46597430261962,43.4456032451057,43.40496832447078,43.38211118161364,43.47529770523494,43.68430462424186,43.66794098787823,43.60347008840733,43.59679283973008,43.59156875009423,43.62096098067067,43.45651857122826,43.43180614080154,43.34884695712807,43.36591044919156,43.36855925871537,43.12638238796707,43.08242056032103,43.12916885964076,42.85281543019559,42.74685246723263,42.73165670003686,42.68796705634721,42.7141575325377,42.72887614725631,42.68897966692504,42.61718337062874,42.75891785836323,42.87369034513572,43.07558790415933,43.23355802554122,43.1075492536114,43.0961977468251,43.03035840098576,43.11169853704018,43.20194884229048,43.23747997782162,43.27319426353591,43.31142457489121,43.32305465394987,43.40419155871177,43.39334499786521,43.57516273185536,43.73713159632423,43.87202555390726,43.94168504864138,44.04059552483186,44.08017488991122,44.18507598881232,44.24190659767278,44.11366174800877,44.2011764872378,44.32885571715974,44.51352984408683,44.62621295222448,44.77864891281562,44.88522400439071,44.94274048790719,45.06608052814865,45.15447007841319,45.12655775879874,45.11313513975112,45.17939704451303,45.03098747378819,44.89501808603308,44.75647333479926,44.71784435426638,44.59980903895107,44.49991186848868,44.47816805674487,44.44248607703304,44.41630569714576,44.26785811298389,44.29656860737273,44.31362272998093,44.39847779266717,44.3852274656515,44.31147463118437,44.44157537892148,44.41852105296575,44.46740616256515,44.5304975267704,44.67726623425339,44.7265544115933,44.77379505785181,44.96486672595567,45.01768418627312,45.12622912585785,45.2979180675468,45.38345015864411,45.47232461751857,45.60920773440169,null,null,null,null,null,null,null,null,null,null],"name":"Donald Trump","type":"line","color":"#FF0000"},{"data":[42.49759467920713,47.89832792268992,46.21425961272983,47.68398244089374,46.66141886104911,46.58358879801165,54.38605468053017,45.04690748578074,42.09950230920789,45.71065766854755,49.35765944538305,49.93536857801332,42.21684502603498,50.12303082789303,55.39254164740225,49.82777984100233,49.11381526131537,47.64097137570241,47.74524299586432,44.90362505355729,45.05826642545431,42.33972926666858,54.08833437663364,47.40814191565196,51.02047533354068,47.28426053218858,47.80540762199242,49.56901092183269,46.44503121520928,47.22034057708873,53.06298418558376,46.32476909697127,43.95171436642639,48.53721246721894,47.51722420492454,45.4949019224812,46.02299607330394,47.39021574609087,42.84789410941764,46.35918877993839,46.34670238436335,41.59705375889106,47.70912413681225,46.68398804825161,44.64890486953088,50.08087455531737,48.33232565112441,53.05209837814645,44.45797016394503,49.27893795069233,47.49682012928034,48.69698461725662,51.90439591833767,48.96978626265503,46.86065268777618,47.56955226545412,46.6194885114115,51.6364217095928,43.908516350249,50.35318433786482,44.81702180312596,47.60777012225799,49.17834369128228,49.50408402929069,49.82308139006101,49.62134078650477,48.43248257663178,44.37766994287277,52.63423868302915,44.16598943931814,48.87763928057299,51.84963410076818,43.97612981439818,49.95563230502333,49.33768389602594,49.52506462251603,44.43398293769641,47.96469502013136,50.40458836990569,49.37122102037018,48.90095923795639,48.94283731422106,57.83630065679742,44.0983273953595,43.5871245228711,49.83960010877924,44.10420523414404,48.26091854205002,46.58819643909144,48.38512445302337,53.77893125525976,49.60517436306861,47.88134507619602,47.41154041572565,49.24771027137328,47.29277715837814,50.37946530714998,48.91907050912636,49.48030549479138,51.42767153318649,48.60711983966655,50.17245422780928,49.31913479828486,49.49934997243018,49.97617001227717,48.14770148019614,52.91086107607339,47.02761379070303,45.8872856873722,49.50407478886496,48.16600346325595,46.4181007679619,47.04385054383452,51.80688683147094,48.08773253408521,49.74335425892321,47.36680025115128,49.40964304908991,49.63288013671369,51.98065364513248,51.66917982236083,46.0561316403836,47.50152532056963,50.64999778413434,56.65711688812881,51.08249527237862,45.20786109798478,50.72444987625381,52.26065942940361,50.14392489299317,49.68869704062264,43.81232989586459,49.51832810203987,50.95889822708352,45.41321972684872,45.80746870761727,50.7864716478546,52.41921216365003,52.65244802219638,48.02785528297339,47.2313961301214,47.88466520935634,52.22469209109985,50.87395316146522,48.75557944823589,49.56333006180366,51.10625411808007,47.86759145183512,45.53429248265327,51.82856730225986,47.8179614524757,45.80372996212109,49.52608244879244,47.17883148692054,53.17264035787986,50.85009804472295,49.48842280300997,47.88092945650248,49.8639083280508,47.44393621903782,44.16315601958122,49.91129458823482,48.3169828873579,50.12912396997217,50.82958697153913,48.41724697219311,53.65082346312272,51.30523473726159,46.09574736644996,52.87816757585126,47.45669183140271,49.88145787295463,47.93332902770845,49.94721792621189,49.59077104234293,52.26587386969905,51.68360274321716,53.38138181657614,51.03006864309992,54.75665608788669,51.20994441100753,51.24821403275659,45.67512703456404,49.32053067812512,44.14138978145945,45.7550681763657,49.17289077016993,48.88432488949702,49.44151951196135,51.75225958153758,52.3597188904469,49.00647735464993,50.57405234458441,49.58983083481909,52.39935929815532,46.52072323710325,47.35619773492343,47.09015058298451,52.54459658758223,53.19443071795141,47.81770802846125,53.62114064820391,51.50310846332764,53.97800027755048,53.91944555601367,52.77587745399129,51.35316576425105,53.48529871343318,51.67285656248634,48.83691569142977,51.04486725338595,48.43461217587101,54.74409715525269,51.6767162508059,50.98530494358786,50.43415613430287,54.47045097769895,54.25470271400872,51.11163243700179,45.6612793843718,51.72563136902132,51.03249284733938,54.46922022870695,48.92058929749408,49.43895800356309,47.20984570453243,49.8355601670828,51.96951454333315,50.09651049820629,47.24139839841405,51.10944313086591,48.94068441384407,55.18060184572506,48.3809427134887,53.20937210048368,50.40712847706775,47.56676849781976,47.73216498030541,48.6292144353607,51.66827275359792,49.31090872017822,50.0087053780152,54.52834328186113,50.18354835362588,50.47937772191226,50.99309557478435,48.88888774042091,49.11037414905102,47.39355524727644,46.20763180228177],"name":"Biden Polls","type":"scatter","color":"#0000FF","marker":{"radius":2,"symbol":"circle"}},{"data":[47.20016605022597,46.57224799574879,45.19218131442284,43.39940128451559,44.94406733891488,49.83338134765994,41.67955960520568,48.16643778370886,40.62980069462635,43.04618014901622,43.99942237995302,42.66045940305447,45.55182653546955,44.19259294384903,43.83839573071336,41.03756711816839,45.62664365745181,42.6043516409429,44.00326725058783,46.54230222746727,42.72373000491526,49.9911766188695,41.05260769093235,43.26890270143355,39.67992806657878,40.87505474757925,43.53016195353317,40.25526432415152,41.67539045237906,41.91969287177618,39.31830707235949,44.47825661152287,38.39707299456194,44.81983732867948,42.4229979430244,44.25199952211154,38.53896101014928,41.0726083016286,44.8623981794354,40.95036559120268,41.39699332371251,49.6941067010867,41.09644318989416,44.83939870587125,38.64793756493231,39.18457418681924,43.70453803200936,42.92656246834976,44.51802002567517,40.37308235767212,41.9914491758105,40.14593144278635,39.43788447909054,43.27936027294542,39.40888015153031,40.19906721066874,43.76871500086182,39.126155302432,44.41341013030676,42.23391314941825,41.69698671542319,42.56678278622701,43.90792303166231,41.36684934153308,44.58403746430446,44.6772197521928,43.91281574617576,44.46645378692833,42.33212874699677,45.8408128990504,42.57337378320654,47.61595415827253,42.76923196973408,43.31669591791462,39.88379676086284,40.72464083284713,41.20511603173062,44.83186020194129,46.11954862272591,40.89492580984132,43.93638550838165,41.47084199966235,44.3059507761908,40.55960116454128,44.15416995260322,41.18502043634802,42.01821108589608,46.78799204276278,41.30590543286787,43.46303784909338,41.68135646886776,41.27307955932434,42.29771117489311,39.3913047015718,40.92840774300024,39.83886439257108,44.20677414341684,44.72775041360499,43.00795210561327,43.02953841558236,40.46601001991933,39.44501466158869,49.21038818244348,41.40924904215498,41.98553404954406,38.08162286717563,43.52417418183115,47.30382721397502,40.42951401837952,41.8460434089786,43.96101545559902,39.75180349211817,42.87385703787755,43.51458049445204,43.6537477690251,39.91299012680481,38.23385487085565,43.8944246079086,42.20719245984601,42.51801561680466,44.53239701734827,43.69272466415575,43.02489692956604,41.01549296923787,42.14280327035567,42.90755175296371,43.14456584234211,45.90513120136507,44.08331887261014,42.02448662416182,39.53869097666283,46.7760628988695,48.31148513851232,41.28546728690752,43.29821130231963,45.58256543123982,44.47031230909354,41.85140345850734,43.27621483231761,43.43114042571083,41.95635608271407,41.07618861810845,42.66015505322598,45.97127686301111,41.55592175145681,41.32707965941567,42.43663174983432,45.50361630623583,45.37526747813312,45.24960514675039,42.63673584060977,42.4513906510121,45.59665457578433,47.20761880906262,45.06807204471062,40.1270418082187,44.09077341862906,46.44889666311079,43.94258890610239,44.39826637145691,39.37554454603519,37.84819352785595,39.32999247179362,50.78874852858944,42.67085531029092,43.87772046652606,43.43788274704287,44.3571130059895,44.36093062459037,44.03396178484574,41.88188619527052,40.34930386252287,41.8561573409533,38.63351475073492,41.90318546609994,43.02478551173814,42.2458468836479,42.59186774447032,42.87816942906116,43.57899099397225,44.68975203239626,44.69819579148859,41.75507732912413,44.64534779039749,43.70472594514663,46.03806313844657,47.85471269895562,41.46015229379701,46.38358991607694,42.06961278923792,42.12746349319571,40.1319044377189,43.42706610786959,45.66256514998291,38.0038255527192,41.71122877312455,43.28540552514774,41.95516360683262,43.96796905922003,42.10998591011492,50.48874406692061,45.39956261087016,47.14069279522499,49.4001590211282,46.20947273896587,42.34837827797035,45.55884465989335,44.42456771289315,46.14208829283649,45.85643931814769,43.37249621628119,47.06411739056495,42.39816004162336,46.64648515638768,48.76949437531961,42.2438407245791,45.1169351921464,42.27650055519565,42.55549847148183,39.9236942397531,40.98976042986813,44.21187373071262,40.51324387659489,42.59719070940593,42.28049677716741,43.0053735955803,43.06934108348118,45.99999780688291,42.42491829222364,42.41961400325366,44.46296250193415,45.53909425039547,49.18807782410573,47.53666053424005,46.40162964393011,47.31014457678639,48.36355685333661,44.42587353321886,47.27755580611789,42.13835508093862,46.68472605617827,45.20585796537777,44.58203033950082,47.34330236211977,40.62557813326089,43.59483844546477,49.80252526830311,46.77583565778203,49.80787465466705,48.03063998902729],"name":"Trump Polls","type":"scatter","color":"#FF0000","marker":{"radius":2,"symbol":"circle"}}],"tooltip":{"shared":true,"pointFormat":"{series.name}: <b>{point.y:.1f}%<\/b><br/>"},"legend":{"enabled":true},"annotations":[{"labels":[{"point":{"x":249,"y":null},"text":"Joseph R. Biden Jr. NA %","style":{"color":"#0000FF","fontWeight":"bold"}},{"point":{"x":249,"y":null},"text":"Donald Trump NA %","style":{"color":"#FF0000","fontWeight":"bold"}}]}]},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Similar analysis can be done in the form of a table with colors for the percentages of Biden and Trump, along with the net result.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'kableExtra'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:dplyr':
+
+    group_rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the CSV file</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">"president_polls_historical.csv"</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(file_path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 16715 Columns: 48</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (22): pollster, sponsors, display_name, pollster_rating_name, methodolog...
+dbl (16): poll_id, pollster_id, pollster_rating_id, numeric_grade, pollscore...
+num  (1): sponsor_ids
+lgl  (9): endorsed_candidate_id, endorsed_candidate_name, endorsed_candidate...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the data to only include Biden and Trump results</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(answer <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Biden"</span>, <span class="st">"Trump"</span>))</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> filtered_data <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>(sponsors)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Select only the first 50 rows</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> filtered_data <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Pivot the data to have 'Biden' and 'Trump' results in separate columns</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>pivot_data <span class="ot">&lt;-</span> filtered_data <span class="sc">%&gt;%</span> </span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> answer, <span class="at">values_from =</span> pct) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">biden_pct =</span> Biden, <span class="at">trump_pct =</span> Trump)</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace NA values with 100 - the valid percentage</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>pivot_data <span class="ot">&lt;-</span> pivot_data <span class="sc">%&gt;%</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">biden_pct =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(biden_pct), <span class="dv">100</span> <span class="sc">-</span> trump_pct, biden_pct),</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">trump_pct =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(trump_pct), <span class="dv">100</span> <span class="sc">-</span> biden_pct, trump_pct))</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate net result</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>pivot_data <span class="ot">&lt;-</span> pivot_data <span class="sc">%&gt;%</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">net_result =</span> biden_pct <span class="sc">-</span> trump_pct)</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Concatenate start_date and end_date to form the dates column</span></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>pivot_data <span class="ot">&lt;-</span> pivot_data <span class="sc">%&gt;%</span></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dates =</span> <span class="fu">paste</span>(start_date, <span class="st">"-"</span>, end_date))</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Select and reorder columns to match the image</span></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>final_data <span class="ot">&lt;-</span> pivot_data <span class="sc">%&gt;%</span></span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dates, sample_size, pollster, sponsors, biden_pct, trump_pct, net_result) <span class="sc">%&gt;%</span></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">DATES =</span> dates, <span class="at">SAMPLE =</span> sample_size, <span class="at">POLLSTER =</span> pollster, <span class="at">SPONSOR =</span> sponsors,</span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">BIDEN %</span><span class="st">`</span> <span class="ot">=</span> biden_pct, <span class="st">`</span><span class="at">TRUMP %</span><span class="st">`</span> <span class="ot">=</span> trump_pct, <span class="st">`</span><span class="at">NET RESULT</span><span class="st">`</span> <span class="ot">=</span> net_result)</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Format the data for percentages</span></span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>final_data <span class="ot">&lt;-</span> final_data <span class="sc">%&gt;%</span></span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">`</span><span class="at">BIDEN %</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sprintf</span>(<span class="st">"%.1f%%"</span>, <span class="st">`</span><span class="at">BIDEN %</span><span class="st">`</span>),</span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">TRUMP %</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sprintf</span>(<span class="st">"%.1f%%"</span>, <span class="st">`</span><span class="at">TRUMP %</span><span class="st">`</span>),</span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">NET RESULT</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sprintf</span>(<span class="st">"%.1f"</span>, <span class="st">`</span><span class="at">NET RESULT</span><span class="st">`</span>))</span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the table with colors</span></span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a>final_data <span class="sc">%&gt;%</span></span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> F) <span class="sc">%&gt;%</span></span>
+<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">5</span>, <span class="at">background =</span> <span class="st">"#DCE6F1"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">6</span>, <span class="at">background =</span> <span class="st">"#F4CCCC"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">bold =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">DATES</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">SAMPLE</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">POLLSTER</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">SPONSOR</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">BIDEN %</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">TRUMP %</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">NET RESULT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">10/31/20 - 11/3/20</td>
+<td style="text-align: right;">2400</td>
+<td style="text-align: left;">Lake Research</td>
+<td style="text-align: left;">National Women's Law Center</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">51.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">49.0%</td>
+<td style="text-align: left;">2.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10/31/20 - 11/3/20</td>
+<td style="text-align: right;">2400</td>
+<td style="text-align: left;">Lake Research</td>
+<td style="text-align: left;">National Women's Law Center</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">52.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">48.0%</td>
+<td style="text-align: left;">4.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">11/1/20 - 11/2/20</td>
+<td style="text-align: right;">400</td>
+<td style="text-align: left;">InsiderAdvantage</td>
+<td style="text-align: left;">FOX35 Orlando</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">47.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">53.0%</td>
+<td style="text-align: left;">-6.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">11/1/20 - 11/2/20</td>
+<td style="text-align: right;">400</td>
+<td style="text-align: left;">InsiderAdvantage</td>
+<td style="text-align: left;">FOX35 Orlando</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">51.8%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">48.2%</td>
+<td style="text-align: left;">3.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10/31/20 - 11/2/20</td>
+<td style="text-align: right;">1500</td>
+<td style="text-align: left;">YouGov</td>
+<td style="text-align: left;">Economist</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">49.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">51.0%</td>
+<td style="text-align: left;">-2.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10/31/20 - 11/2/20</td>
+<td style="text-align: right;">1500</td>
+<td style="text-align: left;">YouGov</td>
+<td style="text-align: left;">Economist</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">60.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">40.0%</td>
+<td style="text-align: left;">20.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10/31/20 - 11/2/20</td>
+<td style="text-align: right;">1363</td>
+<td style="text-align: left;">YouGov</td>
+<td style="text-align: left;">Economist</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">53.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">47.0%</td>
+<td style="text-align: left;">6.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10/31/20 - 11/2/20</td>
+<td style="text-align: right;">1363</td>
+<td style="text-align: left;">YouGov</td>
+<td style="text-align: left;">Economist</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">57.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">43.0%</td>
+<td style="text-align: left;">14.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10/31/20 - 11/2/20</td>
+<td style="text-align: right;">1333</td>
+<td style="text-align: left;">Ipsos</td>
+<td style="text-align: left;">Reuters</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">51.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">49.0%</td>
+<td style="text-align: left;">2.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10/31/20 - 11/2/20</td>
+<td style="text-align: right;">1333</td>
+<td style="text-align: left;">Ipsos</td>
+<td style="text-align: left;">Reuters</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">54.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">46.0%</td>
+<td style="text-align: left;">8.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10/31/20 - 11/2/20</td>
+<td style="text-align: right;">1146</td>
+<td style="text-align: left;">Ipsos</td>
+<td style="text-align: left;">Reuters</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">52.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">48.0%</td>
+<td style="text-align: left;">4.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10/31/20 - 11/2/20</td>
+<td style="text-align: right;">1146</td>
+<td style="text-align: left;">Ipsos</td>
+<td style="text-align: left;">Reuters</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">55.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">45.0%</td>
+<td style="text-align: left;">10.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10/31/20 - 11/2/20</td>
+<td style="text-align: right;">914</td>
+<td style="text-align: left;">Ipsos</td>
+<td style="text-align: left;">Reuters</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">52.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">48.0%</td>
+<td style="text-align: left;">4.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10/31/20 - 11/2/20</td>
+<td style="text-align: right;">914</td>
+<td style="text-align: left;">Ipsos</td>
+<td style="text-align: left;">Reuters</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">55.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">45.0%</td>
+<td style="text-align: left;">10.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10/31/20 - 11/2/20</td>
+<td style="text-align: right;">28240</td>
+<td style="text-align: left;">SurveyMonkey</td>
+<td style="text-align: left;">Axios</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">52.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">48.0%</td>
+<td style="text-align: left;">4.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10/31/20 - 11/2/20</td>
+<td style="text-align: right;">28240</td>
+<td style="text-align: left;">SurveyMonkey</td>
+<td style="text-align: left;">Axios</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">55.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">45.0%</td>
+<td style="text-align: left;">10.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10/31/20 - 11/2/20</td>
+<td style="text-align: right;">28240</td>
+<td style="text-align: left;">SurveyMonkey</td>
+<td style="text-align: left;">Axios</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">52.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">48.0%</td>
+<td style="text-align: left;">4.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10/31/20 - 11/2/20</td>
+<td style="text-align: right;">28240</td>
+<td style="text-align: left;">SurveyMonkey</td>
+<td style="text-align: left;">Axios</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">54.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">46.0%</td>
+<td style="text-align: left;">8.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10/31/20 - 11/2/20</td>
+<td style="text-align: right;">2813</td>
+<td style="text-align: left;">HarrisX</td>
+<td style="text-align: left;">The Hill</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">51.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">49.0%</td>
+<td style="text-align: left;">2.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10/31/20 - 11/2/20</td>
+<td style="text-align: right;">2813</td>
+<td style="text-align: left;">HarrisX</td>
+<td style="text-align: left;">The Hill</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">51.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">49.0%</td>
+<td style="text-align: left;">2.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10/31/20 - 11/2/20</td>
+<td style="text-align: right;">2297</td>
+<td style="text-align: left;">HarrisX</td>
+<td style="text-align: left;">The Hill</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">52.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">48.0%</td>
+<td style="text-align: left;">4.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10/31/20 - 11/2/20</td>
+<td style="text-align: right;">2297</td>
+<td style="text-align: left;">HarrisX</td>
+<td style="text-align: left;">The Hill</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">52.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">48.0%</td>
+<td style="text-align: left;">4.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10/29/20 - 11/2/20</td>
+<td style="text-align: right;">1212</td>
+<td style="text-align: left;">TIPP</td>
+<td style="text-align: left;">Investor's Business Daily</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">50.2%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">49.8%</td>
+<td style="text-align: left;">0.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10/29/20 - 11/2/20</td>
+<td style="text-align: right;">1212</td>
+<td style="text-align: left;">TIPP</td>
+<td style="text-align: left;">Investor's Business Daily</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">53.8%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">46.2%</td>
+<td style="text-align: left;">7.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10/29/20 - 11/2/20</td>
+<td style="text-align: right;">1212</td>
+<td style="text-align: left;">TIPP</td>
+<td style="text-align: left;">Investor's Business Daily</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">50.7%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">49.3%</td>
+<td style="text-align: left;">1.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10/29/20 - 11/2/20</td>
+<td style="text-align: right;">1212</td>
+<td style="text-align: left;">TIPP</td>
+<td style="text-align: left;">Investor's Business Daily</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">54.1%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">45.9%</td>
+<td style="text-align: left;">8.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10/27/20 - 11/2/20</td>
+<td style="text-align: right;">610</td>
+<td style="text-align: left;">Ipsos</td>
+<td style="text-align: left;">Reuters</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">50.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">50.0%</td>
+<td style="text-align: left;">0.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10/27/20 - 11/2/20</td>
+<td style="text-align: right;">610</td>
+<td style="text-align: left;">Ipsos</td>
+<td style="text-align: left;">Reuters</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">52.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">48.0%</td>
+<td style="text-align: left;">4.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10/27/20 - 11/2/20</td>
+<td style="text-align: right;">610</td>
+<td style="text-align: left;">Ipsos</td>
+<td style="text-align: left;">Reuters</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">50.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">50.0%</td>
+<td style="text-align: left;">0.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10/27/20 - 11/2/20</td>
+<td style="text-align: right;">610</td>
+<td style="text-align: left;">Ipsos</td>
+<td style="text-align: left;">Reuters</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">53.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">47.0%</td>
+<td style="text-align: left;">6.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10/20/20 - 11/2/20</td>
+<td style="text-align: right;">367</td>
+<td style="text-align: left;">SurveyMonkey</td>
+<td style="text-align: left;">Axios</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">32.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">68.0%</td>
+<td style="text-align: left;">-36.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10/20/20 - 11/2/20</td>
+<td style="text-align: right;">367</td>
+<td style="text-align: left;">SurveyMonkey</td>
+<td style="text-align: left;">Axios</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">34.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">66.0%</td>
+<td style="text-align: left;">-32.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10/20/20 - 11/2/20</td>
+<td style="text-align: right;">367</td>
+<td style="text-align: left;">SurveyMonkey</td>
+<td style="text-align: left;">Axios</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">33.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">67.0%</td>
+<td style="text-align: left;">-34.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10/20/20 - 11/2/20</td>
+<td style="text-align: right;">367</td>
+<td style="text-align: left;">SurveyMonkey</td>
+<td style="text-align: left;">Axios</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">34.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">66.0%</td>
+<td style="text-align: left;">-32.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10/20/20 - 11/2/20</td>
+<td style="text-align: right;">816</td>
+<td style="text-align: left;">SurveyMonkey</td>
+<td style="text-align: left;">Axios</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">32.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">68.0%</td>
+<td style="text-align: left;">-36.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10/20/20 - 11/2/20</td>
+<td style="text-align: right;">816</td>
+<td style="text-align: left;">SurveyMonkey</td>
+<td style="text-align: left;">Axios</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">33.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">67.0%</td>
+<td style="text-align: left;">-34.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10/20/20 - 11/2/20</td>
+<td style="text-align: right;">816</td>
+<td style="text-align: left;">SurveyMonkey</td>
+<td style="text-align: left;">Axios</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">32.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">68.0%</td>
+<td style="text-align: left;">-36.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10/20/20 - 11/2/20</td>
+<td style="text-align: right;">816</td>
+<td style="text-align: left;">SurveyMonkey</td>
+<td style="text-align: left;">Axios</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">33.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">67.0%</td>
+<td style="text-align: left;">-34.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10/20/20 - 11/2/20</td>
+<td style="text-align: right;">2814</td>
+<td style="text-align: left;">SurveyMonkey</td>
+<td style="text-align: left;">Axios</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">55.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">45.0%</td>
+<td style="text-align: left;">10.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10/20/20 - 11/2/20</td>
+<td style="text-align: right;">2814</td>
+<td style="text-align: left;">SurveyMonkey</td>
+<td style="text-align: left;">Axios</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">57.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">43.0%</td>
+<td style="text-align: left;">14.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10/20/20 - 11/2/20</td>
+<td style="text-align: right;">2814</td>
+<td style="text-align: left;">SurveyMonkey</td>
+<td style="text-align: left;">Axios</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">54.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">46.0%</td>
+<td style="text-align: left;">8.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10/20/20 - 11/2/20</td>
+<td style="text-align: right;">2814</td>
+<td style="text-align: left;">SurveyMonkey</td>
+<td style="text-align: left;">Axios</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">56.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">44.0%</td>
+<td style="text-align: left;">12.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10/20/20 - 11/2/20</td>
+<td style="text-align: right;">4142</td>
+<td style="text-align: left;">SurveyMonkey</td>
+<td style="text-align: left;">Axios</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">62.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">38.0%</td>
+<td style="text-align: left;">24.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10/20/20 - 11/2/20</td>
+<td style="text-align: right;">4142</td>
+<td style="text-align: left;">SurveyMonkey</td>
+<td style="text-align: left;">Axios</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">65.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">35.0%</td>
+<td style="text-align: left;">30.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10/20/20 - 11/2/20</td>
+<td style="text-align: right;">4142</td>
+<td style="text-align: left;">SurveyMonkey</td>
+<td style="text-align: left;">Axios</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">62.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">38.0%</td>
+<td style="text-align: left;">24.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10/20/20 - 11/2/20</td>
+<td style="text-align: right;">4142</td>
+<td style="text-align: left;">SurveyMonkey</td>
+<td style="text-align: left;">Axios</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">65.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">35.0%</td>
+<td style="text-align: left;">30.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10/20/20 - 11/2/20</td>
+<td style="text-align: right;">906</td>
+<td style="text-align: left;">SurveyMonkey</td>
+<td style="text-align: left;">Axios</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">68.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">32.0%</td>
+<td style="text-align: left;">36.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10/20/20 - 11/2/20</td>
+<td style="text-align: right;">906</td>
+<td style="text-align: left;">SurveyMonkey</td>
+<td style="text-align: left;">Axios</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">72.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">28.0%</td>
+<td style="text-align: left;">44.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10/20/20 - 11/2/20</td>
+<td style="text-align: right;">906</td>
+<td style="text-align: left;">SurveyMonkey</td>
+<td style="text-align: left;">Axios</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">71.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">29.0%</td>
+<td style="text-align: left;">42.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10/20/20 - 11/2/20</td>
+<td style="text-align: right;">906</td>
+<td style="text-align: left;">SurveyMonkey</td>
+<td style="text-align: left;">Axios</td>
+<td style="text-align: left; background-color: rgba(220, 230, 241, 255) !important;">74.0%</td>
+<td style="text-align: left; background-color: rgba(244, 204, 204, 255) !important;">26.0%</td>
+<td style="text-align: left;">48.0</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
 
 
 
@@ -230,10 +1011,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -243,8 +1041,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -256,7 +1063,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -300,6 +1230,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -325,6 +1256,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -385,6 +1342,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

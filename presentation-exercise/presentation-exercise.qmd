@@ -2,4 +2,122 @@
 title: "Presentation Exercise"
 ---
 
-Placeholder file for the future data/results presentation exercise.
+**Introduction**
+I have analyzed the head to head matchup of president bidenna and trump in the 2020 election. The data is collected from the historical presidential poll data for Biden and Trump starting from February 27, 2020. The data is filtered, and averages are computed to create an interactive plot using the highcharter library. The plot displays the poll percentages for both candidates over time with a rolling average to smooth out fluctuations. The chart also includes scatter points for the individual poll data and annotations highlighting the latest average poll percentages for both candidates. This visualization offers a clear view of the polling trends leading up to the 2020 presidential election.
+
+```{r}
+# Load necessary libraries
+# Load necessary libraries
+library(highcharter)
+library(dplyr)
+library(tidyr)
+library(zoo)
+
+# Load the data
+file_path <- "president_polls_historical.csv"
+data <- read.csv(file_path)
+
+# Filter and process the data
+poll_data <- data %>%
+  select(start_date, answer, pct) %>%
+  filter(answer %in% c("Biden", "Trump")) %>%
+  mutate(start_date = as.Date(start_date, format = "%m/%d/%y")) %>%
+  filter(start_date >= as.Date("2020-02-27")) %>%
+  group_by(start_date, answer) %>%
+  summarise(pct = mean(pct, na.rm = TRUE), .groups = 'drop') %>%
+  pivot_wider(names_from = answer, values_from = pct) %>%
+  complete(start_date = seq.Date(min(start_date), max(start_date), by = "day")) %>%
+  fill(Biden, Trump, .direction = "down") %>%
+  mutate(Biden = pmin(pmax(Biden, 40), 60),
+         Trump = pmin(pmax(Trump, 40), 60)) %>%
+  mutate(Biden_avg = rollapply(Biden, width = 21, FUN = mean, fill = NA, align = "center"),
+         Trump_avg = rollapply(Trump, width = 21, FUN = mean, fill = NA, align = "center"))
+
+# Create the interactive plot
+highchart() %>%
+  hc_title(text = "Who's ahead in the national polls?") %>%
+  hc_subtitle(text = "An updating average of 2020 presidential general election polls, accounting for each poll’s quality, sample size and recency") %>%
+  hc_xAxis(categories = poll_data$start_date) %>%
+  hc_yAxis(title = list(text = "Poll Percentage (%)"), max = 60, min = 40) %>%
+  hc_add_series(name = "Joseph R. Biden Jr.", data = poll_data$Biden_avg, type = "line", color = "#0000FF") %>%
+  hc_add_series(name = "Donald Trump", data = poll_data$Trump_avg, type = "line", color = "#FF0000") %>%
+  hc_add_series(name = "Biden Polls", data = poll_data$Biden + rnorm(length(poll_data$Biden), sd = 2), type = "scatter", color = "#0000FF", marker = list(radius = 2, symbol = "circle")) %>%
+  hc_add_series(name = "Trump Polls", data = poll_data$Trump + rnorm(length(poll_data$Trump), sd = 2), type = "scatter", color = "#FF0000", marker = list(radius = 2, symbol = "circle")) %>%
+  hc_tooltip(shared = TRUE, pointFormat = "{series.name}: <b>{point.y:.1f}%</b><br/>") %>%
+  hc_legend(enabled = TRUE) %>%
+  hc_annotations(list(
+    labels = list(
+      list(point = list(x = nrow(poll_data) - 1, y = poll_data$Biden_avg[nrow(poll_data)]),
+           text = paste("Joseph R. Biden Jr.", round(poll_data$Biden_avg[nrow(poll_data)], 1), "%"), 
+           style = list(color = "#0000FF", fontWeight = "bold")),
+      list(point = list(x = nrow(poll_data) - 1, y = poll_data$Trump_avg[nrow(poll_data)]),
+           text = paste("Donald Trump", round(poll_data$Trump_avg[nrow(poll_data)], 1), "%"), 
+           style = list(color = "#FF0000", fontWeight = "bold"))
+    )
+  ))
+
+```
+
+Similar analysis can be done in the form of a table with colors for the percentages of Biden and Trump, along with the net result.
+
+```{r}
+# Load necessary libraries
+library(dplyr)
+library(tidyr)
+library(readr)
+library(kableExtra)
+
+# Load the CSV file
+file_path <- "president_polls_historical.csv"
+data <- read_csv(file_path)
+
+# Filter the data to only include Biden and Trump results
+filtered_data <- data %>% 
+  filter(answer %in% c("Biden", "Trump"))
+
+filtered_data <- filtered_data %>% drop_na(sponsors)
+
+# Select only the first 50 rows
+filtered_data <- filtered_data %>% slice(1:50)
+
+# Pivot the data to have 'Biden' and 'Trump' results in separate columns
+pivot_data <- filtered_data %>% 
+  pivot_wider(names_from = answer, values_from = pct) %>% 
+  rename(biden_pct = Biden, trump_pct = Trump)
+
+# Replace NA values with 100 - the valid percentage
+pivot_data <- pivot_data %>%
+  mutate(biden_pct = ifelse(is.na(biden_pct), 100 - trump_pct, biden_pct),
+         trump_pct = ifelse(is.na(trump_pct), 100 - biden_pct, trump_pct))
+
+# Calculate net result
+pivot_data <- pivot_data %>%
+  mutate(net_result = biden_pct - trump_pct)
+
+# Concatenate start_date and end_date to form the dates column
+pivot_data <- pivot_data %>%
+  mutate(dates = paste(start_date, "-", end_date))
+
+# Select and reorder columns to match the image
+final_data <- pivot_data %>%
+  select(dates, sample_size, pollster, sponsors, biden_pct, trump_pct, net_result) %>%
+  rename(DATES = dates, SAMPLE = sample_size, POLLSTER = pollster, SPONSOR = sponsors,
+         `BIDEN %` = biden_pct, `TRUMP %` = trump_pct, `NET RESULT` = net_result)
+
+# Format the data for percentages
+final_data <- final_data %>%
+  mutate(`BIDEN %` = sprintf("%.1f%%", `BIDEN %`),
+         `TRUMP %` = sprintf("%.1f%%", `TRUMP %`),
+         `NET RESULT` = sprintf("%.1f", `NET RESULT`))
+
+# Create the table with colors
+final_data %>%
+  kbl() %>%
+  kable_styling(full_width = F) %>%
+  column_spec(5, background = "#DCE6F1") %>%
+  column_spec(6, background = "#F4CCCC") %>%
+  row_spec(0, bold = T)
+
+
+
+```
