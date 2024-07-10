@@ -3,7 +3,10 @@ title: "Presentation Exercise"
 ---
 
 **Introduction**
+
 I have analyzed the head to head matchup of president bidenna and trump in the 2020 election. The data is collected from the historical presidential poll data for Biden and Trump starting from February 27, 2020. The data is filtered, and averages are computed to create an interactive plot using the highcharter library. The plot displays the poll percentages for both candidates over time with a rolling average to smooth out fluctuations. The chart also includes scatter points for the individual poll data and annotations highlighting the latest average poll percentages for both candidates. This visualization offers a clear view of the polling trends leading up to the 2020 presidential election.
+
+Original copy of this plot can be found here : <a href="https://projects.fivethirtyeight.com/polls/president-general/2020/national/">https://projects.fivethirtyeight.com/polls/president-general/2020/national/</a>. 
 
 ```{r}
 # Load necessary libraries
