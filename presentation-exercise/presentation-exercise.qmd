@@ -4,22 +4,56 @@ title: "Presentation Exercise"
 
 **Introduction**
 
-I have analyzed the head to head matchup of president bidenna and trump in the 2020 election. The data is collected from the historical presidential poll data for Biden and Trump starting from February 27, 2020. The data is filtered, and averages are computed to create an interactive plot using the highcharter library. The plot displays the poll percentages for both candidates over time with a rolling average to smooth out fluctuations. The chart also includes scatter points for the individual poll data and annotations highlighting the latest average poll percentages for both candidates. This visualization offers a clear view of the polling trends leading up to the 2020 presidential election.
+For this exercise,I have analyzed the head-to-head match up of president Biden and Trump in the 2020 election. The data is collected from the historical presidential poll data for Biden and Trump starting from February 27, 2020. The data is filtered, and averages are computed to create an interactive plot using the highcharter library. The plot displays the poll percentages for both candidates over time with a rolling average to smooth out fluctuations. The chart also includes scatter points for the individual poll data and annotations highlighting the latest average poll percentages for both candidates. This visualization offers a clear view of the polling trends leading up to the 2020 presidential election.
 
-Original copy of this plot can be found here : <a href="https://projects.fivethirtyeight.com/polls/president-general/2020/national/">https://projects.fivethirtyeight.com/polls/president-general/2020/national/</a>. 
+The Original copy of this plot can be found here : <a href="https://projects.fivethirtyeight.com/polls/president-general/2020/national/">https://projects.fivethirtyeight.com/polls/president-general/2020/national/</a>. 
+
+
+## Loading Libraries:
+I used highcharter to create interactive scatter plots, which significantly enhanced the visualization's interactivity, customization, and clarity. This made it an excellent tool for this type of analysis. 
 
 ```{r}
-# Load necessary libraries
 # Load necessary libraries
 library(highcharter)
 library(dplyr)
 library(tidyr)
 library(zoo)
+```
 
+## Loading Data:
+
+```{r}
 # Load the data
+
 file_path <- "president_polls_historical.csv"
 data <- read.csv(file_path)
+```
 
+## Data Exploration:
+
+```{r}
+str(data)
+```
+
+```{r}
+summary(data)
+```
+
+
+## Recreating the Chart:
+
+I used ChatGPT to recreate a chart based on a particular prompt. I uploaded the original file from the 538 website and included a screenshot of the plot to assist in the recreation process.
+
+## ChatGPT Prompt:
+
+# I have a CSV file with historical presidential polls data. I want to preprocess the data and create an interactive plot using the highcharter library in R.
+
+
+It gave me below code :
+
+## Filtering and Processing the Data:
+
+```{r}
 # Filter and process the data
 poll_data <- data %>%
   select(start_date, answer, pct) %>%
@@ -35,7 +69,12 @@ poll_data <- data %>%
          Trump = pmin(pmax(Trump, 40), 60)) %>%
   mutate(Biden_avg = rollapply(Biden, width = 21, FUN = mean, fill = NA, align = "center"),
          Trump_avg = rollapply(Trump, width = 21, FUN = mean, fill = NA, align = "center"))
+```
 
+
+# Interactive plot
+
+```{r}
 # Create the interactive plot
 highchart() %>%
   hc_title(text = "Who's ahead in the national polls?") %>%
@@ -63,64 +102,109 @@ highchart() %>%
 
 Similar analysis can be done in the form of a table with colors for the percentages of Biden and Trump, along with the net result.
 
+
+## ChatGPT Prompt:
+
+# Can you also create a table for   percentages of Biden and Trump, along with the net result?
+
+# ChatGPT:
+
+Sure! Here’s how you can create a table for the percentages of Biden and Trump, along with the net result:
+
+# Loading the libraries:
+
 ```{r}
 # Load necessary libraries
 library(dplyr)
 library(tidyr)
 library(readr)
 library(kableExtra)
+```
 
+# Loading the Data:
+
+```{r}
 # Load the CSV file
 file_path <- "president_polls_historical.csv"
 data <- read_csv(file_path)
+```
 
+# Preprocess the data
+
+```{r}
 # Filter the data to only include Biden and Trump results
 filtered_data <- data %>% 
   filter(answer %in% c("Biden", "Trump"))
 
 filtered_data <- filtered_data %>% drop_na(sponsors)
+```
 
+```{r}
 # Select only the first 50 rows
 filtered_data <- filtered_data %>% slice(1:50)
+```
 
+# Pivoting the Data:
+
+```{r}
 # Pivot the data to have 'Biden' and 'Trump' results in separate columns
 pivot_data <- filtered_data %>% 
   pivot_wider(names_from = answer, values_from = pct) %>% 
   rename(biden_pct = Biden, trump_pct = Trump)
+```
 
+# Replacing NA values
+
+```{r}
 # Replace NA values with 100 - the valid percentage
 pivot_data <- pivot_data %>%
   mutate(biden_pct = ifelse(is.na(biden_pct), 100 - trump_pct, biden_pct),
          trump_pct = ifelse(is.na(trump_pct), 100 - biden_pct, trump_pct))
+```
 
+# Net Result
+
+```{r}
 # Calculate net result
 pivot_data <- pivot_data %>%
   mutate(net_result = biden_pct - trump_pct)
+```
 
+# Forming date columns
+
+```{r}
 # Concatenate start_date and end_date to form the dates column
 pivot_data <- pivot_data %>%
   mutate(dates = paste(start_date, "-", end_date))
+```
 
+# Reording columns
+
+```{r}
 # Select and reorder columns to match the image
 final_data <- pivot_data %>%
   select(dates, sample_size, pollster, sponsors, biden_pct, trump_pct, net_result) %>%
   rename(DATES = dates, SAMPLE = sample_size, POLLSTER = pollster, SPONSOR = sponsors,
          `BIDEN %` = biden_pct, `TRUMP %` = trump_pct, `NET RESULT` = net_result)
+```
+
 
 # Format the data for percentages
+
+```{r}
 final_data <- final_data %>%
   mutate(`BIDEN %` = sprintf("%.1f%%", `BIDEN %`),
          `TRUMP %` = sprintf("%.1f%%", `TRUMP %`),
          `NET RESULT` = sprintf("%.1f", `NET RESULT`))
+```
+
 
 # Create the table with colors
+```{r}
 final_data %>%
   kbl() %>%
   kable_styling(full_width = F) %>%
   column_spec(5, background = "#DCE6F1") %>%
   column_spec(6, background = "#F4CCCC") %>%
   row_spec(0, bold = T)
-
-
-
 ```
