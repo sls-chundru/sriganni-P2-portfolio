@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.555">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -79,13 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
+  "limit": 20,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -94,104 +88,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-submit-button-title": "Submit"
   }
 }</script>
-<link href="../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
 
-<script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-
+<script src="../site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
 <script src="../site_libs/jquery-3.5.1/jquery.min.js"></script>
-
 <script src="../site_libs/proj4js-2.3.15/proj4.js"></script>
-
 <link href="../site_libs/highcharts-9.3.1/css/motion.css" rel="stylesheet">
-
 <script src="../site_libs/highcharts-9.3.1/highcharts.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/highcharts-3d.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/highcharts-more.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/stock.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/map.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/data.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/exporting.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/offline-exporting.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/drilldown.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/item-series.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/overlapping-datalabels.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/annotations.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/export-data.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/funnel.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/heatmap.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/treemap.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/sankey.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/dependency-wheel.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/organization.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/solid-gauge.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/streamgraph.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/sunburst.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/vector.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/wordcloud.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/xrange.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/tilemap.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/venn.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/gantt.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/timeline.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/parallel-coordinates.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/bullet.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/coloraxis.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/dumbbell.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/lollipop.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/series-label.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/plugins/motion.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/custom/reset.js"></script>
-
 <script src="../site_libs/highcharts-9.3.1/modules/boost.js"></script>
-
 <script src="../site_libs/highchart-binding-0.9.4/highchart.js"></script>
-
 <script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
-
 <link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -201,9 +147,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
+      <div class="navbar-brand-container">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Sri Lakshmi - DA Portfolio</span>
     </a>
@@ -215,36 +161,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../aboutme.html"> 
-<span class="menu-text">About Me</span></a>
+    <a class="nav-link" href="../aboutme.html" rel="" target="">
+ <span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-projects" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-projects" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Projects</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-projects">    
         <li>
-    <a class="dropdown-item" href="../starter-analysis-exercise/products/report/starter-analysis-report.html">
+    <a class="dropdown-item" href="../starter-analysis-exercise/products/report/starter-analysis-report.html" rel="" target="">
  <span class="dropdown-text">Starter Analysis Exercise</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../coding-exercise/coding-exercise.html">
+    <a class="dropdown-item" href="../coding-exercise/coding-exercise.html" rel="" target="">
  <span class="dropdown-text">R Coding Exercise</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../presentation-exercise/presentation-exercise.html">
+    <a class="dropdown-item" href="../presentation-exercise/presentation-exercise.html" rel="" target="">
  <span class="dropdown-text">Presentation Exercise</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tidytuesday-exercise/tidytuesday-exercise.html">
+    <a class="dropdown-item" href="../tidytuesday-exercise/tidytuesday-exercise.html" rel="" target="">
  <span class="dropdown-text">Tidy Tuesday Exercise</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../data-exercise/data-exercise.html">
+    <a class="dropdown-item" href="../data-exercise/data-exercise.html" rel="" target="">
  <span class="dropdown-text">Data Exercise</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../cdcdata-exercise/cdcdata-exercise.html">
+    <a class="dropdown-item" href="../cdcdata-exercise/cdcdata-exercise.html" rel="" target="">
  <span class="dropdown-text">Data Analysis Exercise</span></a>
   </li>  
     </ul>
@@ -252,14 +198,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/sls-chundru/sriganni-P2-portfolio"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/sls-chundru/sriganni-P2-portfolio" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
-<span class="menu-text"></span></a>
+ <span class="menu-text"></span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
+          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -286,9 +232,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-
 </header>
-
 
 <p><strong>Introduction</strong></p>
 <p>For this exercise,I have analyzed the head-to-head match up of president Biden and Trump in the 2020 election. The data is collected from the historical presidential poll data for Biden and Trump starting from February 27, 2020. The data is filtered, and averages are computed to create an interactive plot using the highcharter library. The plot displays the poll percentages for both candidates over time with a rolling average to smooth out fluctuations. The chart also includes scatter points for the individual poll data and annotations highlighting the latest average poll percentages for both candidates. This visualization offers a clear view of the polling trends leading up to the 2020 presidential election.</p>
@@ -304,7 +248,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   method            from
   as.zoo.data.frame zoo </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Highcharts (www.highcharts.com) is a Highsoft software product which is</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>not free for commercial and Governmental use</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: 'dplyr'</code></pre>
@@ -319,8 +269,8 @@ Attaching package: 'dplyr'</code></pre>
 
     intersect, setdiff, setequal, union</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(zoo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(zoo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: 'zoo'</code></pre>
@@ -335,16 +285,16 @@ Attaching package: 'zoo'</code></pre>
 <section id="loading-data" class="level2">
 <h2 class="anchored" data-anchor-id="loading-data">Loading Data:</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">"president_polls_historical.csv"</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(file_path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">"president_polls_historical.csv"</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(file_path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="data-exploration" class="level2">
 <h2 class="anchored" data-anchor-id="data-exploration">Data Exploration:</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   16715 obs. of  48 variables:
  $ poll_id                  : int  73830 73830 74946 74946 72621 72621 72647 72647 72647 72722 ...
@@ -398,7 +348,7 @@ Attaching package: 'zoo'</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    poll_id       pollster_id     pollster         sponsor_ids       
  Min.   :57025   Min.   :  23   Length:16715       Length:16715      
@@ -520,52 +470,53 @@ Attaching package: 'zoo'</code></pre>
 <section id="filtering-and-processing-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="filtering-and-processing-the-data">Filtering and Processing the Data:</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter and process the data</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>poll_data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(start_date, answer, pct) <span class="sc">%&gt;%</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(answer <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Biden"</span>, <span class="st">"Trump"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">start_date =</span> <span class="fu">as.Date</span>(start_date, <span class="at">format =</span> <span class="st">"%m/%d/%y"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(start_date <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">"2020-02-27"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(start_date, answer) <span class="sc">%&gt;%</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pct =</span> <span class="fu">mean</span>(pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">'drop'</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> answer, <span class="at">values_from =</span> pct) <span class="sc">%&gt;%</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(<span class="at">start_date =</span> <span class="fu">seq.Date</span>(<span class="fu">min</span>(start_date), <span class="fu">max</span>(start_date), <span class="at">by =</span> <span class="st">"day"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fill</span>(Biden, Trump, <span class="at">.direction =</span> <span class="st">"down"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Biden =</span> <span class="fu">pmin</span>(<span class="fu">pmax</span>(Biden, <span class="dv">40</span>), <span class="dv">60</span>),</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">Trump =</span> <span class="fu">pmin</span>(<span class="fu">pmax</span>(Trump, <span class="dv">40</span>), <span class="dv">60</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Biden_avg =</span> <span class="fu">rollapply</span>(Biden, <span class="at">width =</span> <span class="dv">21</span>, <span class="at">FUN =</span> mean, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">align =</span> <span class="st">"center"</span>),</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">Trump_avg =</span> <span class="fu">rollapply</span>(Trump, <span class="at">width =</span> <span class="dv">21</span>, <span class="at">FUN =</span> mean, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">align =</span> <span class="st">"center"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter and process the data</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>poll_data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(start_date, answer, pct) <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(answer <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Biden"</span>, <span class="st">"Trump"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">start_date =</span> <span class="fu">as.Date</span>(start_date, <span class="at">format =</span> <span class="st">"%m/%d/%y"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(start_date <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">"2020-02-27"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(start_date, answer) <span class="sc">%&gt;%</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pct =</span> <span class="fu">mean</span>(pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">'drop'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> answer, <span class="at">values_from =</span> pct) <span class="sc">%&gt;%</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(<span class="at">start_date =</span> <span class="fu">seq.Date</span>(<span class="fu">min</span>(start_date), <span class="fu">max</span>(start_date), <span class="at">by =</span> <span class="st">"day"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fill</span>(Biden, Trump, <span class="at">.direction =</span> <span class="st">"down"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Biden =</span> <span class="fu">pmin</span>(<span class="fu">pmax</span>(Biden, <span class="dv">40</span>), <span class="dv">60</span>),</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">Trump =</span> <span class="fu">pmin</span>(<span class="fu">pmax</span>(Trump, <span class="dv">40</span>), <span class="dv">60</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Biden_avg =</span> <span class="fu">rollapply</span>(Biden, <span class="at">width =</span> <span class="dv">21</span>, <span class="at">FUN =</span> mean, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">align =</span> <span class="st">"center"</span>),</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">Trump_avg =</span> <span class="fu">rollapply</span>(Trump, <span class="at">width =</span> <span class="dv">21</span>, <span class="at">FUN =</span> mean, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">align =</span> <span class="st">"center"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
 <section id="interactive-plot" class="level1">
 <h1>Interactive plot</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the interactive plot</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">highchart</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_title</span>(<span class="at">text =</span> <span class="st">"Who's ahead in the national polls?"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_subtitle</span>(<span class="at">text =</span> <span class="st">"An updating average of 2020 presidential general election polls, accounting for each poll’s quality, sample size and recency"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_xAxis</span>(<span class="at">categories =</span> poll_data<span class="sc">$</span>start_date) <span class="sc">%&gt;%</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_yAxis</span>(<span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"Poll Percentage (%)"</span>), <span class="at">max =</span> <span class="dv">60</span>, <span class="at">min =</span> <span class="dv">40</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_add_series</span>(<span class="at">name =</span> <span class="st">"Joseph R. Biden Jr."</span>, <span class="at">data =</span> poll_data<span class="sc">$</span>Biden_avg, <span class="at">type =</span> <span class="st">"line"</span>, <span class="at">color =</span> <span class="st">"#0000FF"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_add_series</span>(<span class="at">name =</span> <span class="st">"Donald Trump"</span>, <span class="at">data =</span> poll_data<span class="sc">$</span>Trump_avg, <span class="at">type =</span> <span class="st">"line"</span>, <span class="at">color =</span> <span class="st">"#FF0000"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_add_series</span>(<span class="at">name =</span> <span class="st">"Biden Polls"</span>, <span class="at">data =</span> poll_data<span class="sc">$</span>Biden <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(poll_data<span class="sc">$</span>Biden), <span class="at">sd =</span> <span class="dv">2</span>), <span class="at">type =</span> <span class="st">"scatter"</span>, <span class="at">color =</span> <span class="st">"#0000FF"</span>, <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">radius =</span> <span class="dv">2</span>, <span class="at">symbol =</span> <span class="st">"circle"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_add_series</span>(<span class="at">name =</span> <span class="st">"Trump Polls"</span>, <span class="at">data =</span> poll_data<span class="sc">$</span>Trump <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(poll_data<span class="sc">$</span>Trump), <span class="at">sd =</span> <span class="dv">2</span>), <span class="at">type =</span> <span class="st">"scatter"</span>, <span class="at">color =</span> <span class="st">"#FF0000"</span>, <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">radius =</span> <span class="dv">2</span>, <span class="at">symbol =</span> <span class="st">"circle"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_tooltip</span>(<span class="at">shared =</span> <span class="cn">TRUE</span>, <span class="at">pointFormat =</span> <span class="st">"{series.name}: &lt;b&gt;{point.y:.1f}%&lt;/b&gt;&lt;br/&gt;"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_legend</span>(<span class="at">enabled =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_annotations</span>(<span class="fu">list</span>(</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">list</span>(</span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">point =</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="fu">nrow</span>(poll_data) <span class="sc">-</span> <span class="dv">1</span>, <span class="at">y =</span> poll_data<span class="sc">$</span>Biden_avg[<span class="fu">nrow</span>(poll_data)]),</span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">text =</span> <span class="fu">paste</span>(<span class="st">"Joseph R. Biden Jr."</span>, <span class="fu">round</span>(poll_data<span class="sc">$</span>Biden_avg[<span class="fu">nrow</span>(poll_data)], <span class="dv">1</span>), <span class="st">"%"</span>), </span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">style =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"#0000FF"</span>, <span class="at">fontWeight =</span> <span class="st">"bold"</span>)),</span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">point =</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="fu">nrow</span>(poll_data) <span class="sc">-</span> <span class="dv">1</span>, <span class="at">y =</span> poll_data<span class="sc">$</span>Trump_avg[<span class="fu">nrow</span>(poll_data)]),</span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>           <span class="at">text =</span> <span class="fu">paste</span>(<span class="st">"Donald Trump"</span>, <span class="fu">round</span>(poll_data<span class="sc">$</span>Trump_avg[<span class="fu">nrow</span>(poll_data)], <span class="dv">1</span>), <span class="st">"%"</span>), </span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>           <span class="at">style =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"#FF0000"</span>, <span class="at">fontWeight =</span> <span class="st">"bold"</span>))</span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the interactive plot</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">highchart</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_title</span>(<span class="at">text =</span> <span class="st">"Who's ahead in the national polls?"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_subtitle</span>(<span class="at">text =</span> <span class="st">"An updating average of 2020 presidential general election polls, accounting for each poll’s quality, sample size and recency"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_xAxis</span>(<span class="at">categories =</span> poll_data<span class="sc">$</span>start_date) <span class="sc">%&gt;%</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_yAxis</span>(<span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"Poll Percentage (%)"</span>), <span class="at">max =</span> <span class="dv">60</span>, <span class="at">min =</span> <span class="dv">40</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_add_series</span>(<span class="at">name =</span> <span class="st">"Joseph R. Biden Jr."</span>, <span class="at">data =</span> poll_data<span class="sc">$</span>Biden_avg, <span class="at">type =</span> <span class="st">"line"</span>, <span class="at">color =</span> <span class="st">"#0000FF"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_add_series</span>(<span class="at">name =</span> <span class="st">"Donald Trump"</span>, <span class="at">data =</span> poll_data<span class="sc">$</span>Trump_avg, <span class="at">type =</span> <span class="st">"line"</span>, <span class="at">color =</span> <span class="st">"#FF0000"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_add_series</span>(<span class="at">name =</span> <span class="st">"Biden Polls"</span>, <span class="at">data =</span> poll_data<span class="sc">$</span>Biden <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(poll_data<span class="sc">$</span>Biden), <span class="at">sd =</span> <span class="dv">2</span>), <span class="at">type =</span> <span class="st">"scatter"</span>, <span class="at">color =</span> <span class="st">"#0000FF"</span>, <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">radius =</span> <span class="dv">2</span>, <span class="at">symbol =</span> <span class="st">"circle"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_add_series</span>(<span class="at">name =</span> <span class="st">"Trump Polls"</span>, <span class="at">data =</span> poll_data<span class="sc">$</span>Trump <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(poll_data<span class="sc">$</span>Trump), <span class="at">sd =</span> <span class="dv">2</span>), <span class="at">type =</span> <span class="st">"scatter"</span>, <span class="at">color =</span> <span class="st">"#FF0000"</span>, <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">radius =</span> <span class="dv">2</span>, <span class="at">symbol =</span> <span class="st">"circle"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_tooltip</span>(<span class="at">shared =</span> <span class="cn">TRUE</span>, <span class="at">pointFormat =</span> <span class="st">"{series.name}: &lt;b&gt;{point.y:.1f}%&lt;/b&gt;&lt;br/&gt;"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_legend</span>(<span class="at">enabled =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_annotations</span>(<span class="fu">list</span>(</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">list</span>(</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">point =</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="fu">nrow</span>(poll_data) <span class="sc">-</span> <span class="dv">1</span>, <span class="at">y =</span> poll_data<span class="sc">$</span>Biden_avg[<span class="fu">nrow</span>(poll_data)]),</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">text =</span> <span class="fu">paste</span>(<span class="st">"Joseph R. Biden Jr."</span>, <span class="fu">round</span>(poll_data<span class="sc">$</span>Biden_avg[<span class="fu">nrow</span>(poll_data)], <span class="dv">1</span>), <span class="st">"%"</span>), </span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">style =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"#0000FF"</span>, <span class="at">fontWeight =</span> <span class="st">"bold"</span>)),</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">point =</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="fu">nrow</span>(poll_data) <span class="sc">-</span> <span class="dv">1</span>, <span class="at">y =</span> poll_data<span class="sc">$</span>Trump_avg[<span class="fu">nrow</span>(poll_data)]),</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>           <span class="at">text =</span> <span class="fu">paste</span>(<span class="st">"Donald Trump"</span>, <span class="fu">round</span>(poll_data<span class="sc">$</span>Trump_avg[<span class="fu">nrow</span>(poll_data)], <span class="dv">1</span>), <span class="st">"%"</span>), </span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>           <span class="at">style =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"#FF0000"</span>, <span class="at">fontWeight =</span> <span class="st">"bold"</span>))</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="highchart html-widget html-fill-item" id="htmlwidget-6a335b39f145d263fa5a" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-6a335b39f145d263fa5a">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":"Who's ahead in the national polls?"},"yAxis":{"title":{"text":"Poll Percentage (%)"},"max":60,"min":40},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0},"treemap":{"layoutAlgorithm":"squarified"}},"subtitle":{"text":"An updating average of 2020 presidential general election polls, accounting for each poll’s quality, sample size and recency"},"xAxis":{"categories":["2020-02-27","2020-02-28","2020-02-29","2020-03-01","2020-03-02","2020-03-03","2020-03-04","2020-03-05","2020-03-06","2020-03-07","2020-03-08","2020-03-09","2020-03-10","2020-03-11","2020-03-12","2020-03-13","2020-03-14","2020-03-15","2020-03-16","2020-03-17","2020-03-18","2020-03-19","2020-03-20","2020-03-21","2020-03-22","2020-03-23","2020-03-24","2020-03-25","2020-03-26","2020-03-27","2020-03-28","2020-03-29","2020-03-30","2020-03-31","2020-04-01","2020-04-02","2020-04-03","2020-04-04","2020-04-05","2020-04-06","2020-04-07","2020-04-08","2020-04-09","2020-04-10","2020-04-11","2020-04-12","2020-04-13","2020-04-14","2020-04-15","2020-04-16","2020-04-17","2020-04-18","2020-04-19","2020-04-20","2020-04-21","2020-04-22","2020-04-23","2020-04-24","2020-04-25","2020-04-26","2020-04-27","2020-04-28","2020-04-29","2020-04-30","2020-05-01","2020-05-02","2020-05-03","2020-05-04","2020-05-05","2020-05-06","2020-05-07","2020-05-08","2020-05-09","2020-05-10","2020-05-11","2020-05-12","2020-05-13","2020-05-14","2020-05-15","2020-05-16","2020-05-17","2020-05-18","2020-05-19","2020-05-20","2020-05-21","2020-05-22","2020-05-23","2020-05-24","2020-05-25","2020-05-26","2020-05-27","2020-05-28","2020-05-29","2020-05-30","2020-05-31","2020-06-01","2020-06-02","2020-06-03","2020-06-04","2020-06-05","2020-06-06","2020-06-07","2020-06-08","2020-06-09","2020-06-10","2020-06-11","2020-06-12","2020-06-13","2020-06-14","2020-06-15","2020-06-16","2020-06-17","2020-06-18","2020-06-19","2020-06-20","2020-06-21","2020-06-22","2020-06-23","2020-06-24","2020-06-25","2020-06-26","2020-06-27","2020-06-28","2020-06-29","2020-06-30","2020-07-01","2020-07-02","2020-07-03","2020-07-04","2020-07-05","2020-07-06","2020-07-07","2020-07-08","2020-07-09","2020-07-10","2020-07-11","2020-07-12","2020-07-13","2020-07-14","2020-07-15","2020-07-16","2020-07-17","2020-07-18","2020-07-19","2020-07-20","2020-07-21","2020-07-22","2020-07-23","2020-07-24","2020-07-25","2020-07-26","2020-07-27","2020-07-28","2020-07-29","2020-07-30","2020-07-31","2020-08-01","2020-08-02","2020-08-03","2020-08-04","2020-08-05","2020-08-06","2020-08-07","2020-08-08","2020-08-09","2020-08-10","2020-08-11","2020-08-12","2020-08-13","2020-08-14","2020-08-15","2020-08-16","2020-08-17","2020-08-18","2020-08-19","2020-08-20","2020-08-21","2020-08-22","2020-08-23","2020-08-24","2020-08-25","2020-08-26","2020-08-27","2020-08-28","2020-08-29","2020-08-30","2020-08-31","2020-09-01","2020-09-02","2020-09-03","2020-09-04","2020-09-05","2020-09-06","2020-09-07","2020-09-08","2020-09-09","2020-09-10","2020-09-11","2020-09-12","2020-09-13","2020-09-14","2020-09-15","2020-09-16","2020-09-17","2020-09-18","2020-09-19","2020-09-20","2020-09-21","2020-09-22","2020-09-23","2020-09-24","2020-09-25","2020-09-26","2020-09-27","2020-09-28","2020-09-29","2020-09-30","2020-10-01","2020-10-02","2020-10-03","2020-10-04","2020-10-05","2020-10-06","2020-10-07","2020-10-08","2020-10-09","2020-10-10","2020-10-11","2020-10-12","2020-10-13","2020-10-14","2020-10-15","2020-10-16","2020-10-17","2020-10-18","2020-10-19","2020-10-20","2020-10-21","2020-10-22","2020-10-23","2020-10-24","2020-10-25","2020-10-26","2020-10-27","2020-10-28","2020-10-29","2020-10-30","2020-10-31","2020-11-01","2020-11-02"]},"series":[{"data":[null,null,null,null,null,null,null,null,null,null,47.15186281179138,47.13376757369614,47.29805328798186,47.25162471655329,47.42781519274376,47.45162471655329,47.71710090702948,47.40757709750567,47.47016439909297,47.57900793650794,47.92900793650794,47.88138888888889,47.80694444444445,47.89424603174603,47.8625,47.58488095238095,47.6212074829932,47.66763605442176,47.52477891156462,47.61208049886621,47.66589002267573,47.44100907029478,47.54410430839002,47.23231859410431,47.30811224489796,47.17715986394558,47.15811224489796,47.16073129251701,46.87766250944822,46.96927248677249,47.01689153439153,46.75362622826908,46.9679119425548,47.1199074074074,47.10621693121693,47.15383597883598,47.2808201058201,47.35957294028722,47.24171579743008,47.39231103552532,47.40636999244142,47.53215230536659,47.7916761148904,47.85310468631897,48.15096182917611,48.0695559334845,48.06003212396069,47.94415910808767,47.99558767951625,48.23698979591836,48.2437925170068,48.39406462585033,48.20558390022676,48.00452569916855,47.87114134542706,47.86966175359032,47.82204270597127,47.67283635676493,47.65696334089191,47.88689531368102,47.90436730247654,47.9538004090525,48.0852138633231,47.99949957760882,47.61939753679249,47.51427848917344,47.52743041661109,47.56076374994442,47.80520819438886,47.70663676581744,47.74036692454759,47.68050297896936,47.4984848383798,47.65975467964964,47.76557478546974,47.78172557912053,47.8640385042906,47.81641945667155,47.96562580587791,48.02118136143346,47.98240585122938,47.94100529100529,48.01413012285894,47.91785272301011,48.01193435566316,48.38745967690277,48.48160533516608,48.61335136691211,48.62467004823079,48.61935258791333,48.70044102328748,48.77104419789066,48.82764283734644,49.00124072094432,49.05711373681734,49.16016135586496,49.25817722888083,49.22627246697607,49.32049015405089,49.37879703235777,49.4347834269156,49.47328682827614,49.62585825684757,49.54534636760687,49.60566609549803,49.69695161905324,49.66039738624901,49.65491839465238,49.76920410893808,49.84939336412734,49.75113939587337,49.67862238907065,49.66770175415002,49.68080833011373,49.62449760380301,49.55039329541298,49.53167900969871,49.53072662874632,49.58916200289598,49.56094431582115,49.51174854862538,49.46167124497666,49.53567438469408,49.41574364876334,49.52535292837262,49.46123123525093,49.50626090443947,49.44976027787305,49.28069068080346,49.20667707536128,49.23088342456764,49.32534374202795,49.33942112298033,49.29209685994178,49.27385960012558,49.35845452900622,49.51092347988933,49.4253520513179,49.56394993491578,49.49757805282961,49.53131831256987,49.57534212209368,49.5177353086173,49.50915167003367,49.65019063107263,49.65484671572871,49.69280967869167,49.70689464601192,49.75422860591168,49.91018709187016,49.90212277523442,49.86290508815959,49.91447651673103,50.06772056435007,50.13987888222267,50.2143554582782,50.18226022018296,50.24426065705496,50.35713896393327,50.31563631843061,50.47163143442573,50.50799236516166,50.53350102317032,50.57199528253415,50.46934448888336,50.37439499393386,50.36107224261111,50.38078679509877,50.26392405000073,50.31438457631651,50.41299051144419,50.45401023246392,50.5151326814435,50.46468701599784,50.42192602698685,50.51355455718681,50.49103051872527,50.39094337035241,50.2675326560667,50.2854691640032,50.18703566646626,50.15892547110606,50.19391271600402,50.28312864932443,50.37770735062313,50.57250100141678,50.67497556389135,50.70594618696644,50.8134388047032,50.85400191883774,50.9523816260676,50.91589821488063,51.01819214990184,51.00236292165881,51.04063266117855,51.02167539622129,50.98551238641643,51.03151744121613,51.08022072175614,51.14816715032757,51.05625709741751,51.18408742035128,51.19611179676853,51.17297750601518,51.07506766497648,51.00697428016309,50.91341665421415,50.81211092290842,50.73575213244516,50.59172814540393,50.66418700929136,50.53206106146001,50.53046223118169,50.42461765368125,50.43016843156108,50.40260512846206,50.42836165476405,50.35936366683648,50.2286456018327,50.28540602028579,50.22957552141958,50.27056238513058,50.20930841687662,50.12728867940417,50.12457263002144,50.13749681039107,50.09143107432534,50.09509981138537,50.05281986910544,49.79195406823963,null,null,null,null,null,null,null,null,null,null],"name":"Joseph R. Biden Jr.","type":"line","color":"#0000FF"},{"data":[null,null,null,null,null,null,null,null,null,null,44.76836913712854,44.80289294665234,44.53178183554123,44.22654374030314,43.97130564506504,43.66773421649361,43.3143328559494,43.34607888769543,43.10141723356008,43.16604308390023,42.99937641723356,42.8922335600907,42.81032879818594,42.72302721088435,42.71509070294784,42.63953514739229,42.68191609977324,42.39977324263038,42.62596371882086,42.63503401360544,42.47455782312925,42.71582766439909,42.48154195011337,42.65598639455782,42.66312925170068,42.71074829931973,42.77184353741497,42.82034013605442,42.78859410430839,42.83281179138322,42.85662131519274,42.93689342403628,42.82975056689342,42.86879818594104,42.79790532879819,42.65504818594104,42.57568310657597,42.61266723356009,42.6487783446712,42.53389739229025,42.44546201814059,42.40212868480725,42.21879535147392,42.06808106575964,41.89962868480725,41.95405045351474,41.93500283446711,41.86597108843537,41.78617346938776,41.89534013605442,41.87552721088436,41.91069727891156,42.05407596371882,42.12815003779289,42.07701908541194,42.06818405139833,42.24278722600151,42.4311470143613,42.55813114134543,42.47355064247921,42.4826892979414,42.54898966424177,42.45184680709891,42.3375610928132,42.50762912002408,42.61274816764313,42.70832639893564,42.77499306560231,42.80197719258643,42.84638653324578,42.94356907292832,42.9293683926562,42.90610308653375,42.80388086431154,42.72980679023746,42.64125520293587,42.72574499885424,42.86066563377488,42.64055981366906,42.60087727398651,42.69679564133345,42.62301412872841,42.86044661149988,42.93609287000328,43.0173173597992,42.86079430613329,42.80460382994281,42.8253181156571,42.68740602774501,42.70407269441167,42.79470587075914,42.77597571202898,42.90896890930789,42.84822816856715,42.91261970295869,43.05652446486345,43.10525462359361,43.06789198623097,42.9368715780677,43.02449062568675,43.01421851684321,43.12333416310172,43.17142940119695,42.933154427583,43.0270319786034,43.27765884617287,43.49191149167551,43.47429244405647,43.42250672977075,43.48946643673045,43.35851405577807,43.32307187890732,43.3242623550978,43.22220793332909,43.25095733207849,43.3690147772788,43.37791953918356,43.44784017410419,43.50479464820152,43.52549759604733,43.53359283414257,43.49295585207701,43.34772822256367,43.24842086325631,43.35558203541748,43.29854499838044,43.03693173625317,43.01557521996244,43.14718694157416,43.17193183953334,43.19859850620001,43.32113818873969,43.19240094384173,43.32195876697098,43.39247004516648,43.32874710144353,43.38279440843972,43.46441345605877,43.46597430261962,43.4456032451057,43.40496832447078,43.38211118161364,43.47529770523494,43.68430462424186,43.66794098787823,43.60347008840733,43.59679283973008,43.59156875009423,43.62096098067067,43.45651857122826,43.43180614080154,43.34884695712807,43.36591044919156,43.36855925871537,43.12638238796707,43.08242056032103,43.12916885964076,42.85281543019559,42.74685246723263,42.73165670003686,42.68796705634721,42.7141575325377,42.72887614725631,42.68897966692504,42.61718337062874,42.75891785836323,42.87369034513572,43.07558790415933,43.23355802554122,43.1075492536114,43.0961977468251,43.03035840098576,43.11169853704018,43.20194884229048,43.23747997782162,43.27319426353591,43.31142457489121,43.32305465394987,43.40419155871177,43.39334499786521,43.57516273185536,43.73713159632423,43.87202555390726,43.94168504864138,44.04059552483186,44.08017488991122,44.18507598881232,44.24190659767278,44.11366174800877,44.2011764872378,44.32885571715974,44.51352984408683,44.62621295222448,44.77864891281562,44.88522400439071,44.94274048790719,45.06608052814865,45.15447007841319,45.12655775879874,45.11313513975112,45.17939704451303,45.03098747378819,44.89501808603308,44.75647333479926,44.71784435426638,44.59980903895107,44.49991186848868,44.47816805674487,44.44248607703304,44.41630569714576,44.26785811298389,44.29656860737273,44.31362272998093,44.39847779266717,44.3852274656515,44.31147463118437,44.44157537892148,44.41852105296575,44.46740616256515,44.5304975267704,44.67726623425339,44.7265544115933,44.77379505785181,44.96486672595567,45.01768418627312,45.12622912585785,45.2979180675468,45.38345015864411,45.47232461751857,45.60920773440169,null,null,null,null,null,null,null,null,null,null],"name":"Donald Trump","type":"line","color":"#FF0000"},{"data":[46.83349844213338,47.5896723442629,50.30983016778781,49.45714126482758,50.60041398468094,41.98096639689931,56.20754328779891,43.49284082070267,45.118664643969,44.75853223723685,48.00849938032193,46.89255789905091,45.73110327760161,48.23720432569387,50.68511714349803,42.65771525510134,43.22497514116819,47.8237752620941,43.44596686888175,41.84970126253639,46.77391903269761,45.94737281001414,48.20271371020779,47.66161578896075,49.74832739863248,49.25508560757403,48.99603743661392,44.49225284914845,47.90002025481375,46.86706658283946,52.6181991705757,44.32167785821458,43.05938774836621,47.44188831361721,47.63868242195139,46.70154537106842,51.06701519474075,46.78932761097227,43.77917618520171,43.25207239236799,46.75417625676869,46.08483125217533,51.36138698949436,47.23114159690269,45.18117063322432,47.76801357465195,47.60103965366153,52.54847068876926,42.9407934950784,48.38761016434418,49.82869022128297,51.62066585758681,52.52654455689839,49.612032693301,51.51560597446301,46.06072936622846,48.30423315165957,50.21967703270992,44.57011009306105,44.12801710847661,48.03884839094803,49.13255731888401,47.41641010762685,50.61513755472146,52.98998450796961,48.27021206945042,46.73081277648767,47.48411053273291,49.59998356115103,48.90881176100989,50.84730594012227,47.47244269433005,45.77975329761288,44.82991931837787,44.86662412299894,46.34156882740389,47.5698041669812,46.50964026912086,45.809376934737,49.39756636529707,50.0408537922564,49.63232127719933,52.82894134442873,44.22108832754533,42.57474887251153,48.19666841499421,44.41177307557508,50.55139241624637,48.48094778710638,46.32282479857501,47.69365203805185,50.12453807526821,46.088007341028,46.55653521416257,50.08662191133305,48.15236323140371,46.67474341980075,44.8457228435215,48.2503929330906,49.33455727359949,47.05241711565145,43.69807643457861,52.75547272451109,49.75244117092923,48.52843269823823,48.66011171945578,48.43543270971927,50.10769554026277,47.19988762478415,50.50384216329775,49.37237994246478,48.66202609516274,49.44117194113508,52.67096891651155,46.88712063187058,49.91858544251325,52.34679798299667,47.5918828976905,48.94044875663616,49.6191905169893,51.33960374115522,47.3529674841549,50.7160686203883,52.05462505599034,51.82675413420071,50.43249052312968,44.99546108574432,49.30519395545308,50.43097983810677,47.73702938190139,47.86542976100363,46.57080044489624,47.678230904346,49.86404916751093,46.56444595637824,50.77382407529927,50.94623420050317,47.11765882047184,51.03945719742708,46.85078998753314,47.41653585451501,48.98624740241999,50.09340342898941,48.83710687107837,47.86006455681837,51.67643392865862,47.701010757868,49.53905626459443,48.17967474081305,47.61431959142256,49.2176463811443,51.18709045757572,47.68105602567637,51.29924106155987,49.00655844782823,53.83511120126661,50.56199018126962,46.15962438353932,54.52670019290273,48.14046165694801,49.13483072144204,50.06790077965141,48.86270219746812,46.46020649247648,53.61097190548735,50.84721185574503,48.40582410510174,52.10956371948537,48.55333944922674,48.73882610972423,48.34760737308991,51.1872572152708,51.42360062621817,49.13354395439949,49.94194584800255,52.91870009953629,49.03989366105928,49.28687071674758,48.75151789351838,53.29823845388469,55.37922933545448,51.82240249460811,54.54501904463632,49.30175727677236,46.49829717352468,51.60940067273289,53.4762612137033,48.48019816934008,50.84274814569999,51.20741065598458,55.69340493776467,46.57192609151184,49.5026952636146,52.53992706677752,52.01840895571241,50.40169350231991,51.55484102277907,52.02463418798963,50.17142812167485,50.91653905965359,48.50977729020058,52.29300372532933,52.30722825877475,52.19899425443045,49.27281371717303,51.9870489151917,47.66571654433206,50.93424187985601,54.72942069263204,48.94270098091324,52.64783577930103,53.72923785629105,50.53523456015155,51.74768251699073,53.8976827489449,47.04892950086307,51.80685552583005,50.53706291312071,49.24282578761559,50.65744476355653,48.81729022672544,52.7996335242728,50.82267856547507,50.28795038242136,50.64205429001751,50.88465013792463,50.57246346133938,51.29758421425129,47.2328777552917,53.48054809701739,50.19347629481712,48.24839715011483,50.12582957784957,48.93384066084538,53.88216573047749,48.58787740046057,54.51357457347149,50.40396354956858,44.82829182424537,51.25867106587879,52.35490273885514,49.85324671782606,52.93265344775282,49.89473278835084,50.43970760255494,51.19506306746212,48.77804496269433,52.31467288306959,48.19563161833692,44.14540131615285],"name":"Biden Polls","type":"scatter","color":"#0000FF","marker":{"radius":2,"symbol":"circle"}},{"data":[47.70690407312667,48.82408802238404,46.6249649085177,46.16109126499347,45.86689245308347,51.00873467450469,44.72358300438025,51.21271664275255,42.53881727058495,45.56380898492213,46.28117943851491,44.71507736524728,43.86544949049749,42.91859781559727,42.73284418853568,42.25017143583253,50.55538993029177,41.20740133659204,40.74410270316918,44.01915344338079,43.84983608118561,49.24652767253939,41.16590835622819,38.35368959468508,43.18592360970273,42.35749152934362,42.82252826665653,39.35568102013225,41.63516599433881,42.48367335385849,35.86579370744469,39.47737621565564,43.73940020341737,46.35737751319009,43.70887159416944,44.0311650101035,40.76459963643387,42.58726480081513,44.99662772140338,42.92706786359309,45.95118527659498,46.47937605468747,42.79566268784188,46.74156366341255,39.77201079816683,46.56396566417554,45.20912711843493,46.50910833438616,40.29425382105787,42.70759863718737,41.45078176210718,42.98502379054857,41.95701160796101,42.21428671734453,41.21649971423737,41.80683459391319,43.3860915357382,43.51534851683324,47.39782024584181,40.4799356006025,41.55183644838716,41.27821673720559,44.46712095768388,41.76271542456921,41.66722362989603,42.0412540038651,42.54386794684578,43.37443418015955,38.89307101729343,40.37969154818946,39.90931524705464,46.18181972175341,46.16865055902397,41.70336931702187,46.18443646388844,45.53070079673525,47.21868373518787,46.60015883377726,39.75779576590696,44.69830832616254,43.37592340513633,42.26616603439405,39.75997074300965,37.63995390898324,44.19664997276121,43.734778455745,44.44894923620877,44.90257361243361,39.24242174672937,41.80467457099926,45.85201370458348,39.51055594552322,44.25830220207889,41.84638235345671,38.05035947502967,42.50054493776827,42.7100288458592,45.61515709830229,40.18567332406275,45.85368018829437,44.14866344102691,42.1669560881733,45.516521472295,44.06527968375512,44.71593122219266,41.65470435194336,45.95404454623657,43.20532754620819,39.35283951687219,40.6092433465014,43.22033297120205,42.82220553891808,41.38774572386287,45.10539423683556,39.82926041129907,42.78332046234771,42.75746587418121,44.71569565862478,39.59308430201748,41.45797034159015,40.41579432444516,44.59669133181859,44.80009873280917,40.67339187588471,40.72237038892051,46.25758263115303,42.28894639271727,45.41043936491796,39.62110153697592,43.79287284559418,39.75705897305286,46.65171385780408,43.82639605282659,40.2394193531375,41.58445754489621,48.2092651726073,43.75505177425939,37.97825968508036,42.69640511603713,41.45502047406605,42.70635081387496,41.90433700399524,40.79232997208766,41.10062459711683,45.21201216057908,41.49201296753424,42.0365819815529,42.84586202192168,44.09663600530439,47.48979402259538,42.688167414206,41.61140968047278,40.87052813139375,45.32266649235396,44.55056928793924,42.56026913202471,48.49500902501634,43.30908955982862,43.50936818860645,44.19494148975492,44.22907888125315,49.04405360251539,44.90360333003076,44.14590912716731,40.37586467637086,43.73825049840369,46.0990620872253,41.25661406350858,45.60224267697319,42.85905076338425,48.00138094958615,41.49573996225866,42.01374869589301,46.46812469938749,42.73755173959373,42.1695161275964,44.53570092733518,42.57242362940513,41.56434020731868,41.14608633454668,41.59971451802303,44.58362124735162,38.59889623147789,45.35658479319412,42.97118616908362,43.2005724830062,47.97203470428196,48.40934390631693,43.57220954917506,45.02036098108351,38.62098591292955,44.53335980469818,43.33596714576583,43.69224735288073,39.80924559016514,42.69094217805922,41.83762303025784,44.3661516686023,40.79525944349384,41.61623644989184,48.88819973812788,44.08767673996507,48.45095309070616,44.75977137167859,44.75500019927945,43.59846401137921,45.2401261091202,47.49718664291933,45.17395128611536,47.17295216356927,40.3477763804989,43.40303611337509,44.61902422511005,47.21659796013064,45.55131564042723,43.75788750416159,46.79164375218746,48.14088275180515,43.95420024512705,43.83877886343275,45.49834906444957,46.48010938168334,43.12939833144307,44.5609904004066,42.4838616615862,46.60980269677354,42.83761932042373,47.11241527193741,44.61554667732003,43.86465908860478,44.3583055334803,48.30902713230868,47.9120174804161,44.59417246131165,45.03631330321502,46.86048089798803,44.16566490681415,45.56679477617099,48.54199053936252,42.20574217208359,46.20725483225348,44.18308110442155,42.89172290634279,45.36188690743002,46.58850677795795,43.76189768272309,47.6678748440002,44.95818315609451,45.66142556106322,43.78851340570511],"name":"Trump Polls","type":"scatter","color":"#FF0000","marker":{"radius":2,"symbol":"circle"}}],"tooltip":{"shared":true,"pointFormat":"{series.name}: <b>{point.y:.1f}%<\/b><br/>"},"legend":{"enabled":true},"annotations":[{"labels":[{"point":{"x":249,"y":null},"text":"Joseph R. Biden Jr. NA %","style":{"color":"#0000FF","fontWeight":"bold"}},{"point":{"x":249,"y":null},"text":"Donald Trump NA %","style":{"color":"#FF0000","fontWeight":"bold"}}]}]},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+
+<div class="highchart html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-a2950b639df2af963371" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-a2950b639df2af963371">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":"Who's ahead in the national polls?"},"yAxis":{"title":{"text":"Poll Percentage (%)"},"max":60,"min":40},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0},"treemap":{"layoutAlgorithm":"squarified"}},"subtitle":{"text":"An updating average of 2020 presidential general election polls, accounting for each poll’s quality, sample size and recency"},"xAxis":{"categories":["2020-02-27","2020-02-28","2020-02-29","2020-03-01","2020-03-02","2020-03-03","2020-03-04","2020-03-05","2020-03-06","2020-03-07","2020-03-08","2020-03-09","2020-03-10","2020-03-11","2020-03-12","2020-03-13","2020-03-14","2020-03-15","2020-03-16","2020-03-17","2020-03-18","2020-03-19","2020-03-20","2020-03-21","2020-03-22","2020-03-23","2020-03-24","2020-03-25","2020-03-26","2020-03-27","2020-03-28","2020-03-29","2020-03-30","2020-03-31","2020-04-01","2020-04-02","2020-04-03","2020-04-04","2020-04-05","2020-04-06","2020-04-07","2020-04-08","2020-04-09","2020-04-10","2020-04-11","2020-04-12","2020-04-13","2020-04-14","2020-04-15","2020-04-16","2020-04-17","2020-04-18","2020-04-19","2020-04-20","2020-04-21","2020-04-22","2020-04-23","2020-04-24","2020-04-25","2020-04-26","2020-04-27","2020-04-28","2020-04-29","2020-04-30","2020-05-01","2020-05-02","2020-05-03","2020-05-04","2020-05-05","2020-05-06","2020-05-07","2020-05-08","2020-05-09","2020-05-10","2020-05-11","2020-05-12","2020-05-13","2020-05-14","2020-05-15","2020-05-16","2020-05-17","2020-05-18","2020-05-19","2020-05-20","2020-05-21","2020-05-22","2020-05-23","2020-05-24","2020-05-25","2020-05-26","2020-05-27","2020-05-28","2020-05-29","2020-05-30","2020-05-31","2020-06-01","2020-06-02","2020-06-03","2020-06-04","2020-06-05","2020-06-06","2020-06-07","2020-06-08","2020-06-09","2020-06-10","2020-06-11","2020-06-12","2020-06-13","2020-06-14","2020-06-15","2020-06-16","2020-06-17","2020-06-18","2020-06-19","2020-06-20","2020-06-21","2020-06-22","2020-06-23","2020-06-24","2020-06-25","2020-06-26","2020-06-27","2020-06-28","2020-06-29","2020-06-30","2020-07-01","2020-07-02","2020-07-03","2020-07-04","2020-07-05","2020-07-06","2020-07-07","2020-07-08","2020-07-09","2020-07-10","2020-07-11","2020-07-12","2020-07-13","2020-07-14","2020-07-15","2020-07-16","2020-07-17","2020-07-18","2020-07-19","2020-07-20","2020-07-21","2020-07-22","2020-07-23","2020-07-24","2020-07-25","2020-07-26","2020-07-27","2020-07-28","2020-07-29","2020-07-30","2020-07-31","2020-08-01","2020-08-02","2020-08-03","2020-08-04","2020-08-05","2020-08-06","2020-08-07","2020-08-08","2020-08-09","2020-08-10","2020-08-11","2020-08-12","2020-08-13","2020-08-14","2020-08-15","2020-08-16","2020-08-17","2020-08-18","2020-08-19","2020-08-20","2020-08-21","2020-08-22","2020-08-23","2020-08-24","2020-08-25","2020-08-26","2020-08-27","2020-08-28","2020-08-29","2020-08-30","2020-08-31","2020-09-01","2020-09-02","2020-09-03","2020-09-04","2020-09-05","2020-09-06","2020-09-07","2020-09-08","2020-09-09","2020-09-10","2020-09-11","2020-09-12","2020-09-13","2020-09-14","2020-09-15","2020-09-16","2020-09-17","2020-09-18","2020-09-19","2020-09-20","2020-09-21","2020-09-22","2020-09-23","2020-09-24","2020-09-25","2020-09-26","2020-09-27","2020-09-28","2020-09-29","2020-09-30","2020-10-01","2020-10-02","2020-10-03","2020-10-04","2020-10-05","2020-10-06","2020-10-07","2020-10-08","2020-10-09","2020-10-10","2020-10-11","2020-10-12","2020-10-13","2020-10-14","2020-10-15","2020-10-16","2020-10-17","2020-10-18","2020-10-19","2020-10-20","2020-10-21","2020-10-22","2020-10-23","2020-10-24","2020-10-25","2020-10-26","2020-10-27","2020-10-28","2020-10-29","2020-10-30","2020-10-31","2020-11-01","2020-11-02"]},"series":[{"data":[null,null,null,null,null,null,null,null,null,null,47.15186281179139,47.13376757369615,47.29805328798187,47.25162471655329,47.42781519274377,47.4516247165533,47.71710090702949,47.40757709750568,47.47016439909298,47.57900793650795,47.92900793650795,47.8813888888889,47.80694444444446,47.89424603174605,47.86250000000002,47.58488095238097,47.62120748299321,47.66763605442178,47.52477891156465,47.61208049886623,47.66589002267575,47.4410090702948,47.54410430839004,47.23231859410433,47.30811224489798,47.1771598639456,47.15811224489798,47.16073129251703,46.87766250944824,46.9692724867725,47.01689153439155,46.7536262282691,46.96791194255481,47.11990740740742,47.10621693121694,47.15383597883599,47.28082010582012,47.35957294028724,47.2417157974301,47.39231103552533,47.40636999244143,47.53215230536661,47.79167611489041,47.85310468631899,48.15096182917613,48.06955593348452,48.06003212396071,47.9441591080877,47.99558767951627,48.23698979591838,48.24379251700682,48.39406462585035,48.20558390022678,48.00452569916857,47.87114134542708,47.86966175359035,47.8220427059713,47.67283635676495,47.65696334089193,47.88689531368105,47.90436730247657,47.95380040905253,48.08521386332313,47.99949957760884,47.61939753679252,47.51427848917347,47.52743041661111,47.56076374994444,47.80520819438889,47.70663676581746,47.74036692454762,47.68050297896939,47.49848483837982,47.65975467964966,47.76557478546976,47.78172557912055,47.86403850429062,47.81641945667158,47.96562580587792,48.02118136143348,47.98240585122939,47.9410052910053,48.01413012285895,47.91785272301012,48.01193435566319,48.38745967690279,48.4816053351661,48.61335136691213,48.62467004823081,48.61935258791335,48.7004410232875,48.77104419789068,48.82764283734646,49.00124072094435,49.05711373681736,49.16016135586498,49.25817722888085,49.22627246697609,49.32049015405092,49.37879703235781,49.43478342691564,49.47328682827618,49.62585825684761,49.5453463676069,49.60566609549805,49.69695161905327,49.66039738624903,49.6549183946524,49.76920410893812,49.84939336412737,49.75113939587341,49.67862238907068,49.66770175415004,49.68080833011376,49.62449760380304,49.55039329541302,49.53167900969873,49.53072662874634,49.589162002896,49.56094431582117,49.51174854862541,49.46167124497668,49.5356743846941,49.41574364876337,49.52535292837266,49.46123123525096,49.50626090443951,49.44976027787309,49.28069068080349,49.20667707536131,49.23088342456766,49.32534374202799,49.33942112298037,49.29209685994182,49.27385960012562,49.35845452900627,49.51092347988937,49.42535205131794,49.56394993491582,49.49757805282965,49.53131831256991,49.57534212209372,49.51773530861734,49.50915167003371,49.65019063107267,49.65484671572875,49.69280967869172,49.70689464601198,49.75422860591173,49.91018709187021,49.90212277523446,49.86290508815964,49.91447651673107,50.06772056435013,50.13987888222272,50.21435545827824,50.182260220183,50.244260657055,50.35713896393331,50.31563631843067,50.47163143442578,50.50799236516171,50.53350102317037,50.5719952825342,50.4693444888834,50.3743949939339,50.36107224261115,50.38078679509881,50.26392405000077,50.31438457631656,50.41299051144424,50.45401023246396,50.51513268144355,50.46468701599788,50.42192602698689,50.51355455718685,50.49103051872531,50.39094337035245,50.26753265606673,50.28546916400325,50.18703566646629,50.15892547110609,50.19391271600406,50.28312864932447,50.37770735062317,50.57250100141682,50.67497556389138,50.70594618696648,50.81343880470323,50.85400191883778,50.95238162606764,50.91589821488068,51.01819214990189,51.00236292165887,51.04063266117861,51.02167539622135,50.98551238641649,51.03151744121618,51.0802207217562,51.14816715032763,51.05625709741759,51.18408742035136,51.19611179676859,51.17297750601525,51.07506766497654,51.00697428016316,50.91341665421423,50.8121109229085,50.73575213244523,50.59172814540401,50.66418700929145,50.53206106146008,50.53046223118176,50.42461765368134,50.43016843156116,50.40260512846215,50.42836165476412,50.35936366683656,50.22864560183277,50.28540602028587,50.22957552141965,50.27056238513065,50.20930841687669,50.12728867940424,50.12457263002153,50.13749681039116,50.09143107432543,50.09509981138547,50.05281986910553,49.79195406823973,null,null,null,null,null,null,null,null,null,null],"name":"Joseph R. Biden Jr.","type":"line","color":"#0000FF"},{"data":[null,null,null,null,null,null,null,null,null,null,44.76836913712854,44.80289294665234,44.53178183554123,44.22654374030314,43.97130564506504,43.66773421649361,43.3143328559494,43.34607888769543,43.10141723356008,43.16604308390023,42.99937641723356,42.8922335600907,42.81032879818594,42.72302721088435,42.71509070294784,42.63953514739229,42.68191609977324,42.39977324263038,42.62596371882086,42.63503401360543,42.47455782312925,42.71582766439909,42.48154195011337,42.65598639455782,42.66312925170067,42.71074829931973,42.77184353741497,42.82034013605442,42.78859410430839,42.83281179138322,42.85662131519274,42.93689342403628,42.82975056689342,42.86879818594105,42.79790532879819,42.65504818594105,42.57568310657597,42.6126672335601,42.64877834467121,42.53389739229025,42.44546201814059,42.40212868480726,42.21879535147392,42.06808106575964,41.89962868480726,41.95405045351474,41.93500283446712,41.86597108843538,41.78617346938776,41.89534013605443,41.87552721088436,41.91069727891157,42.05407596371882,42.1281500377929,42.07701908541195,42.06818405139834,42.24278722600151,42.4311470143613,42.55813114134543,42.47355064247921,42.4826892979414,42.54898966424177,42.45184680709891,42.3375610928132,42.50762912002408,42.61274816764313,42.70832639893564,42.77499306560231,42.80197719258643,42.84638653324578,42.94356907292832,42.92936839265621,42.90610308653376,42.80388086431154,42.72980679023747,42.64125520293588,42.72574499885425,42.86066563377489,42.64055981366906,42.60087727398652,42.69679564133346,42.62301412872842,42.86044661149989,42.93609287000329,43.01731735979921,42.86079430613329,42.80460382994282,42.8253181156571,42.68740602774502,42.70407269441169,42.79470587075915,42.77597571202899,42.9089689093079,42.84822816856716,42.91261970295869,43.05652446486346,43.10525462359361,43.06789198623098,42.93687157806771,43.02449062568676,43.01421851684322,43.12333416310172,43.17142940119696,42.93315442758301,43.02703197860341,43.27765884617287,43.49191149167552,43.47429244405647,43.42250672977076,43.48946643673047,43.35851405577809,43.32307187890734,43.32426235509781,43.2222079333291,43.2509573320785,43.3690147772788,43.37791953918357,43.4478401741042,43.50479464820153,43.52549759604734,43.53359283414257,43.49295585207702,43.34772822256367,43.24842086325631,43.35558203541748,43.29854499838044,43.03693173625317,43.01557521996244,43.14718694157416,43.17193183953335,43.19859850620001,43.3211381887397,43.19240094384173,43.32195876697099,43.39247004516648,43.32874710144353,43.38279440843972,43.46441345605876,43.46597430261961,43.4456032451057,43.40496832447078,43.38211118161363,43.47529770523494,43.68430462424186,43.66794098787822,43.60347008840732,43.59679283973007,43.59156875009422,43.62096098067066,43.45651857122825,43.43180614080153,43.34884695712807,43.36591044919156,43.36855925871536,43.12638238796707,43.08242056032103,43.12916885964076,42.85281543019558,42.74685246723262,42.73165670003685,42.68796705634721,42.71415753253768,42.72887614725629,42.68897966692504,42.61718337062874,42.75891785836323,42.87369034513571,43.07558790415932,43.23355802554121,43.10754925361138,43.09619774682509,43.03035840098575,43.11169853704017,43.20194884229048,43.23747997782161,43.27319426353589,43.31142457489121,43.32305465394985,43.40419155871176,43.3933449978652,43.57516273185535,43.73713159632422,43.87202555390725,43.94168504864137,44.04059552483185,44.08017488991121,44.18507598881232,44.24190659767277,44.11366174800877,44.2011764872378,44.32885571715973,44.51352984408683,44.62621295222448,44.77864891281561,44.88522400439071,44.94274048790719,45.06608052814864,45.15447007841318,45.12655775879874,45.11313513975112,45.17939704451302,45.03098747378818,44.89501808603308,44.75647333479925,44.71784435426638,44.59980903895106,44.49991186848867,44.47816805674486,44.44248607703302,44.41630569714575,44.26785811298388,44.29656860737272,44.31362272998092,44.39847779266715,44.38522746565148,44.31147463118437,44.44157537892148,44.41852105296574,44.46740616256513,44.53049752677039,44.67726623425338,44.72655441159328,44.77379505785179,44.96486672595564,45.0176841862731,45.12622912585783,45.29791806754677,45.38345015864409,45.47232461751855,45.60920773440166,null,null,null,null,null,null,null,null,null,null],"name":"Donald Trump","type":"line","color":"#FF0000"},{"data":[49.09754685777802,44.34343026930013,44.73133812264645,48.8504739711663,47.6463744899181,42.32225301000435,56.79366910868624,43.98092549500165,43.72492095076948,45.88425331723022,43.3155517507703,45.7868453163587,43.77843018042361,48.40142459091476,49.7954803876252,47.10276301403987,44.78424616371832,51.04863847562338,40.7310712067874,47.81658444058057,45.90942666446034,47.12428406931664,48.11726139234578,44.17186681359554,51.39213020845618,46.09834341301972,46.89302328788474,49.09120593601528,48.84833655073869,46.54252571663579,51.95376983176661,51.02187705859379,48.6391645109012,46.25984116959298,50.53211048555259,44.44407934685572,46.76266374607285,46.28003346168457,45.81689138663564,44.26035956046613,47.51147961876045,42.41408359568652,50.8059383772243,43.09930614712353,46.10238697114652,51.72454392642284,49.37392520880265,53.12803575779127,43.98693737404,49.71597424780105,49.23558058333044,46.18084859383794,50.22655835801668,51.25240376719171,48.30580186625044,47.93303284639396,46.71059452322223,50.98822518664878,45.34175939184792,49.41827353984461,46.67310350602562,44.19626317870814,51.88299978501693,50.40776383002549,46.89588409671217,45.78141625601852,47.99468076820013,43.78866157569685,53.23761409602673,49.45164937901854,52.12918161892549,51.8538851415959,46.3107739739432,51.40947746111962,46.22084604558672,46.25497941091501,46.71879424249942,44.66928136858137,47.22984606919282,52.3013381033763,53.12084743560641,51.48034430698362,52.96985715131292,47.99568271987678,43.0567267675826,48.5803191913764,46.75177775718033,48.45736603974385,48.68360951591829,51.61709100186732,48.51735576727189,47.74962606662183,48.2695221537471,47.84163240361909,49.49628502548769,49.07719273072625,51.99306296373384,47.99311954756272,48.18301719650866,49.6980776451158,47.40784846895654,46.64493136066316,48.36526128818262,50.2854442297911,50.9941824368918,49.73886558662667,51.16463451761941,44.60877026611691,47.49647738137629,48.06232786336884,47.89759236148662,49.66031868425326,47.77242341274343,51.1334267434629,51.52666899512776,56.23405037725511,46.56109096371041,44.47990053397572,51.57326836804992,54.67180356367253,52.59585952541507,49.83153964432128,50.51656179656205,50.56057431301377,49.68885151454737,52.02877216067421,48.57637381327073,44.64274405773502,50.95360608339021,51.20080159532992,48.29675701447553,50.77408722174819,47.45000383907747,46.25384340707228,50.79563882184599,47.05568077719873,48.1494650987906,48.1196975479967,48.85676110384613,46.14461750611,49.60512023507822,50.82938032804277,51.83873737648664,48.29688313203568,52.73726701321597,48.11784603056795,52.01625588531594,48.05112171072243,44.4984367332869,50.01974534206006,51.5790140579027,51.01474517440427,49.49403751965663,50.70401584261633,51.64994327597216,49.64429443271125,48.2820101822596,49.34069086467817,52.29825175966214,48.17399537361335,49.53030306870761,50.78145577891934,46.29786493790757,51.19956741387074,52.9711384708615,51.55904507045177,54.57893584884319,52.72875560475629,52.79538831724645,49.04592970923551,48.24851631726086,47.60914909107749,47.04527495884132,47.83549223795192,50.62116907922018,50.73069386085616,50.18674343910154,50.15679661570714,55.14760662116336,51.936238944705,54.26406798726123,50.60755419672934,49.19135218787955,53.21492079417917,48.51711397472484,45.67104580027139,52.43301842747466,54.7505227872233,49.62906245933834,52.21551532620349,53.50584377267146,53.22319126964171,50.78930684915309,52.81999607001342,54.91671718578068,49.40822099100684,49.46940600262953,49.83338868243037,47.07393994994244,51.67497760502965,50.4014779240394,50.02871741080628,51.26923214966898,50.71176372125426,51.50963518123164,52.82323751932416,51.70450610426694,50.94961162165447,51.97816843060703,50.68912305351371,52.88058850494937,49.96832370323425,52.71333443874108,53.01093096557368,48.80721751619981,51.38976183559186,53.84408824282552,52.4643553867847,50.25526597871266,50.05523246044378,47.99031633351547,52.01742801640418,51.59200566739748,49.03117111342274,50.06342042662135,50.81701524497356,49.23802249411447,49.95917235023286,48.10616816094317,49.68297831547406,50.98321191119395,48.9437043256162,51.49275149138703,52.78785035520536,52.51938147836771,50.68758685004676,50.87226459072662,49.79490066345799,45.01225131056932,49.27961946060021,47.14583509914377,50.94228952686012,50.87992992686517,50.49856605050753,50.37585066601136,49.8333773584582,48.58837980108278,48.56617140790166,51.5129168010732,44.25986836166573],"name":"Biden Polls","type":"scatter","color":"#0000FF","marker":{"radius":2,"symbol":"circle"}},{"data":[42.95006971610691,44.94354199113764,48.66403699957527,45.76748089438806,49.07167042145581,52.2067564417375,41.23038008061496,50.04114042058159,40.35148241555153,45.38562639073992,43.81668791203316,45.32103208144955,43.19851338910037,45.0214208619424,45.65001971748962,43.22156529152176,49.6710922497801,43.06384556962715,45.55996297032571,43.38512161510256,43.01628677015054,45.92238741252445,39.35419858186572,43.09042308012317,41.1804645671458,39.51883774227179,41.27853434756423,41.33222563283601,42.66586990543911,43.3761537217646,32.95058683946239,43.82986333624427,41.68479983156768,37.29564364818917,41.69509617752103,44.83478015513663,37.14647927504867,39.98177259631917,48.57069202098348,44.72061825741195,44.31091170744358,49.17902588987651,46.65170716936862,42.86744547084331,47.42332160112827,43.80923492362793,46.06126101681338,42.44272705410019,41.44136687952202,42.17573859552798,44.05492138565623,40.79018916219513,39.84822393812718,45.05223964452007,42.20091593424237,38.91635888014471,40.37782507031994,43.9771511542795,40.37635459922797,43.33907941101007,37.04179214030582,41.49303933213533,44.82915355121924,40.3034188813125,44.92466416117583,40.65205638325588,43.06210787966768,39.43573179027577,40.69027353905806,44.40135410797495,43.39984302154009,43.24954491399444,46.83983679841099,43.88543257162632,42.56002338740102,43.43552279725902,44.08508647243168,44.32113267252867,45.6263684604132,40.996904547787,45.48954666547721,38.84649170230485,39.11772964244142,42.37188433506115,41.69240316774115,47.950113099652,42.41333167359443,44.29187780895766,39.84184875942674,42.4865031458254,43.61465003165343,42.28895589211378,44.00722592008028,41.33585441347352,37.75242833688455,40.39752485146713,47.85783784827464,45.27794617841375,40.95364871734411,45.50824960703005,42.11215733669921,40.94402177655193,44.48747662186627,42.55695704963627,40.92620664089479,41.66452953265653,41.29667856404525,45.4688717177963,44.39069041976249,44.2529336972413,48.38407178645819,46.55499620120057,45.49261804323151,44.7307753524455,43.70900204701962,45.4838555218514,43.55943118799796,42.18970900810982,41.44287306959346,42.82417441319393,42.88864848001682,42.8407491741884,38.70933523193829,44.68115621756974,44.67092857505206,46.40344208749243,47.05040241321767,41.53617722764579,40.44290668817839,39.0894809946045,39.02149172526668,43.9432889917561,43.36497462290682,43.32980806631178,40.43287173246508,46.57076554839122,43.60009697925626,40.66296252338385,43.95057957665631,42.08805562684731,42.10528172721754,39.6886948179466,39.5934065458771,41.06976056414266,44.44162541584635,41.24898652040477,42.60069610165486,42.23854957983153,43.66540551105484,43.27891035119497,40.49319985189491,45.21531432986983,42.99575708772623,47.34600797487023,41.80746430494368,44.67718286561165,47.64715772124372,46.0437555750406,40.01843191314671,40.24963684226502,43.06339073031204,42.40135978937335,44.567829501924,46.28631102248058,41.61982539532442,42.38730372237624,42.01666520205787,42.7107801505932,47.38194487969376,41.85784884352896,41.8104279224166,43.4957849018223,46.44549925438456,38.39827681744139,42.96561889110394,42.53895498418152,41.81179225426883,41.47174652334795,46.7671086340773,44.09871780908511,38.67439174930685,43.70036652562725,46.52387934910589,44.8185960228496,45.47579441954291,44.34653807320296,47.8790547421559,46.81990532334078,45.1034876158845,44.58683745276124,42.9533377096234,42.74586502749055,44.46927180525269,45.07206008162243,40.63592043869431,44.04272520000336,43.95930208635878,42.7859395386176,41.13085443118991,45.83177599117219,49.24562518355528,44.90737391500264,47.77527147540901,47.53653406750856,44.42128481046259,44.8052685778072,47.19308517555029,45.2431092029078,43.58536667162797,45.15088884763352,47.5595734296064,44.22949627761779,45.04619244344568,48.66877338518543,47.96053927772782,38.45799959838521,44.7084952769245,42.25271500373321,42.31682874443887,44.54041505133628,42.12179708755886,44.04011835389741,45.18687319013819,38.02298459874214,42.58305440198793,41.87953660789722,43.44043259532791,45.93773215215477,43.94076988602011,45.98423723860297,45.44242256757809,48.83030432033069,46.69698878593734,48.41901196846175,44.67711325635246,46.22321344597781,47.87883239954521,43.07559503649555,44.64595560794766,41.24970650811094,49.82987256031854,42.1463465087048,46.32821858451069,46.1569357141554,44.04362089131259,47.68523296551729,48.83840723468158,45.35433017783363,45.02419593506522,45.45257569584895],"name":"Trump Polls","type":"scatter","color":"#FF0000","marker":{"radius":2,"symbol":"circle"}}],"tooltip":{"shared":true,"pointFormat":"{series.name}: <b>{point.y:.1f}%<\/b><br/>"},"legend":{"enabled":true},"annotations":[{"labels":[{"point":{"x":249,"y":null},"text":"Joseph R. Biden Jr. NA %","style":{"color":"#0000FF","fontWeight":"bold"}},{"point":{"x":249,"y":null},"text":"Donald Trump NA %","style":{"color":"#FF0000","fontWeight":"bold"}}]}]},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>Similar analysis can be done in the form of a table with colors for the percentages of Biden and Trump, along with the net result.</p>
@@ -583,11 +534,11 @@ Attaching package: 'zoo'</code></pre>
 <section id="loading-the-libraries" class="level1">
 <h1>Loading the libraries:</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: 'kableExtra'</code></pre>
@@ -602,9 +553,9 @@ Attaching package: 'kableExtra'</code></pre>
 <section id="loading-the-data" class="level1">
 <h1>Loading the Data:</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the CSV file</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">"president_polls_historical.csv"</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(file_path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the CSV file</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">"president_polls_historical.csv"</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(file_path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 16715 Columns: 48
 ── Column specification ────────────────────────────────────────────────────────
@@ -622,81 +573,81 @@ lgl  (9): endorsed_candidate_id, endorsed_candidate_name, endorsed_candidate...
 <section id="preprocess-the-data" class="level1">
 <h1>Preprocess the data</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the data to only include Biden and Trump results</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(answer <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Biden"</span>, <span class="st">"Trump"</span>))</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> filtered_data <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>(sponsors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the data to only include Biden and Trump results</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(answer <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Biden"</span>, <span class="st">"Trump"</span>))</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> filtered_data <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>(sponsors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select only the first 50 rows</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> filtered_data <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select only the first 50 rows</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> filtered_data <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="pivoting-the-data" class="level1">
 <h1>Pivoting the Data:</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pivot the data to have 'Biden' and 'Trump' results in separate columns</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>pivot_data <span class="ot">&lt;-</span> filtered_data <span class="sc">%&gt;%</span> </span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> answer, <span class="at">values_from =</span> pct) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">biden_pct =</span> Biden, <span class="at">trump_pct =</span> Trump)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pivot the data to have 'Biden' and 'Trump' results in separate columns</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>pivot_data <span class="ot">&lt;-</span> filtered_data <span class="sc">%&gt;%</span> </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> answer, <span class="at">values_from =</span> pct) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">biden_pct =</span> Biden, <span class="at">trump_pct =</span> Trump)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="replacing-na-values" class="level1">
 <h1>Replacing NA values</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace NA values with 100 - the valid percentage</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>pivot_data <span class="ot">&lt;-</span> pivot_data <span class="sc">%&gt;%</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">biden_pct =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(biden_pct), <span class="dv">100</span> <span class="sc">-</span> trump_pct, biden_pct),</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">trump_pct =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(trump_pct), <span class="dv">100</span> <span class="sc">-</span> biden_pct, trump_pct))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace NA values with 100 - the valid percentage</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>pivot_data <span class="ot">&lt;-</span> pivot_data <span class="sc">%&gt;%</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">biden_pct =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(biden_pct), <span class="dv">100</span> <span class="sc">-</span> trump_pct, biden_pct),</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">trump_pct =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(trump_pct), <span class="dv">100</span> <span class="sc">-</span> biden_pct, trump_pct))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="net-result" class="level1">
 <h1>Net Result</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate net result</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>pivot_data <span class="ot">&lt;-</span> pivot_data <span class="sc">%&gt;%</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">net_result =</span> biden_pct <span class="sc">-</span> trump_pct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate net result</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>pivot_data <span class="ot">&lt;-</span> pivot_data <span class="sc">%&gt;%</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">net_result =</span> biden_pct <span class="sc">-</span> trump_pct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="forming-date-columns" class="level1">
 <h1>Forming date columns</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Concatenate start_date and end_date to form the dates column</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>pivot_data <span class="ot">&lt;-</span> pivot_data <span class="sc">%&gt;%</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dates =</span> <span class="fu">paste</span>(start_date, <span class="st">"-"</span>, end_date))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Concatenate start_date and end_date to form the dates column</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>pivot_data <span class="ot">&lt;-</span> pivot_data <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dates =</span> <span class="fu">paste</span>(start_date, <span class="st">"-"</span>, end_date))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="reording-columns" class="level1">
 <h1>Reording columns</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select and reorder columns to match the image</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>final_data <span class="ot">&lt;-</span> pivot_data <span class="sc">%&gt;%</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dates, sample_size, pollster, sponsors, biden_pct, trump_pct, net_result) <span class="sc">%&gt;%</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">DATES =</span> dates, <span class="at">SAMPLE =</span> sample_size, <span class="at">POLLSTER =</span> pollster, <span class="at">SPONSOR =</span> sponsors,</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">BIDEN %</span><span class="st">`</span> <span class="ot">=</span> biden_pct, <span class="st">`</span><span class="at">TRUMP %</span><span class="st">`</span> <span class="ot">=</span> trump_pct, <span class="st">`</span><span class="at">NET RESULT</span><span class="st">`</span> <span class="ot">=</span> net_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select and reorder columns to match the image</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>final_data <span class="ot">&lt;-</span> pivot_data <span class="sc">%&gt;%</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dates, sample_size, pollster, sponsors, biden_pct, trump_pct, net_result) <span class="sc">%&gt;%</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">DATES =</span> dates, <span class="at">SAMPLE =</span> sample_size, <span class="at">POLLSTER =</span> pollster, <span class="at">SPONSOR =</span> sponsors,</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">BIDEN %</span><span class="st">`</span> <span class="ot">=</span> biden_pct, <span class="st">`</span><span class="at">TRUMP %</span><span class="st">`</span> <span class="ot">=</span> trump_pct, <span class="st">`</span><span class="at">NET RESULT</span><span class="st">`</span> <span class="ot">=</span> net_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="format-the-data-for-percentages" class="level1">
 <h1>Format the data for percentages</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>final_data <span class="ot">&lt;-</span> final_data <span class="sc">%&gt;%</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">`</span><span class="at">BIDEN %</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sprintf</span>(<span class="st">"%.1f%%"</span>, <span class="st">`</span><span class="at">BIDEN %</span><span class="st">`</span>),</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">TRUMP %</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sprintf</span>(<span class="st">"%.1f%%"</span>, <span class="st">`</span><span class="at">TRUMP %</span><span class="st">`</span>),</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">NET RESULT</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sprintf</span>(<span class="st">"%.1f"</span>, <span class="st">`</span><span class="at">NET RESULT</span><span class="st">`</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>final_data <span class="ot">&lt;-</span> final_data <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">`</span><span class="at">BIDEN %</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sprintf</span>(<span class="st">"%.1f%%"</span>, <span class="st">`</span><span class="at">BIDEN %</span><span class="st">`</span>),</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">TRUMP %</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sprintf</span>(<span class="st">"%.1f%%"</span>, <span class="st">`</span><span class="at">TRUMP %</span><span class="st">`</span>),</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">NET RESULT</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sprintf</span>(<span class="st">"%.1f"</span>, <span class="st">`</span><span class="at">NET RESULT</span><span class="st">`</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="create-the-table-with-colors" class="level1">
 <h1>Create the table with colors</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>final_data <span class="sc">%&gt;%</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> F) <span class="sc">%&gt;%</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">5</span>, <span class="at">background =</span> <span class="st">"#DCE6F1"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">6</span>, <span class="at">background =</span> <span class="st">"#F4CCCC"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">bold =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>final_data <span class="sc">%&gt;%</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> F) <span class="sc">%&gt;%</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">5</span>, <span class="at">background =</span> <span class="st">"#DCE6F1"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">6</span>, <span class="at">background =</span> <span class="st">"#F4CCCC"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">bold =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">DATES</th>
@@ -1249,27 +1200,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1279,17 +1213,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1301,130 +1226,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
+      return note.innerHTML;
     });
   }
       let selectedAnnoteEl;
@@ -1468,7 +1270,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1494,32 +1295,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1580,7 +1355,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-
 
 
 

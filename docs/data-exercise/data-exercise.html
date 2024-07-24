@@ -143,6 +143,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../data-exercise/data-exercise.html" rel="" target="">
  <span class="dropdown-text">Data Exercise</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../cdcdata-exercise/cdcdata-exercise.html" rel="" target="">
+ <span class="dropdown-text">Data Analysis Exercise</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -320,7 +324,36 @@ The following object is masked from 'package:purrr':
 <span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>1/1 - 1s - 553ms/epoch - 553ms/step</code></pre>
+<pre><code>[1] "Error processing image train3/00018_jpg.rf.5713930d163a1f4a78bcaf245383ad5c.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00047_jpg.rf.b7297bbf9108d4ea13203273e269a7d6.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00065_jpg.rf.6b288eb7eb919bd5ab4643c6cc4c39f2.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00066_jpg.rf.7c13f8c45f57cbff28019d6769a1da71.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00067_jpg.rf.8f6a26c7b844faecfa806bbf025dc1e5.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00090_jpg.rf.2567aa18a62255e033e6f47ea1c46b68.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00097_jpg.rf.0de6e8dfc0a9b535d9efabeea73aae54.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00111_jpg.rf.aaf821696dacbb6622c7405d0547af95.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00120_jpg.rf.2e35a8aebbe4d59102e08ca3b1e67a5e.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00128_jpg.rf.c6341f9c6cb88143bd92184780724954.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00130_jpg.rf.48f61751e156f4ea1c72c02f03b93fba.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00133_jpg.rf.9ab3652abf77c83897397788a0da9c23.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00141_jpg.rf.389a3c12167b168aa1f37c1cdee61fde.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00143_jpg.rf.8dcf4a15123d8025154ac7414ac83c8c.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00154_jpg.rf.487c9e235f553e6a7a207bc212c267de.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00172_jpg.rf.462d594e7cf02ecbda6b895e55881441.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00203_jpg.rf.d0e979e1467a4c21bdcb9e2a3e353fbe.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00242_jpg.rf.b5e34571f7a804db90621a131394d564.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00260_jpg.rf.5b3b0a9284677edc8fe156879467c33b.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00261_jpg.rf.422654949985bd902a533d57f73b7138.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00267_jpg.rf.ae56cdecca2f4998fb53bcca5937c499.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00295_jpg.rf.f02feba259c3f165b528878f731955a7.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00364_jpg.rf.36f7991dce10e2d6da9b8b83a71a4a86.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00398_jpg.rf.4e03ce1430a09aae3daa4b34e9fefa1f.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00414_jpg.rf.2e8ddb9ff63e14cc1b3f19548c1bf38f.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00433_jpg.rf.237b56e160753cf50b7ff63dba60e133.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00440_jpg.rf.7c73ec044053ac0af6ce0107f2d29454.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00452_jpg.rf.26e525f56781344e023ca87f970e9fee.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00457_jpg.rf.0a3e3a1b30c3d41ec34138736c24e03d.jpg : unused argument (grayscale = FALSE)"
+[1] "Error processing image train3/00460_jpg.rf.b7748a53f24e540cb348b8688b6d4a21.jpg : unused argument (grayscale = FALSE)"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter out objects with count less than 4</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#filtered_object_counts &lt;- object_counts[sapply(object_counts, function(x) x &gt; 2)]</span></span>
@@ -337,23 +370,8 @@ The following object is masked from 'package:purrr':
 <span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the counts of each type of animal</span></span>
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>filtered_object_counts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>$cab
-[1] 3
-
-$convertible
-[1] 4
-
-$beach_wagon
-[1] 5
-
-$limousine
-[1] 3
-
-$pickup
-[1] 4
-
-$sports_car
-[1] 6</code></pre>
+<pre><code>$pickup
+[1] 0</code></pre>
 </div>
 </div>
 </section>
@@ -490,12 +508,12 @@ $sports_car
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(merged_data<span class="sc">$</span><span class="st">`</span><span class="at">Annual Gasoline Consumption</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-   3279    4303    8329    9906   16211   17701 </code></pre>
+      0       0       0       0       0       0 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(merged_data<span class="sc">$</span><span class="st">`</span><span class="at">Annual Diesel Consumption</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-   2902    3808    7371    8767   14347   15666 </code></pre>
+      0       0       0       0       0       0 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter Plot of Gasoline vs Diesel Consumption</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(merged_data, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Annual Gasoline Consumption</span><span class="st">`</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">Annual Diesel Consumption</span><span class="st">`</span>)) <span class="sc">+</span></span>
@@ -517,14 +535,14 @@ $sports_car
 <p><img src="data-exercise_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 5 6</code></pre>
+<pre><code>[1] 1</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(merged_data<span class="sc">$</span><span class="st">`</span><span class="at">Annual Diesel Consumption</span><span class="st">`</span>, <span class="at">main =</span> <span class="st">"QQ Plot for Annual Diesel Consumption"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="data-exercise_files/figure-html/unnamed-chunk-12-2.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 5 6</code></pre>
+<pre><code>[1] 1</code></pre>
 </div>
 </div>
 </section>
