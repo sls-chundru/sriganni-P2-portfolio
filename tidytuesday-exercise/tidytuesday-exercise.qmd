@@ -353,6 +353,9 @@ metrics <- data.frame(
   Value = c(0.909, 1.000, 1.000, 1.000)
 )
 
+```
+
+```{r}
 # Plotting the metrics using highcharter
 hc <- highchart() %>%
   hc_chart(type = "column") %>%
@@ -365,7 +368,10 @@ hc <- highchart() %>%
   hc_legend(enabled = FALSE)
 
 # Print the highchart
-print(hc)
+hc
+```
+
+```{r}
 
 # Display the table using knitr::kable
 kable(metrics, caption = "Performance Metrics for Logistic Regression Model")
