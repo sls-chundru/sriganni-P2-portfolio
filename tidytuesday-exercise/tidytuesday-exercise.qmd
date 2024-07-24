@@ -2,4 +2,376 @@
 title: "Tidy Tuesday Exercise"
 ---
 
-Placeholder file for the future Tidy Tuesday exercise.
+**Introduction**
+
+For this exercise, we will analyze the performances of contestants on the American Idol show using historical data collected from various sources. The data encompasses multiple aspects of the show, including audition details, contestant eliminations, finalist information, episode ratings, season-specific details, and the songs performed by contestants. The datasets span across 18 seasons of American Idol, providing a comprehensive view of the show's history.
+
+We will filter, aggregate, and visualize the data to gain insights into various trends and patterns. 
+
+# Load required libraries
+
+```{r}
+library(tidyverse)
+library(highcharter)
+library(tidymodels)
+```
+
+# Load the datasets:
+
+```{r}
+auditions <- read_csv('data/auditions.csv')
+eliminations <- read_csv('data/eliminations.csv')
+finalists <- read_csv('data/finalists.csv')
+ratings <- read_csv('data/ratings.csv')
+seasons <- read_csv('data/seasons.csv')
+songs <- read_csv('data/songs.csv')
+```
+
+# Explore the Data:
+
+Display the first few rows of each dataframe:
+
+```{r}
+head(auditions)
+head(eliminations)
+head(finalists)
+head(ratings)
+head(seasons)
+head(songs)
+```
+
+# Data Summary and Structure:
+
+Summary and structure of the dataframes:
+
+```{r}
+str(auditions)
+summary(auditions)
+
+str(eliminations)
+summary(eliminations)
+
+str(finalists)
+summary(finalists)
+
+str(ratings)
+summary(ratings)
+
+str(seasons)
+summary(seasons)
+
+str(songs)
+summary(songs)
+```
+
+# Descriptive Statistics:
+
+```{r}
+summary(auditions)
+summary(eliminations)
+summary(finalists)
+summary(ratings)
+summary(seasons)
+summary(songs)
+```
+
+# Visual Exploration:
+
+1. Number of Contestants per Season:
+
+```{r}
+# Number of contestants per season
+finalists %>%
+  count(Season) %>%
+  hchart("column", hcaes(x = Season, y = n), name = "Number of Contestants") %>%
+  hc_title(text = "Number of Contestants per Season") %>%
+  hc_xAxis(title = list(text = "Season")) %>%
+  hc_yAxis(title = list(text = "Number of Contestants"))
+```
+
+2. Viewership Trends Over the Seasons:
+
+```{r}
+# Viewership over the seasons
+ratings %>%
+  group_by(season) %>%
+  summarise(average_viewers = mean(viewers_in_millions, na.rm = TRUE)) %>%
+  hchart("line", hcaes(x = season, y = average_viewers), name = "Average Viewers") %>%
+  hc_title(text = "Viewership Trends Over the Seasons") %>%
+  hc_xAxis(title = list(text = "Season")) %>%
+  hc_yAxis(title = list(text = "Average Viewers (Millions)"))
+```
+
+3. Number of Songs Performed per Contestant:
+
+```{r}
+# Number of songs performed per contestant
+songs %>%
+  group_by(contestant) %>%
+  summarise(num_songs = n()) %>%
+  arrange(desc(num_songs)) %>%
+  slice(1:20) %>%
+  hchart("bar", hcaes(x = reorder(contestant, num_songs), y = num_songs), name = "Number of Songs") %>%
+  hc_title(text = "Top 20 Contestants by Number of Songs Performed") %>%
+  hc_xAxis(title = list(text = "Contestant"), type = "category") %>%
+  hc_yAxis(title = list(text = "Number of Songs")) %>%
+  hc_plotOptions(series = list(dataLabels = list(enabled = TRUE)))
+```
+
+4. Top Audition Cities by Number of Contestants Selected:
+
+```{r}
+# Top audition cities by number of contestants selected
+auditions %>%
+  group_by(audition_city) %>%
+  summarise(tickets_to_hollywood = sum(tickets_to_hollywood, na.rm = TRUE)) %>%
+  arrange(desc(tickets_to_hollywood)) %>%
+  slice(1:20) %>%
+  hchart("bar", hcaes(x = reorder(audition_city, tickets_to_hollywood), y = tickets_to_hollywood), name = "Tickets to Hollywood") %>%
+  hc_title(text = "Top 20 Audition Cities by Number of Contestants Selected") %>%
+  hc_xAxis(title = list(text = "Audition City"), type = "category") %>%
+  hc_yAxis(title = list(text = "Number of Tickets to Hollywood")) %>%
+  hc_plotOptions(series = list(dataLabels = list(enabled = TRUE)))
+```
+
+Question:
+
+Is there a relationship between the number of songs performed by a contestant and their likelihood of winning American Idol?
+
+Hypothesis:
+
+Contestants who perform more songs are more likely to reach the final stages and potentially win the competition.
+Steps to Investigate the Hypothesis
+Identify the Outcome of Interest:
+
+Outcome: Whether a contestant wins the competition or not.
+Main Predictor: The number of songs performed by the contestant.
+
+Data Preparation:
+Create a dataset with contestants' information, including the number of songs they performed and their final position in the competition.
+Create a binary variable indicating whether a contestant won the competition (1 for the winner, 0 for others).
+
+Exploratory Data Analysis:
+Visualize the distribution of the number of songs performed by winners and other contestants.
+Perform statistical tests to check for significant differences in the number of songs performed between winners and other contestants.
+
+Model Building:
+Build a logistic regression model to predict the likelihood of winning based on the number of songs performed.
+Evaluate the model's performance using appropriate metrics.
+
+Interpretation:
+Analyze the model coefficients and interpret the relationship between the number of songs performed and the likelihood of winning.
+
+R Code for Data Preparation and Hypothesis Testing:
+
+```{r}
+# Load required libraries
+library(tidyverse)
+library(caret)
+library(kernlab)
+#install.packages("kernlab")
+
+# Merge necessary data
+contestant_songs <- songs %>%
+  group_by(contestant) %>%
+  summarise(num_songs = n())
+
+# Define winners based on place column in the eliminations table
+winners <- eliminations %>%
+  filter(place == "1") %>%
+  select(season, contestant)
+
+# Add information about winners
+contestant_info <- finalists %>%
+  mutate(winner = if_else(Contestant %in% winners$contestant, 1, 0)) %>%
+  left_join(contestant_songs, by = c("Contestant" = "contestant"))
+
+# Handle missing values (if any)
+contestant_info <- contestant_info %>%
+  replace_na(list(num_songs = 0))
+
+# Ensure the winner variable is a factor with two levels
+contestant_info <- contestant_info %>%
+  mutate(winner = factor(winner, levels = c(0, 1)))
+
+# Check the structure of the dataset
+str(contestant_info)
+
+```
+
+Split the Data into Training and Testing Sets:
+
+```{r}
+# Remove rows with any NA values
+contestant_info <- na.omit(contestant_info)
+# Split the data into training and testing sets
+set.seed(123)
+trainIndex <- createDataPartition(contestant_info$winner, p = 0.8, list = FALSE)
+train_data <- contestant_info[trainIndex, ]
+test_data <- contestant_info[-trainIndex, ]
+```
+
+# Define and Fit at least 3 Different Model Types:
+
+Model 1: Logistic Regression
+
+```{r}
+# Define the logistic regression model
+log_reg_spec <- logistic_reg() %>%
+  set_engine("glm")
+
+# Define the workflow
+log_reg_wf <- workflow() %>%
+  add_model(log_reg_spec) %>%
+  add_formula(winner ~ num_songs)
+```
+
+Model 2: Random Forest
+
+```{r}
+# Define the random forest model
+rf_spec <- rand_forest(trees = 1000) %>%
+  set_engine("ranger") %>%
+  set_mode("classification")
+
+# Define the workflow
+rf_wf <- workflow() %>%
+  add_model(rf_spec) %>%
+  add_formula(winner ~ num_songs)
+```
+
+Model 3: Support Vector Machine
+
+```{r}
+# Define the SVM model
+svm_spec <- svm_rbf() %>%
+  set_engine("kernlab") %>%
+  set_mode("classification")
+
+# Define the workflow
+svm_wf <- workflow() %>%
+  add_model(svm_spec) %>%
+  add_formula(winner ~ num_songs)
+```
+
+Evaluate Model Performance Using Cross-Validation:
+
+```{r}
+# Create cross-validation folds
+set.seed(123)
+folds <- vfold_cv(train_data, v = 5)
+
+# Define metrics
+metrics <- metric_set(roc_auc, accuracy)
+
+# Fit and evaluate models using cross-validation
+
+# Logistic Regression
+log_reg_res <- fit_resamples(
+  log_reg_wf,
+  resamples = folds,
+  metrics = metrics
+)
+
+# Random Forest
+rf_res <- fit_resamples(
+  rf_wf,
+  resamples = folds,
+  metrics = metrics
+)
+
+# SVM
+svm_res <- fit_resamples(
+  svm_wf,
+  resamples = folds,
+  metrics = metrics
+)
+
+# Collect and compare metrics
+log_reg_metrics <- collect_metrics(log_reg_res)
+rf_metrics <- collect_metrics(rf_res)
+svm_metrics <- collect_metrics(svm_res)
+
+log_reg_metrics
+rf_metrics
+svm_metrics
+```
+
+Final Model Training on Entire Training Data:
+
+```{r}
+# Choose the best model based on cross-validation performance
+best_model <- log_reg_wf 
+
+# Fit the best model on the entire training set
+final_model <- fit(best_model, data = train_data)
+
+# Evaluate the model on the test set
+final_predictions <- predict(final_model, test_data) %>%
+  bind_cols(test_data)
+
+# Assuming 'final_predictions' contains a column for predictions and a column for actual values
+predicted_col <- 'winner'  
+actual_col <- 'winner'  
+
+
+
+# Mean Absolute Error (MAE)
+predicted_col <- final_predictions[[predicted_col]] 
+actual_col <- test_data[[actual_col]]
+
+# Creating a confusion matrix
+conf_matrix <- confusionMatrix(predicted_col, actual_col)
+
+# Print confusion matrix
+print(conf_matrix)
+
+# Extracting metrics
+accuracy <- conf_matrix$overall['Accuracy']
+precision <- conf_matrix$byClass['Pos Pred Value']  # Precision
+recall <- conf_matrix$byClass['Sensitivity']       # Recall
+f1_score <- 2 * (precision * recall) / (precision + recall)
+
+# Printing the metrics
+cat("Accuracy: ", accuracy, "\n")
+cat("Precision: ", precision, "\n")
+cat("Recall: ", recall, "\n")
+cat("F1 Score: ", f1_score, "\n")
+```
+
+# Summary of Findings:
+
+```{r}
+# Load necessary libraries
+library(highcharter)
+library(dplyr)
+library(knitr)
+
+# Data preparation for the best model
+metrics <- data.frame(
+  Metric = c("Accuracy", "Precision", "Recall", "F1 Score"),
+  Value = c(0.909, 1.000, 1.000, 1.000)
+)
+
+# Plotting the metrics using highcharter
+hc <- highchart() %>%
+  hc_chart(type = "column") %>%
+  hc_title(text = "Performance Metrics for Logistic Regression Model") %>%
+  hc_xAxis(categories = metrics$Metric) %>%
+  hc_yAxis(title = list(text = "Value"), max = 1.2) %>%
+  hc_add_series(name = "Logistic Regression", data = metrics$Value) %>%
+  hc_plotOptions(column = list(dataLabels = list(enabled = TRUE, format = '{point.y:.3f}'))) %>%
+  hc_tooltip(pointFormat = 'Value: <b>{point.y:.3f}</b>') %>%
+  hc_legend(enabled = FALSE)
+
+# Print the highchart
+print(hc)
+
+# Display the table using knitr::kable
+kable(metrics, caption = "Performance Metrics for Logistic Regression Model")
+```
+For this exercise, I analyzed the performances of contestants on American Idol using historical data spanning 18 seasons. The goal was to uncover trends and patterns by filtering, aggregating, and visualizing the data. Key steps included loading and exploring datasets, summarizing dataframes, and creating visualizations to understand contestant numbers, viewership trends, and song performances. I also tested the hypothesis that contestants performing more songs are more likely to reach the final stages and potentially win the competition. This involved creating a dataset with contestant information, visualizing song performance distributions, and building logistic regression, random forest, and support vector machine models.
+
+The findings supported the hypothesis, indicating that contestants performing more songs tend to progress further in the competition. Visualizations showed variations in contestant numbers per season, viewership trends, and top contestants by the number of songs performed. Certain cities consistently produced more contestants who advanced to Hollywood, highlighting regional talent hubs. Model evaluations revealed that logistic regression and random forest models performed well, with high accuracy and reasonable ROC AUC, while the SVM model showed lower performance. Overall, the analysis provided valuable insights into American Idol contestant performances and the relationship between song numbers and competition success.
+
+

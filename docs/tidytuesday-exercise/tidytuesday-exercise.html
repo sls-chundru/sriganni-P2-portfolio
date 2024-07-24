@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -58,6 +92,49 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script src="../site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="../site_libs/jquery-3.5.1/jquery.min.js"></script>
+<script src="../site_libs/proj4js-2.3.15/proj4.js"></script>
+<link href="../site_libs/highcharts-9.3.1/css/motion.css" rel="stylesheet">
+<script src="../site_libs/highcharts-9.3.1/highcharts.js"></script>
+<script src="../site_libs/highcharts-9.3.1/highcharts-3d.js"></script>
+<script src="../site_libs/highcharts-9.3.1/highcharts-more.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/stock.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/map.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/data.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/exporting.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/offline-exporting.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/drilldown.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/item-series.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/overlapping-datalabels.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/annotations.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/export-data.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/funnel.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/heatmap.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/treemap.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/sankey.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/dependency-wheel.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/organization.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/solid-gauge.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/streamgraph.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/sunburst.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/vector.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/wordcloud.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/xrange.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/tilemap.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/venn.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/gantt.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/timeline.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/parallel-coordinates.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/bullet.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/coloraxis.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/dumbbell.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/lollipop.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/series-label.js"></script>
+<script src="../site_libs/highcharts-9.3.1/plugins/motion.js"></script>
+<script src="../site_libs/highcharts-9.3.1/custom/reset.js"></script>
+<script src="../site_libs/highcharts-9.3.1/modules/boost.js"></script>
+<script src="../site_libs/highchart-binding-0.9.4/highchart.js"></script>
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -105,6 +182,14 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="../tidytuesday-exercise/tidytuesday-exercise.html" rel="" target="">
  <span class="dropdown-text">Tidy Tuesday Exercise</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../data-exercise/data-exercise.html" rel="" target="">
+ <span class="dropdown-text">Data Exercise</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../cdcdata-exercise/cdcdata-exercise.html" rel="" target="">
+ <span class="dropdown-text">Data Analysis Exercise</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -146,9 +231,1361 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Placeholder file for the future Tidy Tuesday exercise.</p>
+<p><strong>Introduction</strong></p>
+<p>For this exercise, we will analyze the performances of contestants on the American Idol show using historical data collected from various sources. The data encompasses multiple aspects of the show, including audition details, contestant eliminations, finalist information, episode ratings, season-specific details, and the songs performed by contestants. The datasets span across 18 seasons of American Idol, providing a comprehensive view of the show’s history.</p>
+<p>We will filter, aggregate, and visualize the data to gain insights into various trends and patterns.</p>
+<section id="load-required-libraries" class="level1">
+<h1>Load required libraries</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(highcharter)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Registered S3 method overwritten by 'quantmod':
+  method            from
+  as.zoo.data.frame zoo 
+Highcharts (www.highcharts.com) is a Highsoft software product which is
+not free for commercial and Governmental use</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching packages ────────────────────────────────────── tidymodels 1.2.0 ──
+✔ broom        1.0.5      ✔ rsample      1.2.1 
+✔ dials        1.2.1      ✔ tune         1.2.1 
+✔ infer        1.0.7      ✔ workflows    1.1.4 
+✔ modeldata    1.4.0      ✔ workflowsets 1.1.0 
+✔ parsnip      1.2.1      ✔ yardstick    1.3.1 
+✔ recipes      1.0.10     </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'modeldata' was built under R version 4.3.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Conflicts ───────────────────────────────────────── tidymodels_conflicts() ──
+✖ scales::discard() masks purrr::discard()
+✖ dplyr::filter()   masks stats::filter()
+✖ recipes::fixed()  masks stringr::fixed()
+✖ dplyr::lag()      masks stats::lag()
+✖ yardstick::spec() masks readr::spec()
+✖ recipes::step()   masks stats::step()
+• Learn how to get started at https://www.tidymodels.org/start/</code></pre>
+</div>
+</div>
+</section>
+<section id="load-the-datasets" class="level1">
+<h1>Load the datasets:</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>auditions <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'data/auditions.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 142 Columns: 12
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (6): audition_city, audition_venue, episodes, episode_air_date, callbac...
+dbl  (2): season, tickets_to_hollywood
+date (4): audition_date_start, audition_date_end, callback_date_start, callb...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>eliminations <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'data/eliminations.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 456 Columns: 46
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (44): place, gender, contestant, top_36, top_36_2, top_36_3, top_36_4, t...
+dbl  (1): season
+lgl  (1): comeback
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>finalists <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'data/finalists.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 190 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (5): Contestant, Birthday, Birthplace, Hometown, Description
+dbl (1): Season
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ratings <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'data/ratings.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 593 Columns: 17
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (12): episode, airdate, 18_49_rating_share, timeslot_et, dvr_18_49, dvr_...
+dbl  (4): season, show_number, viewers_in_millions, nightlyrank
+lgl  (1): ref
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>seasons <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'data/seasons.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 18 Columns: 10
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (8): winner, runner_up, original_release, original_network, hosted_by, j...
+dbl (2): season, no_of_episodes
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>songs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'data/songs.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 2429 Columns: 8
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (7): season, week, contestant, song, artist, song_theme, result
+dbl (1): order
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+</section>
+<section id="explore-the-data" class="level1">
+<h1>Explore the Data:</h1>
+<p>Display the first few rows of each dataframe:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(auditions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 12
+  season audition_date_start audition_date_end audition_city      audition_venue
+   &lt;dbl&gt; &lt;date&gt;              &lt;date&gt;            &lt;chr&gt;              &lt;chr&gt;         
+1      1 2002-04-20          2002-04-22        Los Angeles, Cali… Westin Bonave…
+2      1 2002-04-23          2002-04-25        Seattle, Washingt… Hyatt Regency…
+3      1 2002-04-26          2002-04-28        Chicago, Illinois  Congress Plaz…
+4      1 2002-04-29          2002-05-01        New York City, Ne… Millenium Hil…
+5      1 2002-05-03          2002-05-05        Atlanta, Georgia   AmericasMart/…
+6      1 2002-05-05          2002-05-07        Dallas, Texas      Wyndham Anato…
+# ℹ 7 more variables: episodes &lt;chr&gt;, episode_air_date &lt;chr&gt;,
+#   callback_venue &lt;chr&gt;, callback_date_start &lt;date&gt;, callback_date_end &lt;date&gt;,
+#   tickets_to_hollywood &lt;dbl&gt;, guest_judge &lt;chr&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(eliminations)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 46
+  season place gender contestant        top_36 top_36_2 top_36_3 top_36_4 top_32
+   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;             &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt; 
+1      1 1     Female Kelly Clarkson    &lt;NA&gt;   &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;  
+2      1 2     Male   Justin Guarini    &lt;NA&gt;   &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;  
+3      1 3     Female Nikki McKibbin    &lt;NA&gt;   &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;  
+4      1 4     Female Tamyra Gray       &lt;NA&gt;   &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;  
+5      1 5     Male   R. J. Helton      &lt;NA&gt;   &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;  
+6      1 6     Female Christina Christ… &lt;NA&gt;   &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;  
+# ℹ 37 more variables: top_32_2 &lt;chr&gt;, top_32_3 &lt;chr&gt;, top_32_4 &lt;chr&gt;,
+#   top_30 &lt;chr&gt;, top_30_2 &lt;chr&gt;, top_30_3 &lt;chr&gt;, top_25 &lt;chr&gt;, top_25_2 &lt;chr&gt;,
+#   top_25_3 &lt;chr&gt;, top_24 &lt;chr&gt;, top_24_2 &lt;chr&gt;, top_24_3 &lt;chr&gt;, top_20 &lt;chr&gt;,
+#   top_20_2 &lt;chr&gt;, top_16 &lt;chr&gt;, top_14 &lt;chr&gt;, top_13 &lt;chr&gt;, top_12 &lt;chr&gt;,
+#   top_11 &lt;chr&gt;, top_11_2 &lt;chr&gt;, wildcard &lt;chr&gt;, comeback &lt;lgl&gt;, top_10 &lt;chr&gt;,
+#   top_9 &lt;chr&gt;, top_9_2 &lt;chr&gt;, top_8 &lt;chr&gt;, top_8_2 &lt;chr&gt;, top_7 &lt;chr&gt;,
+#   top_7_2 &lt;chr&gt;, top_6 &lt;chr&gt;, top_6_2 &lt;chr&gt;, top_5 &lt;chr&gt;, top_5_2 &lt;chr&gt;, …</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(finalists)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  Contestant          Birthday  Birthplace           Hometown Description Season
+  &lt;chr&gt;               &lt;chr&gt;     &lt;chr&gt;                &lt;chr&gt;    &lt;chr&gt;        &lt;dbl&gt;
+1 Kelly Clarkson      24-Apr-82 Fort Worth, Texas    Burleso… "She perfo…      1
+2 Justin Guarini      28-Oct-78 Columbus, Georgia    Doylest… "He perfor…      1
+3 Nikki McKibbin      28-Sep-78 Grand Prairie, Texas &lt;NA&gt;     "She had p…      1
+4 Tamyra Gray         26-Jul-79 Takoma Park, Maryla… Atlanta… "She had a…      1
+5 R. J. Helton        17-May-81 Pasadena, Texas      Cumming… "J. Helton…      1
+6 Christina Christian 21-Jun-81 Brooklyn, New York   &lt;NA&gt;     ".Christin…      1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ratings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 17
+  season show_number episode    airdate `18_49_rating_share` viewers_in_millions
+   &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;                              &lt;dbl&gt;
+1      1           1 Auditions  June 1… 4.8                                 9.85
+2      1           2 Hollywood… June 1… 5.2                                11.2 
+3      1           3 Top 30: G… June 1… 5.2                                10.3 
+4      1           4 Top 30: G… June 1… 4.7                                 9.47
+5      1           5 Top 30: G… June 2… 4.5                                 9.08
+6      1           6 Top 30: G… June 2… 4.2                                 8.53
+# ℹ 11 more variables: timeslot_et &lt;chr&gt;, dvr_18_49 &lt;chr&gt;,
+#   dvr_viewers_millions &lt;chr&gt;, total_18_49 &lt;chr&gt;,
+#   total_viewers_millions &lt;chr&gt;, weekrank &lt;chr&gt;, ref &lt;lgl&gt;, share &lt;chr&gt;,
+#   nightlyrank &lt;dbl&gt;, rating_share_households &lt;chr&gt;, rating_share &lt;chr&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(seasons)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 10
+  season winner     runner_up original_release original_network hosted_by judges
+   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt; 
+1      1 Kelly Cla… Justin G… June 11&nbsp;(2002-0… Fox              Ryan Sea… Paula…
+2      2 Ruben Stu… Clay Aik… January 21&nbsp;(200… Fox              Ryan Sea… Paula…
+3      3 Fantasia … Diana De… January 19&nbsp;(200… Fox              Ryan Sea… Paula…
+4      4 Carrie Un… Bo Bice   January 18&nbsp;(200… Fox              Ryan Sea… Paula…
+5      5 Taylor Hi… Katharin… January 17&nbsp;(200… Fox              Ryan Sea… Paula…
+6      6 Jordin Sp… Blake Le… January 16&nbsp;(200… Fox              Ryan Sea… Paula…
+# ℹ 3 more variables: no_of_episodes &lt;dbl&gt;, finals_venue &lt;chr&gt;, mentor &lt;chr&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(songs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 8
+  season    week                 order contestant song  artist song_theme result
+  &lt;chr&gt;     &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt; 
+1 Season_01 20020618_top_30_gro…     1 Tamyra Gr… And … Jenni… &lt;NA&gt;       Advan…
+2 Season_01 20020618_top_30_gro…     2 Jim Verra… When… Doris… &lt;NA&gt;       Advan…
+3 Season_01 20020618_top_30_gro…     3 Adriel He… I'll… Edwin… &lt;NA&gt;       Elimi…
+4 Season_01 20020618_top_30_gro…     4 Rodesia E… Dayd… The M… &lt;NA&gt;       Elimi…
+5 Season_01 20020618_top_30_gro…     5 Natalie B… Crazy Patsy… &lt;NA&gt;       Elimi…
+6 Season_01 20020618_top_30_gro…     6 Brad Estr… Just… James… &lt;NA&gt;       Elimi…</code></pre>
+</div>
+</div>
+</section>
+<section id="data-summary-and-structure" class="level1">
+<h1>Data Summary and Structure:</h1>
+<p>Summary and structure of the dataframes:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(auditions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>spc_tbl_ [142 × 12] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ season              : num [1:142] 1 1 1 1 1 1 1 2 2 2 ...
+ $ audition_date_start : Date[1:142], format: "2002-04-20" "2002-04-23" ...
+ $ audition_date_end   : Date[1:142], format: "2002-04-22" "2002-04-25" ...
+ $ audition_city       : chr [1:142] "Los Angeles, California" "Seattle, Washington" "Chicago, Illinois" "New York City, New York" ...
+ $ audition_venue      : chr [1:142] "Westin Bonaventure Hotel" "Hyatt Regency Hotel" "Congress Plaza Hotel" "Millenium Hilton Hotel" ...
+ $ episodes            : chr [1:142] NA NA NA NA ...
+ $ episode_air_date    : chr [1:142] "11-Jun-02" "11-Jun-02" "11-Jun-02" "11-Jun-02" ...
+ $ callback_venue      : chr [1:142] NA NA NA NA ...
+ $ callback_date_start : Date[1:142], format: NA NA ...
+ $ callback_date_end   : Date[1:142], format: NA NA ...
+ $ tickets_to_hollywood: num [1:142] 31 10 23 25 15 11 6 22 35 46 ...
+ $ guest_judge         : chr [1:142] NA NA NA NA ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   season = col_double(),
+  ..   audition_date_start = col_date(format = ""),
+  ..   audition_date_end = col_date(format = ""),
+  ..   audition_city = col_character(),
+  ..   audition_venue = col_character(),
+  ..   episodes = col_character(),
+  ..   episode_air_date = col_character(),
+  ..   callback_venue = col_character(),
+  ..   callback_date_start = col_date(format = ""),
+  ..   callback_date_end = col_date(format = ""),
+  ..   tickets_to_hollywood = col_double(),
+  ..   guest_judge = col_character()
+  .. )
+ - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(auditions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     season      audition_date_start  audition_date_end    audition_city     
+ Min.   : 1.00   Min.   :2002-04-20   Min.   :2002-04-22   Length:142        
+ 1st Qu.: 6.00   1st Qu.:2006-08-11   1st Qu.:2006-08-11   Class :character  
+ Median :10.00   Median :2010-09-05   Median :2010-09-05   Mode  :character  
+ Mean   :10.37   Mean   :2011-04-14   Mean   :2011-04-14                     
+ 3rd Qu.:15.00   3rd Qu.:2015-09-05   3rd Qu.:2015-09-05                     
+ Max.   :18.00   Max.   :2019-09-21   Max.   :2019-09-21                     
+                                                                             
+ audition_venue       episodes         episode_air_date   callback_venue    
+ Length:142         Length:142         Length:142         Length:142        
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+ callback_date_start  callback_date_end    tickets_to_hollywood
+ Min.   :2002-02-06   Min.   :2002-02-06   Min.   :  6.0       
+ 1st Qu.:2006-10-02   1st Qu.:2006-10-03   1st Qu.: 20.0       
+ Median :2010-11-09   Median :2010-11-10   Median : 29.0       
+ Mean   :2011-06-11   Mean   :2011-06-12   Mean   : 41.8       
+ 3rd Qu.:2015-09-13   3rd Qu.:2015-09-14   3rd Qu.: 37.0       
+ Max.   :2019-09-21   Max.   :2019-09-21   Max.   :561.0       
+ NA's   :13           NA's   :13           NA's   :48          
+ guest_judge       
+ Length:142        
+ Class :character  
+ Mode  :character  
+                   
+                   
+                   
+                   </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(eliminations)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>spc_tbl_ [456 × 46] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ season    : num [1:456] 1 1 1 1 1 1 1 1 1 1 ...
+ $ place     : chr [1:456] "1" "2" "3" "4" ...
+ $ gender    : chr [1:456] "Female" "Male" "Female" "Female" ...
+ $ contestant: chr [1:456] "Kelly Clarkson" "Justin Guarini" "Nikki McKibbin" "Tamyra Gray" ...
+ $ top_36    : chr [1:456] NA NA NA NA ...
+ $ top_36_2  : chr [1:456] NA NA NA NA ...
+ $ top_36_3  : chr [1:456] NA NA NA NA ...
+ $ top_36_4  : chr [1:456] NA NA NA NA ...
+ $ top_32    : chr [1:456] NA NA NA NA ...
+ $ top_32_2  : chr [1:456] NA NA NA NA ...
+ $ top_32_3  : chr [1:456] NA NA NA NA ...
+ $ top_32_4  : chr [1:456] NA NA NA NA ...
+ $ top_30    : chr [1:456] "N/A" "N/A" "N/A" "Safe (1st)" ...
+ $ top_30_2  : chr [1:456] "Safe (2nd)" "Safe (1st)" "N/A" "N/A" ...
+ $ top_30_3  : chr [1:456] "N/A" "N/A" "Safe (2nd)" "N/A" ...
+ $ top_25    : chr [1:456] NA NA NA NA ...
+ $ top_25_2  : chr [1:456] NA NA NA NA ...
+ $ top_25_3  : chr [1:456] NA NA NA NA ...
+ $ top_24    : chr [1:456] NA NA NA NA ...
+ $ top_24_2  : chr [1:456] NA NA NA NA ...
+ $ top_24_3  : chr [1:456] NA NA NA NA ...
+ $ top_20    : chr [1:456] NA NA NA NA ...
+ $ top_20_2  : chr [1:456] NA NA NA NA ...
+ $ top_16    : chr [1:456] NA NA NA NA ...
+ $ top_14    : chr [1:456] NA NA NA NA ...
+ $ top_13    : chr [1:456] NA NA NA NA ...
+ $ top_12    : chr [1:456] NA NA NA NA ...
+ $ top_11    : chr [1:456] NA NA NA NA ...
+ $ top_11_2  : chr [1:456] NA NA NA NA ...
+ $ wildcard  : chr [1:456] "N/A" "N/A" "N/A" "N/A" ...
+ $ comeback  : logi [1:456] NA NA NA NA NA NA ...
+ $ top_10    : chr [1:456] "Safe" "Safe" "Bottom Three" "Safe" ...
+ $ top_9     : chr [1:456] NA NA NA NA ...
+ $ top_9_2   : chr [1:456] NA NA NA NA ...
+ $ top_8     : chr [1:456] "Safe" "Safe" "Safe" "Safe" ...
+ $ top_8_2   : chr [1:456] NA NA NA NA ...
+ $ top_7     : chr [1:456] "Safe" "Bottom Two" "Bottom Three" "Safe" ...
+ $ top_7_2   : chr [1:456] NA NA NA NA ...
+ $ top_6     : chr [1:456] "Safe" "Safe" "Bottom Three" "Safe" ...
+ $ top_6_2   : chr [1:456] NA NA NA NA ...
+ $ top_5     : chr [1:456] "Safe" "Safe" "Bottom Two" "Safe" ...
+ $ top_5_2   : chr [1:456] NA NA NA NA ...
+ $ top_4     : chr [1:456] "Safe" "Safe" "Bottom Two" "Eliminated" ...
+ $ top_4_2   : chr [1:456] NA NA NA NA ...
+ $ top_3     : chr [1:456] "Safe" "Safe" "Eliminated" NA ...
+ $ finale    : chr [1:456] "Winner" "Runner-Up" NA NA ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   season = col_double(),
+  ..   place = col_character(),
+  ..   gender = col_character(),
+  ..   contestant = col_character(),
+  ..   top_36 = col_character(),
+  ..   top_36_2 = col_character(),
+  ..   top_36_3 = col_character(),
+  ..   top_36_4 = col_character(),
+  ..   top_32 = col_character(),
+  ..   top_32_2 = col_character(),
+  ..   top_32_3 = col_character(),
+  ..   top_32_4 = col_character(),
+  ..   top_30 = col_character(),
+  ..   top_30_2 = col_character(),
+  ..   top_30_3 = col_character(),
+  ..   top_25 = col_character(),
+  ..   top_25_2 = col_character(),
+  ..   top_25_3 = col_character(),
+  ..   top_24 = col_character(),
+  ..   top_24_2 = col_character(),
+  ..   top_24_3 = col_character(),
+  ..   top_20 = col_character(),
+  ..   top_20_2 = col_character(),
+  ..   top_16 = col_character(),
+  ..   top_14 = col_character(),
+  ..   top_13 = col_character(),
+  ..   top_12 = col_character(),
+  ..   top_11 = col_character(),
+  ..   top_11_2 = col_character(),
+  ..   wildcard = col_character(),
+  ..   comeback = col_logical(),
+  ..   top_10 = col_character(),
+  ..   top_9 = col_character(),
+  ..   top_9_2 = col_character(),
+  ..   top_8 = col_character(),
+  ..   top_8_2 = col_character(),
+  ..   top_7 = col_character(),
+  ..   top_7_2 = col_character(),
+  ..   top_6 = col_character(),
+  ..   top_6_2 = col_character(),
+  ..   top_5 = col_character(),
+  ..   top_5_2 = col_character(),
+  ..   top_4 = col_character(),
+  ..   top_4_2 = col_character(),
+  ..   top_3 = col_character(),
+  ..   finale = col_character()
+  .. )
+ - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(eliminations)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     season         place              gender           contestant       
+ Min.   : 1.00   Length:456         Length:456         Length:456        
+ 1st Qu.: 4.00   Class :character   Class :character   Class :character  
+ Median : 8.00   Mode  :character   Mode  :character   Mode  :character  
+ Mean   : 8.86                                                           
+ 3rd Qu.:13.00                                                           
+ Max.   :18.00                                                           
+    top_36            top_36_2           top_36_3           top_36_4        
+ Length:456         Length:456         Length:456         Length:456        
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+    top_32            top_32_2           top_32_3           top_32_4        
+ Length:456         Length:456         Length:456         Length:456        
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+    top_30            top_30_2           top_30_3            top_25         
+ Length:456         Length:456         Length:456         Length:456        
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+   top_25_2           top_25_3            top_24            top_24_2        
+ Length:456         Length:456         Length:456         Length:456        
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+   top_24_3            top_20            top_20_2            top_16         
+ Length:456         Length:456         Length:456         Length:456        
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+    top_14             top_13             top_12             top_11         
+ Length:456         Length:456         Length:456         Length:456        
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+   top_11_2           wildcard         comeback          top_10         
+ Length:456         Length:456         Mode:logical   Length:456        
+ Class :character   Class :character   NA's:456       Class :character  
+ Mode  :character   Mode  :character                  Mode  :character  
+                                                                        
+                                                                        
+                                                                        
+    top_9             top_9_2             top_8             top_8_2         
+ Length:456         Length:456         Length:456         Length:456        
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+    top_7             top_7_2             top_6             top_6_2         
+ Length:456         Length:456         Length:456         Length:456        
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+    top_5             top_5_2             top_4             top_4_2         
+ Length:456         Length:456         Length:456         Length:456        
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+    top_3              finale         
+ Length:456         Length:456        
+ Class :character   Class :character  
+ Mode  :character   Mode  :character  
+                                      
+                                      
+                                      </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(finalists)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>spc_tbl_ [190 × 6] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ Contestant : chr [1:190] "Kelly Clarkson" "Justin Guarini" "Nikki McKibbin" "Tamyra Gray" ...
+ $ Birthday   : chr [1:190] "24-Apr-82" "28-Oct-78" "28-Sep-78" "26-Jul-79" ...
+ $ Birthplace : chr [1:190] "Fort Worth, Texas" "Columbus, Georgia" "Grand Prairie, Texas" "Takoma Park, Maryland" ...
+ $ Hometown   : chr [1:190] "Burleson, Texas" "Doylestown, Pennsylvania" NA "Atlanta, Georgia" ...
+ $ Description: chr [1:190] "She performed Aretha Franklin's version of \"Respectand Vanessa Williams' \"Save The Best For Lastin the Hollywood rounds." "He performed  Oleta Adams' version of \"Get Herein the Hollywood rounds." "She had previously been on Popstars and auditioned with Gloria Gaynor's \"I Will Surviveand Whitney Houston's \"| __truncated__ "She had appeared on TV commercials and worked with other artists before auditioning for Idol, and was crowned M"| __truncated__ ...
+ $ Season     : num [1:190] 1 1 1 1 1 1 1 1 1 1 ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   Contestant = col_character(),
+  ..   Birthday = col_character(),
+  ..   Birthplace = col_character(),
+  ..   Hometown = col_character(),
+  ..   Description = col_character(),
+  ..   Season = col_double()
+  .. )
+ - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(finalists)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Contestant          Birthday          Birthplace          Hometown        
+ Length:190         Length:190         Length:190         Length:190        
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+ Description            Season      
+ Length:190         Min.   : 1.000  
+ Class :character   1st Qu.: 5.000  
+ Mode  :character   Median : 9.000  
+                    Mean   : 8.863  
+                    3rd Qu.:13.000  
+                    Max.   :17.000  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(ratings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>spc_tbl_ [593 × 17] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ season                 : num [1:593] 1 1 1 1 1 1 1 1 1 1 ...
+ $ show_number            : num [1:593] 1 2 3 4 5 6 7 8 9 10 ...
+ $ episode                : chr [1:593] "Auditions" "Hollywood Week" "Top 30: Group 1" "Top 30: Group 1 results" ...
+ $ airdate                : chr [1:593] "June 11, 2002" "June 12, 2002" "June 18, 2002" "June 19, 2002" ...
+ $ 18_49_rating_share     : chr [1:593] "4.8" "5.2" "5.2" "4.7" ...
+ $ viewers_in_millions    : num [1:593] 9.85 11.24 10.3 9.47 9.08 ...
+ $ timeslot_et            : chr [1:593] NA NA NA NA ...
+ $ dvr_18_49              : chr [1:593] NA NA NA NA ...
+ $ dvr_viewers_millions   : chr [1:593] NA NA NA NA ...
+ $ total_18_49            : chr [1:593] NA NA NA NA ...
+ $ total_viewers_millions : chr [1:593] NA NA NA NA ...
+ $ weekrank               : chr [1:593] "12" "6" "6" "22" ...
+ $ ref                    : logi [1:593] NA NA NA NA NA NA ...
+ $ share                  : chr [1:593] NA NA NA NA ...
+ $ nightlyrank            : num [1:593] NA NA NA NA NA NA NA NA NA NA ...
+ $ rating_share_households: chr [1:593] NA NA NA NA ...
+ $ rating_share           : chr [1:593] "6.1 / 11" "6.9 / 12" "6.2 / 11" "5.8 / 10" ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   season = col_double(),
+  ..   show_number = col_double(),
+  ..   episode = col_character(),
+  ..   airdate = col_character(),
+  ..   `18_49_rating_share` = col_character(),
+  ..   viewers_in_millions = col_double(),
+  ..   timeslot_et = col_character(),
+  ..   dvr_18_49 = col_character(),
+  ..   dvr_viewers_millions = col_character(),
+  ..   total_18_49 = col_character(),
+  ..   total_viewers_millions = col_character(),
+  ..   weekrank = col_character(),
+  ..   ref = col_logical(),
+  ..   share = col_character(),
+  ..   nightlyrank = col_double(),
+  ..   rating_share_households = col_character(),
+  ..   rating_share = col_character()
+  .. )
+ - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ratings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     season        show_number      episode            airdate         
+ Min.   : 1.000   Min.   : 1.00   Length:593         Length:593        
+ 1st Qu.: 4.000   1st Qu.: 9.00   Class :character   Class :character  
+ Median : 8.000   Median :18.00   Mode  :character   Mode  :character  
+ Mean   : 8.295   Mean   :19.24                                        
+ 3rd Qu.:12.000   3rd Qu.:29.00                                        
+ Max.   :18.000   Max.   :44.00                                        
+                                                                       
+ 18_49_rating_share viewers_in_millions timeslot_et         dvr_18_49        
+ Length:593         Min.   : 5.38       Length:593         Length:593        
+ Class :character   1st Qu.:12.57       Class :character   Class :character  
+ Mode  :character   Median :21.76       Mode  :character   Mode  :character  
+                    Mean   :19.88                                            
+                    3rd Qu.:26.09                                            
+                    Max.   :38.10                                            
+                    NA's   :3                                                
+ dvr_viewers_millions total_18_49        total_viewers_millions
+ Length:593           Length:593         Length:593            
+ Class :character     Class :character   Class :character      
+ Mode  :character     Mode  :character   Mode  :character      
+                                                               
+                                                               
+                                                               
+                                                               
+   weekrank           ref             share            nightlyrank   
+ Length:593         Mode:logical   Length:593         Min.   :1.000  
+ Class :character   NA's:593       Class :character   1st Qu.:1.000  
+ Mode  :character                  Mode  :character   Median :2.000  
+                                                      Mean   :2.083  
+                                                      3rd Qu.:3.000  
+                                                      Max.   :4.000  
+                                                      NA's   :569    
+ rating_share_households rating_share      
+ Length:593              Length:593        
+ Class :character        Class :character  
+ Mode  :character        Mode  :character  
+                                           
+                                           
+                                           
+                                           </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(seasons)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>spc_tbl_ [18 × 10] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ season          : num [1:18] 1 2 3 4 5 6 7 8 9 10 ...
+ $ winner          : chr [1:18] "Kelly Clarkson" "Ruben Studdard" "Fantasia Barrino" "Carrie Underwood" ...
+ $ runner_up       : chr [1:18] "Justin Guarini" "Clay Aiken" "Diana DeGarmo" "Bo Bice" ...
+ $ original_release: chr [1:18] "June 11&nbsp;(2002-06-11)&nbsp;–September 4, 2002&nbsp;(2002-09-04)" "January 21&nbsp;(2003-01-21)&nbsp;–May 21, 2003&nbsp;(2003-05-21)" "January 19&nbsp;(2004-01-19)&nbsp;–May 26, 2004&nbsp;(2004-05-26)" "January 18&nbsp;(2005-01-18)&nbsp;–May 25, 2005&nbsp;(2005-05-25)" ...
+ $ original_network: chr [1:18] "Fox" "Fox" "Fox" "Fox" ...
+ $ hosted_by       : chr [1:18] "Ryan Seacrest; Brian Dunkleman" "Ryan Seacrest" "Ryan Seacrest" "Ryan Seacrest" ...
+ $ judges          : chr [1:18] "Paula Abdul; Simon Cowell; Randy Jackson" "Paula Abdul; Simon Cowell; Randy Jackson" "Paula Abdul; Simon Cowell; Randy Jackson" "Paula Abdul; Simon Cowell; Randy Jackson" ...
+ $ no_of_episodes  : num [1:18] NA NA NA NA NA NA NA NA NA NA ...
+ $ finals_venue    : chr [1:18] "Kodak Theatre" "Gibson Amphitheatre" "Kodak Theatre" "Kodak Theatre" ...
+ $ mentor          : chr [1:18] NA NA NA NA ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   season = col_double(),
+  ..   winner = col_character(),
+  ..   runner_up = col_character(),
+  ..   original_release = col_character(),
+  ..   original_network = col_character(),
+  ..   hosted_by = col_character(),
+  ..   judges = col_character(),
+  ..   no_of_episodes = col_double(),
+  ..   finals_venue = col_character(),
+  ..   mentor = col_character()
+  .. )
+ - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(seasons)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     season         winner           runner_up         original_release  
+ Min.   : 1.00   Length:18          Length:18          Length:18         
+ 1st Qu.: 5.25   Class :character   Class :character   Class :character  
+ Median : 9.50   Mode  :character   Mode  :character   Mode  :character  
+ Mean   : 9.50                                                           
+ 3rd Qu.:13.75                                                           
+ Max.   :18.00                                                           
+                                                                         
+ original_network    hosted_by            judges          no_of_episodes 
+ Length:18          Length:18          Length:18          Min.   :16.00  
+ Class :character   Class :character   Class :character   1st Qu.:18.25  
+ Mode  :character   Mode  :character   Mode  :character   Median :19.00  
+                                                          Mean   :19.50  
+                                                          3rd Qu.:20.25  
+                                                          Max.   :24.00  
+                                                          NA's   :14     
+ finals_venue          mentor         
+ Length:18          Length:18         
+ Class :character   Class :character  
+ Mode  :character   Mode  :character  
+                                      
+                                      
+                                      
+                                      </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(songs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>spc_tbl_ [2,429 × 8] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ season    : chr [1:2429] "Season_01" "Season_01" "Season_01" "Season_01" ...
+ $ week      : chr [1:2429] "20020618_top_30_group_1" "20020618_top_30_group_1" "20020618_top_30_group_1" "20020618_top_30_group_1" ...
+ $ order     : num [1:2429] 1 2 3 4 5 6 7 8 9 10 ...
+ $ contestant: chr [1:2429] "Tamyra Gray" "Jim Verraros" "Adriel Herrera" "Rodesia Eaves" ...
+ $ song      : chr [1:2429] "And I Am Telling You I'm Not Going" "When I Fall in Love" "I'll Be" "Daydream Believer" ...
+ $ artist    : chr [1:2429] "Jennifer Holliday" "Doris Day" "Edwin McCain" "The Monkees" ...
+ $ song_theme: chr [1:2429] NA NA NA NA ...
+ $ result    : chr [1:2429] "Advanced (1st)" "Advanced (3rd)" "Eliminated" "Eliminated" ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   season = col_character(),
+  ..   week = col_character(),
+  ..   order = col_double(),
+  ..   contestant = col_character(),
+  ..   song = col_character(),
+  ..   artist = col_character(),
+  ..   song_theme = col_character(),
+  ..   result = col_character()
+  .. )
+ - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(songs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    season              week               order         contestant       
+ Length:2429        Length:2429        Min.   : 1.000   Length:2429       
+ Class :character   Class :character   1st Qu.: 3.000   Class :character  
+ Mode  :character   Mode  :character   Median : 5.000   Mode  :character  
+                                       Mean   : 5.931                     
+                                       3rd Qu.: 8.000                     
+                                       Max.   :40.000                     
+     song              artist           song_theme           result         
+ Length:2429        Length:2429        Length:2429        Length:2429       
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            </code></pre>
+</div>
+</div>
+</section>
+<section id="descriptive-statistics" class="level1">
+<h1>Descriptive Statistics:</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(auditions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     season      audition_date_start  audition_date_end    audition_city     
+ Min.   : 1.00   Min.   :2002-04-20   Min.   :2002-04-22   Length:142        
+ 1st Qu.: 6.00   1st Qu.:2006-08-11   1st Qu.:2006-08-11   Class :character  
+ Median :10.00   Median :2010-09-05   Median :2010-09-05   Mode  :character  
+ Mean   :10.37   Mean   :2011-04-14   Mean   :2011-04-14                     
+ 3rd Qu.:15.00   3rd Qu.:2015-09-05   3rd Qu.:2015-09-05                     
+ Max.   :18.00   Max.   :2019-09-21   Max.   :2019-09-21                     
+                                                                             
+ audition_venue       episodes         episode_air_date   callback_venue    
+ Length:142         Length:142         Length:142         Length:142        
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+ callback_date_start  callback_date_end    tickets_to_hollywood
+ Min.   :2002-02-06   Min.   :2002-02-06   Min.   :  6.0       
+ 1st Qu.:2006-10-02   1st Qu.:2006-10-03   1st Qu.: 20.0       
+ Median :2010-11-09   Median :2010-11-10   Median : 29.0       
+ Mean   :2011-06-11   Mean   :2011-06-12   Mean   : 41.8       
+ 3rd Qu.:2015-09-13   3rd Qu.:2015-09-14   3rd Qu.: 37.0       
+ Max.   :2019-09-21   Max.   :2019-09-21   Max.   :561.0       
+ NA's   :13           NA's   :13           NA's   :48          
+ guest_judge       
+ Length:142        
+ Class :character  
+ Mode  :character  
+                   
+                   
+                   
+                   </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(eliminations)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     season         place              gender           contestant       
+ Min.   : 1.00   Length:456         Length:456         Length:456        
+ 1st Qu.: 4.00   Class :character   Class :character   Class :character  
+ Median : 8.00   Mode  :character   Mode  :character   Mode  :character  
+ Mean   : 8.86                                                           
+ 3rd Qu.:13.00                                                           
+ Max.   :18.00                                                           
+    top_36            top_36_2           top_36_3           top_36_4        
+ Length:456         Length:456         Length:456         Length:456        
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+    top_32            top_32_2           top_32_3           top_32_4        
+ Length:456         Length:456         Length:456         Length:456        
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+    top_30            top_30_2           top_30_3            top_25         
+ Length:456         Length:456         Length:456         Length:456        
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+   top_25_2           top_25_3            top_24            top_24_2        
+ Length:456         Length:456         Length:456         Length:456        
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+   top_24_3            top_20            top_20_2            top_16         
+ Length:456         Length:456         Length:456         Length:456        
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+    top_14             top_13             top_12             top_11         
+ Length:456         Length:456         Length:456         Length:456        
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+   top_11_2           wildcard         comeback          top_10         
+ Length:456         Length:456         Mode:logical   Length:456        
+ Class :character   Class :character   NA's:456       Class :character  
+ Mode  :character   Mode  :character                  Mode  :character  
+                                                                        
+                                                                        
+                                                                        
+    top_9             top_9_2             top_8             top_8_2         
+ Length:456         Length:456         Length:456         Length:456        
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+    top_7             top_7_2             top_6             top_6_2         
+ Length:456         Length:456         Length:456         Length:456        
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+    top_5             top_5_2             top_4             top_4_2         
+ Length:456         Length:456         Length:456         Length:456        
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+    top_3              finale         
+ Length:456         Length:456        
+ Class :character   Class :character  
+ Mode  :character   Mode  :character  
+                                      
+                                      
+                                      </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(finalists)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Contestant          Birthday          Birthplace          Hometown        
+ Length:190         Length:190         Length:190         Length:190        
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+ Description            Season      
+ Length:190         Min.   : 1.000  
+ Class :character   1st Qu.: 5.000  
+ Mode  :character   Median : 9.000  
+                    Mean   : 8.863  
+                    3rd Qu.:13.000  
+                    Max.   :17.000  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ratings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     season        show_number      episode            airdate         
+ Min.   : 1.000   Min.   : 1.00   Length:593         Length:593        
+ 1st Qu.: 4.000   1st Qu.: 9.00   Class :character   Class :character  
+ Median : 8.000   Median :18.00   Mode  :character   Mode  :character  
+ Mean   : 8.295   Mean   :19.24                                        
+ 3rd Qu.:12.000   3rd Qu.:29.00                                        
+ Max.   :18.000   Max.   :44.00                                        
+                                                                       
+ 18_49_rating_share viewers_in_millions timeslot_et         dvr_18_49        
+ Length:593         Min.   : 5.38       Length:593         Length:593        
+ Class :character   1st Qu.:12.57       Class :character   Class :character  
+ Mode  :character   Median :21.76       Mode  :character   Mode  :character  
+                    Mean   :19.88                                            
+                    3rd Qu.:26.09                                            
+                    Max.   :38.10                                            
+                    NA's   :3                                                
+ dvr_viewers_millions total_18_49        total_viewers_millions
+ Length:593           Length:593         Length:593            
+ Class :character     Class :character   Class :character      
+ Mode  :character     Mode  :character   Mode  :character      
+                                                               
+                                                               
+                                                               
+                                                               
+   weekrank           ref             share            nightlyrank   
+ Length:593         Mode:logical   Length:593         Min.   :1.000  
+ Class :character   NA's:593       Class :character   1st Qu.:1.000  
+ Mode  :character                  Mode  :character   Median :2.000  
+                                                      Mean   :2.083  
+                                                      3rd Qu.:3.000  
+                                                      Max.   :4.000  
+                                                      NA's   :569    
+ rating_share_households rating_share      
+ Length:593              Length:593        
+ Class :character        Class :character  
+ Mode  :character        Mode  :character  
+                                           
+                                           
+                                           
+                                           </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(seasons)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     season         winner           runner_up         original_release  
+ Min.   : 1.00   Length:18          Length:18          Length:18         
+ 1st Qu.: 5.25   Class :character   Class :character   Class :character  
+ Median : 9.50   Mode  :character   Mode  :character   Mode  :character  
+ Mean   : 9.50                                                           
+ 3rd Qu.:13.75                                                           
+ Max.   :18.00                                                           
+                                                                         
+ original_network    hosted_by            judges          no_of_episodes 
+ Length:18          Length:18          Length:18          Min.   :16.00  
+ Class :character   Class :character   Class :character   1st Qu.:18.25  
+ Mode  :character   Mode  :character   Mode  :character   Median :19.00  
+                                                          Mean   :19.50  
+                                                          3rd Qu.:20.25  
+                                                          Max.   :24.00  
+                                                          NA's   :14     
+ finals_venue          mentor         
+ Length:18          Length:18         
+ Class :character   Class :character  
+ Mode  :character   Mode  :character  
+                                      
+                                      
+                                      
+                                      </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(songs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    season              week               order         contestant       
+ Length:2429        Length:2429        Min.   : 1.000   Length:2429       
+ Class :character   Class :character   1st Qu.: 3.000   Class :character  
+ Mode  :character   Mode  :character   Median : 5.000   Mode  :character  
+                                       Mean   : 5.931                     
+                                       3rd Qu.: 8.000                     
+                                       Max.   :40.000                     
+     song              artist           song_theme           result         
+ Length:2429        Length:2429        Length:2429        Length:2429       
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            </code></pre>
+</div>
+</div>
+</section>
+<section id="visual-exploration" class="level1">
+<h1>Visual Exploration:</h1>
+<ol type="1">
+<li>Number of Contestants per Season:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of contestants per season</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>finalists <span class="sc">%&gt;%</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Season) <span class="sc">%&gt;%</span></span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hchart</span>(<span class="st">"column"</span>, <span class="fu">hcaes</span>(<span class="at">x =</span> Season, <span class="at">y =</span> n), <span class="at">name =</span> <span class="st">"Number of Contestants"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_title</span>(<span class="at">text =</span> <span class="st">"Number of Contestants per Season"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_xAxis</span>(<span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"Season"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_yAxis</span>(<span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"Number of Contestants"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div class="highchart html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-71a65ac7b76cc033c1bb" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-71a65ac7b76cc033c1bb">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":"Number of Contestants per Season"},"yAxis":{"title":{"text":"Number of Contestants"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":false},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}}},"series":[{"group":"group","data":[{"Season":1,"n":10,"x":1,"y":10},{"Season":2,"n":12,"x":2,"y":12},{"Season":3,"n":12,"x":3,"y":12},{"Season":4,"n":12,"x":4,"y":12},{"Season":5,"n":12,"x":5,"y":12},{"Season":6,"n":12,"x":6,"y":12},{"Season":7,"n":12,"x":7,"y":12},{"Season":8,"n":10,"x":8,"y":10},{"Season":9,"n":10,"x":9,"y":10},{"Season":10,"n":10,"x":10,"y":10},{"Season":11,"n":13,"x":11,"y":13},{"Season":12,"n":10,"x":12,"y":10},{"Season":13,"n":13,"x":13,"y":13},{"Season":14,"n":12,"x":14,"y":12},{"Season":15,"n":10,"x":15,"y":10},{"Season":16,"n":10,"x":16,"y":10},{"Season":17,"n":10,"x":17,"y":10}],"type":"column","name":"Number of Contestants"}],"xAxis":{"type":"linear","title":{"text":"Season"}}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Viewership Trends Over the Seasons:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Viewership over the seasons</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>ratings <span class="sc">%&gt;%</span></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(season) <span class="sc">%&gt;%</span></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">average_viewers =</span> <span class="fu">mean</span>(viewers_in_millions, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hchart</span>(<span class="st">"line"</span>, <span class="fu">hcaes</span>(<span class="at">x =</span> season, <span class="at">y =</span> average_viewers), <span class="at">name =</span> <span class="st">"Average Viewers"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_title</span>(<span class="at">text =</span> <span class="st">"Viewership Trends Over the Seasons"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_xAxis</span>(<span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"Season"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb70-8"><a href="#cb70-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_yAxis</span>(<span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"Average Viewers (Millions)"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div class="highchart html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-256a541a4abef2c7c769" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-256a541a4abef2c7c769">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":"Viewership Trends Over the Seasons"},"yAxis":{"title":{"text":"Average Viewers (Millions)"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":false},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}}},"series":[{"group":"group","data":[{"season":1,"average_viewers":11.908,"x":1,"y":11.908},{"season":2,"average_viewers":21.3,"x":2,"y":21.3},{"season":3,"average_viewers":23.53488372093023,"x":3,"y":23.53488372093023},{"season":4,"average_viewers":25.98095238095238,"x":4,"y":25.98095238095238},{"season":5,"average_viewers":29.46341463414634,"x":5,"y":29.46341463414634},{"season":6,"average_viewers":28.94317073170732,"x":6,"y":28.94317073170732},{"season":7,"average_viewers":26.19235714285714,"x":7,"y":26.19235714285714},{"season":8,"average_viewers":24.587375,"x":8,"y":24.587375},{"season":9,"average_viewers":21.98555813953488,"x":9,"y":21.98555813953488},{"season":10,"average_viewers":22.75410256410256,"x":10,"y":22.75410256410256},{"season":11,"average_viewers":17.20075,"x":11,"y":17.20075},{"season":12,"average_viewers":13.07378378378378,"x":12,"y":13.07378378378378},{"season":13,"average_viewers":9.787948717948717,"x":13,"y":9.787948717948717},{"season":15,"average_viewers":9.088750000000001,"x":15,"y":9.088750000000001},{"season":16,"average_viewers":7.88,"x":16,"y":7.88},{"season":17,"average_viewers":7.17421052631579,"x":17,"y":7.17421052631579},{"season":18,"average_viewers":6.8525,"x":18,"y":6.8525}],"type":"line","name":"Average Viewers"}],"xAxis":{"type":"linear","title":{"text":"Season"}}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Number of Songs Performed per Contestant:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of songs performed per contestant</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>songs <span class="sc">%&gt;%</span></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(contestant) <span class="sc">%&gt;%</span></span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">num_songs =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(num_songs)) <span class="sc">%&gt;%</span></span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hchart</span>(<span class="st">"bar"</span>, <span class="fu">hcaes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(contestant, num_songs), <span class="at">y =</span> num_songs), <span class="at">name =</span> <span class="st">"Number of Songs"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb71-8"><a href="#cb71-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_title</span>(<span class="at">text =</span> <span class="st">"Top 20 Contestants by Number of Songs Performed"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb71-9"><a href="#cb71-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_xAxis</span>(<span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"Contestant"</span>), <span class="at">type =</span> <span class="st">"category"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb71-10"><a href="#cb71-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_yAxis</span>(<span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"Number of Songs"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb71-11"><a href="#cb71-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_plotOptions</span>(<span class="at">series =</span> <span class="fu">list</span>(<span class="at">dataLabels =</span> <span class="fu">list</span>(<span class="at">enabled =</span> <span class="cn">TRUE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div class="highchart html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-bd6d80f592dc45c38a32" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-bd6d80f592dc45c38a32">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":"Top 20 Contestants by Number of Songs Performed"},"yAxis":{"title":{"text":"Number of Songs"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":false,"dataLabels":{"enabled":true}},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}}},"series":[{"group":"group","data":[{"contestant":"Jena Irene","num_songs":26,"y":26,"name":"Jena Irene"},{"contestant":"Jessica Sanchez","num_songs":26,"y":26,"name":"Jessica Sanchez"},{"contestant":"Phillip Phillips","num_songs":26,"y":26,"name":"Phillip Phillips"},{"contestant":"Caleb Johnson","num_songs":25,"y":25,"name":"Caleb Johnson"},{"contestant":"Candice Glover","num_songs":24,"y":24,"name":"Candice Glover"},{"contestant":"Joshua Ledet","num_songs":23,"y":23,"name":"Joshua Ledet"},{"contestant":"Kree Harrison","num_songs":23,"y":23,"name":"Kree Harrison"},{"contestant":"Alex Preston","num_songs":22,"y":22,"name":"Alex Preston"},{"contestant":"Angie Miller","num_songs":21,"y":21,"name":"Angie Miller"},{"contestant":"Bo Bice","num_songs":20,"y":20,"name":"Bo Bice"},{"contestant":"Clark Beckham","num_songs":20,"y":20,"name":"Clark Beckham"},{"contestant":"David Archuleta","num_songs":20,"y":20,"name":"David Archuleta"},{"contestant":"David Cook","num_songs":20,"y":20,"name":"David Cook"},{"contestant":"Hollie Cavanagh","num_songs":20,"y":20,"name":"Hollie Cavanagh"},{"contestant":"Katharine McPhee","num_songs":20,"y":20,"name":"Katharine McPhee"},{"contestant":"Nick Fradiani","num_songs":20,"y":20,"name":"Nick Fradiani"},{"contestant":"Taylor Hicks","num_songs":20,"y":20,"name":"Taylor Hicks"},{"contestant":"Blake Lewis","num_songs":19,"y":19,"name":"Blake Lewis"},{"contestant":"Clay Aiken","num_songs":19,"y":19,"name":"Clay Aiken"},{"contestant":"Jessica Meuse","num_songs":19,"y":19,"name":"Jessica Meuse"}],"type":"bar","name":"Number of Songs"}],"xAxis":{"type":"category","title":{"text":"Contestant"}}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<ol start="4" type="1">
+<li>Top Audition Cities by Number of Contestants Selected:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Top audition cities by number of contestants selected</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>auditions <span class="sc">%&gt;%</span></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(audition_city) <span class="sc">%&gt;%</span></span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">tickets_to_hollywood =</span> <span class="fu">sum</span>(tickets_to_hollywood, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(tickets_to_hollywood)) <span class="sc">%&gt;%</span></span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hchart</span>(<span class="st">"bar"</span>, <span class="fu">hcaes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(audition_city, tickets_to_hollywood), <span class="at">y =</span> tickets_to_hollywood), <span class="at">name =</span> <span class="st">"Tickets to Hollywood"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_title</span>(<span class="at">text =</span> <span class="st">"Top 20 Audition Cities by Number of Contestants Selected"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb72-9"><a href="#cb72-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_xAxis</span>(<span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"Audition City"</span>), <span class="at">type =</span> <span class="st">"category"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb72-10"><a href="#cb72-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_yAxis</span>(<span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"Number of Tickets to Hollywood"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb72-11"><a href="#cb72-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_plotOptions</span>(<span class="at">series =</span> <span class="fu">list</span>(<span class="at">dataLabels =</span> <span class="fu">list</span>(<span class="at">enabled =</span> <span class="cn">TRUE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div class="highchart html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-938e8549f4b6d88d2b7c" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-938e8549f4b6d88d2b7c">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":"Top 20 Audition Cities by Number of Contestants Selected"},"yAxis":{"title":{"text":"Number of Tickets to Hollywood"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":false,"dataLabels":{"enabled":true}},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}}},"series":[{"group":"group","data":[{"audition_city":"Nashville, Tennessee","tickets_to_hollywood":591,"y":591,"name":"Nashville, Tennessee"},{"audition_city":"San Francisco, California","tickets_to_hollywood":562,"y":562,"name":"San Francisco, California"},{"audition_city":"Los Angeles, California","tickets_to_hollywood":538,"y":538,"name":"Los Angeles, California"},{"audition_city":"Atlanta, Georgia","tickets_to_hollywood":175,"y":175,"name":"Atlanta, Georgia"},{"audition_city":"Austin, Texas","tickets_to_hollywood":156,"y":156,"name":"Austin, Texas"},{"audition_city":"Chicago, Illinois","tickets_to_hollywood":117,"y":117,"name":"Chicago, Illinois"},{"audition_city":"New York City, New York","tickets_to_hollywood":115,"y":115,"name":"New York City, New York"},{"audition_city":"Dallas, Texas","tickets_to_hollywood":97,"y":97,"name":"Dallas, Texas"},{"audition_city":"Denver, Colorado","tickets_to_hollywood":94,"y":94,"name":"Denver, Colorado"},{"audition_city":"New Orleans, Louisiana","tickets_to_hollywood":88,"y":88,"name":"New Orleans, Louisiana"},{"audition_city":"Boston, Massachusetts","tickets_to_hollywood":85,"y":85,"name":"Boston, Massachusetts"},{"audition_city":"San Diego, California","tickets_to_hollywood":84,"y":84,"name":"San Diego, California"},{"audition_city":"St. Louis, Missouri","tickets_to_hollywood":78,"y":78,"name":"St. Louis, Missouri"},{"audition_city":"Houston, Texas","tickets_to_hollywood":68,"y":68,"name":"Houston, Texas"},{"audition_city":"Detroit, Michigan","tickets_to_hollywood":62,"y":62,"name":"Detroit, Michigan"},{"audition_city":"San Antonio, Texas","tickets_to_hollywood":55,"y":55,"name":"San Antonio, Texas"},{"audition_city":"Milwaukee, Wisconsin","tickets_to_hollywood":53,"y":53,"name":"Milwaukee, Wisconsin"},{"audition_city":"East Rutherford, New Jersey","tickets_to_hollywood":51,"y":51,"name":"East Rutherford, New Jersey"},{"audition_city":"Orlando, Florida","tickets_to_hollywood":47,"y":47,"name":"Orlando, Florida"},{"audition_city":"Oklahoma City, Oklahoma","tickets_to_hollywood":45,"y":45,"name":"Oklahoma City, Oklahoma"}],"type":"bar","name":"Tickets to Hollywood"}],"xAxis":{"type":"category","title":{"text":"Audition City"}}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Question:</p>
+<p>Is there a relationship between the number of songs performed by a contestant and their likelihood of winning American Idol?</p>
+<p>Hypothesis:</p>
+<p>Contestants who perform more songs are more likely to reach the final stages and potentially win the competition. Steps to Investigate the Hypothesis Identify the Outcome of Interest:</p>
+<p>Outcome: Whether a contestant wins the competition or not. Main Predictor: The number of songs performed by the contestant.</p>
+<p>Data Preparation: Create a dataset with contestants’ information, including the number of songs they performed and their final position in the competition. Create a binary variable indicating whether a contestant won the competition (1 for the winner, 0 for others).</p>
+<p>Exploratory Data Analysis: Visualize the distribution of the number of songs performed by winners and other contestants. Perform statistical tests to check for significant differences in the number of songs performed between winners and other contestants.</p>
+<p>Model Building: Build a logistic regression model to predict the likelihood of winning based on the number of songs performed. Evaluate the model’s performance using appropriate metrics.</p>
+<p>Interpretation: Analyze the model coefficients and interpret the relationship between the number of songs performed and the likelihood of winning.</p>
+<p>R Code for Data Preparation and Hypothesis Testing:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load required libraries</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: lattice</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'caret'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:yardstick':
+
+    precision, recall, sensitivity, specificity</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:purrr':
+
+    lift</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kernlab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'kernlab'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:scales':
+
+    alpha</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:purrr':
+
+    cross</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:ggplot2':
+
+    alpha</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("kernlab")</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge necessary data</span></span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>contestant_songs <span class="ot">&lt;-</span> songs <span class="sc">%&gt;%</span></span>
+<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(contestant) <span class="sc">%&gt;%</span></span>
+<span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">num_songs =</span> <span class="fu">n</span>())</span>
+<span id="cb83-7"><a href="#cb83-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-8"><a href="#cb83-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Define winners based on place column in the eliminations table</span></span>
+<span id="cb83-9"><a href="#cb83-9" aria-hidden="true" tabindex="-1"></a>winners <span class="ot">&lt;-</span> eliminations <span class="sc">%&gt;%</span></span>
+<span id="cb83-10"><a href="#cb83-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(place <span class="sc">==</span> <span class="st">"1"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb83-11"><a href="#cb83-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(season, contestant)</span>
+<span id="cb83-12"><a href="#cb83-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-13"><a href="#cb83-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Add information about winners</span></span>
+<span id="cb83-14"><a href="#cb83-14" aria-hidden="true" tabindex="-1"></a>contestant_info <span class="ot">&lt;-</span> finalists <span class="sc">%&gt;%</span></span>
+<span id="cb83-15"><a href="#cb83-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">winner =</span> <span class="fu">if_else</span>(Contestant <span class="sc">%in%</span> winners<span class="sc">$</span>contestant, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb83-16"><a href="#cb83-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(contestant_songs, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Contestant"</span> <span class="ot">=</span> <span class="st">"contestant"</span>))</span>
+<span id="cb83-17"><a href="#cb83-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-18"><a href="#cb83-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Handle missing values (if any)</span></span>
+<span id="cb83-19"><a href="#cb83-19" aria-hidden="true" tabindex="-1"></a>contestant_info <span class="ot">&lt;-</span> contestant_info <span class="sc">%&gt;%</span></span>
+<span id="cb83-20"><a href="#cb83-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replace_na</span>(<span class="fu">list</span>(<span class="at">num_songs =</span> <span class="dv">0</span>))</span>
+<span id="cb83-21"><a href="#cb83-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-22"><a href="#cb83-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure the winner variable is a factor with two levels</span></span>
+<span id="cb83-23"><a href="#cb83-23" aria-hidden="true" tabindex="-1"></a>contestant_info <span class="ot">&lt;-</span> contestant_info <span class="sc">%&gt;%</span></span>
+<span id="cb83-24"><a href="#cb83-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">winner =</span> <span class="fu">factor</span>(winner, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)))</span>
+<span id="cb83-25"><a href="#cb83-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-26"><a href="#cb83-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the structure of the dataset</span></span>
+<span id="cb83-27"><a href="#cb83-27" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(contestant_info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [190 × 8] (S3: tbl_df/tbl/data.frame)
+ $ Contestant : chr [1:190] "Kelly Clarkson" "Justin Guarini" "Nikki McKibbin" "Tamyra Gray" ...
+ $ Birthday   : chr [1:190] "24-Apr-82" "28-Oct-78" "28-Sep-78" "26-Jul-79" ...
+ $ Birthplace : chr [1:190] "Fort Worth, Texas" "Columbus, Georgia" "Grand Prairie, Texas" "Takoma Park, Maryland" ...
+ $ Hometown   : chr [1:190] "Burleson, Texas" "Doylestown, Pennsylvania" NA "Atlanta, Georgia" ...
+ $ Description: chr [1:190] "She performed Aretha Franklin's version of \"Respectand Vanessa Williams' \"Save The Best For Lastin the Hollywood rounds." "He performed  Oleta Adams' version of \"Get Herein the Hollywood rounds." "She had previously been on Popstars and auditioned with Gloria Gaynor's \"I Will Surviveand Whitney Houston's \"| __truncated__ "She had appeared on TV commercials and worked with other artists before auditioning for Idol, and was crowned M"| __truncated__ ...
+ $ Season     : num [1:190] 1 1 1 1 1 1 1 1 1 1 ...
+ $ winner     : Factor w/ 2 levels "0","1": 2 1 1 1 1 1 1 1 1 1 ...
+ $ num_songs  : int [1:190] 13 13 10 8 7 5 4 3 2 2 ...</code></pre>
+</div>
+</div>
+<p>Split the Data into Training and Testing Sets:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove rows with any NA values</span></span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>contestant_info <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(contestant_info)</span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the data into training and testing sets</span></span>
+<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a>trainIndex <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(contestant_info<span class="sc">$</span>winner, <span class="at">p =</span> <span class="fl">0.8</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb85-6"><a href="#cb85-6" aria-hidden="true" tabindex="-1"></a>train_data <span class="ot">&lt;-</span> contestant_info[trainIndex, ]</span>
+<span id="cb85-7"><a href="#cb85-7" aria-hidden="true" tabindex="-1"></a>test_data <span class="ot">&lt;-</span> contestant_info[<span class="sc">-</span>trainIndex, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="define-and-fit-at-least-3-different-model-types" class="level1">
+<h1>Define and Fit at least 3 Different Model Types:</h1>
+<p>Model 1: Logistic Regression</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the logistic regression model</span></span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>log_reg_spec <span class="ot">&lt;-</span> <span class="fu">logistic_reg</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"glm"</span>)</span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the workflow</span></span>
+<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a>log_reg_wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb86-7"><a href="#cb86-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(log_reg_spec) <span class="sc">%&gt;%</span></span>
+<span id="cb86-8"><a href="#cb86-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(winner <span class="sc">~</span> num_songs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Model 2: Random Forest</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the random forest model</span></span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>rf_spec <span class="ot">&lt;-</span> <span class="fu">rand_forest</span>(<span class="at">trees =</span> <span class="dv">1000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"ranger"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">"classification"</span>)</span>
+<span id="cb87-5"><a href="#cb87-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-6"><a href="#cb87-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the workflow</span></span>
+<span id="cb87-7"><a href="#cb87-7" aria-hidden="true" tabindex="-1"></a>rf_wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb87-8"><a href="#cb87-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(rf_spec) <span class="sc">%&gt;%</span></span>
+<span id="cb87-9"><a href="#cb87-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(winner <span class="sc">~</span> num_songs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Model 3: Support Vector Machine</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the SVM model</span></span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>svm_spec <span class="ot">&lt;-</span> <span class="fu">svm_rbf</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"kernlab"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">"classification"</span>)</span>
+<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-6"><a href="#cb88-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the workflow</span></span>
+<span id="cb88-7"><a href="#cb88-7" aria-hidden="true" tabindex="-1"></a>svm_wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb88-8"><a href="#cb88-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(svm_spec) <span class="sc">%&gt;%</span></span>
+<span id="cb88-9"><a href="#cb88-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(winner <span class="sc">~</span> num_songs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Evaluate Model Performance Using Cross-Validation:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create cross-validation folds</span></span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(train_data, <span class="at">v =</span> <span class="dv">5</span>)</span>
+<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define metrics</span></span>
+<span id="cb89-6"><a href="#cb89-6" aria-hidden="true" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(roc_auc, accuracy)</span>
+<span id="cb89-7"><a href="#cb89-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-8"><a href="#cb89-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit and evaluate models using cross-validation</span></span>
+<span id="cb89-9"><a href="#cb89-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-10"><a href="#cb89-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic Regression</span></span>
+<span id="cb89-11"><a href="#cb89-11" aria-hidden="true" tabindex="-1"></a>log_reg_res <span class="ot">&lt;-</span> <span class="fu">fit_resamples</span>(</span>
+<span id="cb89-12"><a href="#cb89-12" aria-hidden="true" tabindex="-1"></a>  log_reg_wf,</span>
+<span id="cb89-13"><a href="#cb89-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">resamples =</span> folds,</span>
+<span id="cb89-14"><a href="#cb89-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">metrics =</span> metrics</span>
+<span id="cb89-15"><a href="#cb89-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb89-16"><a href="#cb89-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-17"><a href="#cb89-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Random Forest</span></span>
+<span id="cb89-18"><a href="#cb89-18" aria-hidden="true" tabindex="-1"></a>rf_res <span class="ot">&lt;-</span> <span class="fu">fit_resamples</span>(</span>
+<span id="cb89-19"><a href="#cb89-19" aria-hidden="true" tabindex="-1"></a>  rf_wf,</span>
+<span id="cb89-20"><a href="#cb89-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">resamples =</span> folds,</span>
+<span id="cb89-21"><a href="#cb89-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">metrics =</span> metrics</span>
+<span id="cb89-22"><a href="#cb89-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb89-23"><a href="#cb89-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-24"><a href="#cb89-24" aria-hidden="true" tabindex="-1"></a><span class="co"># SVM</span></span>
+<span id="cb89-25"><a href="#cb89-25" aria-hidden="true" tabindex="-1"></a>svm_res <span class="ot">&lt;-</span> <span class="fu">fit_resamples</span>(</span>
+<span id="cb89-26"><a href="#cb89-26" aria-hidden="true" tabindex="-1"></a>  svm_wf,</span>
+<span id="cb89-27"><a href="#cb89-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">resamples =</span> folds,</span>
+<span id="cb89-28"><a href="#cb89-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">metrics =</span> metrics</span>
+<span id="cb89-29"><a href="#cb89-29" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb89-30"><a href="#cb89-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-31"><a href="#cb89-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Collect and compare metrics</span></span>
+<span id="cb89-32"><a href="#cb89-32" aria-hidden="true" tabindex="-1"></a>log_reg_metrics <span class="ot">&lt;-</span> <span class="fu">collect_metrics</span>(log_reg_res)</span>
+<span id="cb89-33"><a href="#cb89-33" aria-hidden="true" tabindex="-1"></a>rf_metrics <span class="ot">&lt;-</span> <span class="fu">collect_metrics</span>(rf_res)</span>
+<span id="cb89-34"><a href="#cb89-34" aria-hidden="true" tabindex="-1"></a>svm_metrics <span class="ot">&lt;-</span> <span class="fu">collect_metrics</span>(svm_res)</span>
+<span id="cb89-35"><a href="#cb89-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-36"><a href="#cb89-36" aria-hidden="true" tabindex="-1"></a>log_reg_metrics</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 6
+  .metric  .estimator  mean     n std_err .config             
+  &lt;chr&gt;    &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;               
+1 accuracy binary     0.909     5  0.0321 Preprocessor1_Model1
+2 roc_auc  binary     0.859     5  0.0542 Preprocessor1_Model1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>rf_metrics</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 6
+  .metric  .estimator  mean     n std_err .config             
+  &lt;chr&gt;    &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;               
+1 accuracy binary     0.908     5  0.0261 Preprocessor1_Model1
+2 roc_auc  binary     0.778     5  0.0685 Preprocessor1_Model1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>svm_metrics</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 6
+  .metric  .estimator  mean     n std_err .config             
+  &lt;chr&gt;    &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;               
+1 accuracy binary     0.894     5  0.0169 Preprocessor1_Model1
+2 roc_auc  binary     0.539     5  0.205  Preprocessor1_Model1</code></pre>
+</div>
+</div>
+<p>Final Model Training on Entire Training Data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Choose the best model based on cross-validation performance</span></span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>best_model <span class="ot">&lt;-</span> log_reg_wf </span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the best model on the entire training set</span></span>
+<span id="cb95-5"><a href="#cb95-5" aria-hidden="true" tabindex="-1"></a>final_model <span class="ot">&lt;-</span> <span class="fu">fit</span>(best_model, <span class="at">data =</span> train_data)</span>
+<span id="cb95-6"><a href="#cb95-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-7"><a href="#cb95-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluate the model on the test set</span></span>
+<span id="cb95-8"><a href="#cb95-8" aria-hidden="true" tabindex="-1"></a>final_predictions <span class="ot">&lt;-</span> <span class="fu">predict</span>(final_model, test_data) <span class="sc">%&gt;%</span></span>
+<span id="cb95-9"><a href="#cb95-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(test_data)</span>
+<span id="cb95-10"><a href="#cb95-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-11"><a href="#cb95-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming 'final_predictions' contains a column for predictions and a column for actual values</span></span>
+<span id="cb95-12"><a href="#cb95-12" aria-hidden="true" tabindex="-1"></a>predicted_col <span class="ot">&lt;-</span> <span class="st">'winner'</span>  </span>
+<span id="cb95-13"><a href="#cb95-13" aria-hidden="true" tabindex="-1"></a>actual_col <span class="ot">&lt;-</span> <span class="st">'winner'</span>  </span>
+<span id="cb95-14"><a href="#cb95-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-15"><a href="#cb95-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-16"><a href="#cb95-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-17"><a href="#cb95-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean Absolute Error (MAE)</span></span>
+<span id="cb95-18"><a href="#cb95-18" aria-hidden="true" tabindex="-1"></a>predicted_col <span class="ot">&lt;-</span> final_predictions[[predicted_col]] </span>
+<span id="cb95-19"><a href="#cb95-19" aria-hidden="true" tabindex="-1"></a>actual_col <span class="ot">&lt;-</span> test_data[[actual_col]]</span>
+<span id="cb95-20"><a href="#cb95-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-21"><a href="#cb95-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a confusion matrix</span></span>
+<span id="cb95-22"><a href="#cb95-22" aria-hidden="true" tabindex="-1"></a>conf_matrix <span class="ot">&lt;-</span> <span class="fu">confusionMatrix</span>(predicted_col, actual_col)</span>
+<span id="cb95-23"><a href="#cb95-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-24"><a href="#cb95-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Print confusion matrix</span></span>
+<span id="cb95-25"><a href="#cb95-25" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(conf_matrix)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction  0  1
+         0 17  0
+         1  0  2
+                                     
+               Accuracy : 1          
+                 95% CI : (0.8235, 1)
+    No Information Rate : 0.8947     
+    P-Value [Acc &gt; NIR] : 0.1208     
+                                     
+                  Kappa : 1          
+                                     
+ Mcnemar's Test P-Value : NA         
+                                     
+            Sensitivity : 1.0000     
+            Specificity : 1.0000     
+         Pos Pred Value : 1.0000     
+         Neg Pred Value : 1.0000     
+             Prevalence : 0.8947     
+         Detection Rate : 0.8947     
+   Detection Prevalence : 0.8947     
+      Balanced Accuracy : 1.0000     
+                                     
+       'Positive' Class : 0          
+                                     </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extracting metrics</span></span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>accuracy <span class="ot">&lt;-</span> conf_matrix<span class="sc">$</span>overall[<span class="st">'Accuracy'</span>]</span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>precision <span class="ot">&lt;-</span> conf_matrix<span class="sc">$</span>byClass[<span class="st">'Pos Pred Value'</span>]  <span class="co"># Precision</span></span>
+<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a>recall <span class="ot">&lt;-</span> conf_matrix<span class="sc">$</span>byClass[<span class="st">'Sensitivity'</span>]       <span class="co"># Recall</span></span>
+<span id="cb97-5"><a href="#cb97-5" aria-hidden="true" tabindex="-1"></a>f1_score <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (precision <span class="sc">*</span> recall) <span class="sc">/</span> (precision <span class="sc">+</span> recall)</span>
+<span id="cb97-6"><a href="#cb97-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-7"><a href="#cb97-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Printing the metrics</span></span>
+<span id="cb97-8"><a href="#cb97-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Accuracy: "</span>, accuracy, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Accuracy:  1 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Precision: "</span>, precision, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Precision:  1 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Recall: "</span>, recall, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Recall:  1 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"F1 Score: "</span>, f1_score, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>F1 Score:  1 </code></pre>
+</div>
+</div>
+</section>
+<section id="summary-of-findings" class="level1">
+<h1>Summary of Findings:</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
+<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(highcharter)</span>
+<span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb105-4"><a href="#cb105-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'knitr' was built under R version 4.3.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data preparation for the best model</span></span>
+<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb107-3"><a href="#cb107-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Metric =</span> <span class="fu">c</span>(<span class="st">"Accuracy"</span>, <span class="st">"Precision"</span>, <span class="st">"Recall"</span>, <span class="st">"F1 Score"</span>),</span>
+<span id="cb107-4"><a href="#cb107-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Value =</span> <span class="fu">c</span>(<span class="fl">0.909</span>, <span class="fl">1.000</span>, <span class="fl">1.000</span>, <span class="fl">1.000</span>)</span>
+<span id="cb107-5"><a href="#cb107-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb107-6"><a href="#cb107-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-7"><a href="#cb107-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the metrics using highcharter</span></span>
+<span id="cb107-8"><a href="#cb107-8" aria-hidden="true" tabindex="-1"></a>hc <span class="ot">&lt;-</span> <span class="fu">highchart</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb107-9"><a href="#cb107-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_chart</span>(<span class="at">type =</span> <span class="st">"column"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb107-10"><a href="#cb107-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_title</span>(<span class="at">text =</span> <span class="st">"Performance Metrics for Logistic Regression Model"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb107-11"><a href="#cb107-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_xAxis</span>(<span class="at">categories =</span> metrics<span class="sc">$</span>Metric) <span class="sc">%&gt;%</span></span>
+<span id="cb107-12"><a href="#cb107-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_yAxis</span>(<span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"Value"</span>), <span class="at">max =</span> <span class="fl">1.2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb107-13"><a href="#cb107-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_add_series</span>(<span class="at">name =</span> <span class="st">"Logistic Regression"</span>, <span class="at">data =</span> metrics<span class="sc">$</span>Value) <span class="sc">%&gt;%</span></span>
+<span id="cb107-14"><a href="#cb107-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_plotOptions</span>(<span class="at">column =</span> <span class="fu">list</span>(<span class="at">dataLabels =</span> <span class="fu">list</span>(<span class="at">enabled =</span> <span class="cn">TRUE</span>, <span class="at">format =</span> <span class="st">'{point.y:.3f}'</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb107-15"><a href="#cb107-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_tooltip</span>(<span class="at">pointFormat =</span> <span class="st">'Value: &lt;b&gt;{point.y:.3f}&lt;/b&gt;'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb107-16"><a href="#cb107-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_legend</span>(<span class="at">enabled =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb107-17"><a href="#cb107-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-18"><a href="#cb107-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the highchart</span></span>
+<span id="cb107-19"><a href="#cb107-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(hc)</span>
+<span id="cb107-20"><a href="#cb107-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-21"><a href="#cb107-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the table using knitr::kable</span></span>
+<span id="cb107-22"><a href="#cb107-22" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(metrics, <span class="at">caption =</span> <span class="st">"Performance Metrics for Logistic Regression Model"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>Performance Metrics for Logistic Regression Model</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Metric</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Accuracy</td>
+<td style="text-align: right;">0.909</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Precision</td>
+<td style="text-align: right;">1.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Recall</td>
+<td style="text-align: right;">1.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F1 Score</td>
+<td style="text-align: right;">1.000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>For this exercise, I analyzed the performances of contestants on American Idol using historical data spanning 18 seasons. The goal was to uncover trends and patterns by filtering, aggregating, and visualizing the data. Key steps included loading and exploring datasets, summarizing dataframes, and creating visualizations to understand contestant numbers, viewership trends, and song performances. I also tested the hypothesis that contestants performing more songs are more likely to reach the final stages and potentially win the competition. This involved creating a dataset with contestant information, visualizing song performance distributions, and building logistic regression, random forest, and support vector machine models.</p>
+<p>The findings supported the hypothesis, indicating that contestants performing more songs tend to progress further in the competition. Visualizations showed variations in contestant numbers per season, viewership trends, and top contestants by the number of songs performed. Certain cities consistently produced more contestants who advanced to Hollywood, highlighting regional talent hubs. Model evaluations revealed that logistic regression and random forest models performed well, with high accuracy and reasonable ROC AUC, while the SVM model showed lower performance. Overall, the analysis provided valuable insights into American Idol contestant performances and the relationship between song numbers and competition success.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
